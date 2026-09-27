@@ -1,0 +1,56 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+[setup] case118: 118 bus, 54 gen, 186 branch | 24 train / 8 test | K=8 cuts
+[setup] demand 34.0-48.6 pu, CV 10.30%
+[ref ] cached /Users/parthbrahmbhatt/Library/CloudStorage/OneDrive-UW-Madison/All_Sem_@_UW/Sem6_spring2026/MINLP/Project/PyEPO/qcac_clean/results/ref_case118_s0_n32.npz
+[ref ] 32/32 solved, 16 distinct commitments, mean 152.1s, mean units 14.6
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+
+[BASE] flat V, no cuts: gap +10.885% (max +14.071%)  agree 56.9%  1.09s/inst  fail 0/8   [2s]
+
+[net ] 189,780 params | smoothed grad, sigma=0.05, pairs=2 | ARM=v (V learned, cuts OFF)
+[ep   0] train gap +10.835%  fail 0/24  |g| 1.58e-01   19.0s
+[ep   5] train gap  +9.680%  fail 0/24  |g| 1.47e-01   23.7s
+[ep  10] train gap  +6.153%  fail 0/24  |g| 1.33e-01   13.1s
+[ep  15] train gap  +5.057%  fail 0/24  |g| 9.07e-02    8.3s
+[ep  20] train gap  +3.471%  fail 0/24  |g| 8.21e-02    8.1s
+[ep  25] train gap  +3.748%  fail 0/24  |g| 7.65e-02    9.9s
+[ep  30] train gap  +3.219%  fail 0/24  |g| 6.96e-02    8.0s
+[ep  35] train gap  +1.871%  fail 0/24  |g| 7.42e-02    7.2s
+[ep  40] train gap  +1.660%  fail 0/24  |g| 5.36e-02    6.9s
+[ep  45] train gap  +1.349%  fail 0/24  |g| 6.59e-02    8.4s
+[ep  50] train gap  +1.539%  fail 0/24  |g| 7.02e-02    6.4s
+[ep  55] train gap  +1.825%  fail 0/24  |g| 5.80e-02    7.9s
+[ep  59] train gap  +1.468%  fail 0/24  |g| 8.14e-02    9.8s
+
+==================================================================
+[TEST] reference = QCAC iterative (== global MINLP)
+  baseline  flat V, no cuts        gap +10.885%  agree  56.9%  fail 0/8
+  learned   arm=v                  gap  +1.388%  agree  86.1%  fail 0/8
+  best train gap +1.197%
+==================================================================

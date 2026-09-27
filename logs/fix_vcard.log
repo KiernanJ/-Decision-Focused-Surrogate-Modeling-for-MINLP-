@@ -1,0 +1,75 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+[setup] 112 instances -> 88 train / 24 test | ARM=vcard
+[anchor] n_min 5-10 (mean 7.5)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+[BASE] flat V, no cut: gap +11.608%  agree 57.3%  0.55s/inst  fail 0/24
+
+[net ] 187,630 params | outputs 238 (the old free-form cut head emitted 864)
+[ep   0] train gap  +3.945%  fail 0/88   38.6s  band [10.6, 14.6]
+[ep   5] train gap  +2.582%  fail 0/88   31.7s  band [10.8, 14.2]
+[ep  10] train gap  +2.550%  fail 0/88   25.6s  band [11.2, 13.6]
+[ep  15] train gap  +1.280%  fail 0/88   34.4s  band [10.8, 13.8]
+[ep  20] train gap  +0.737%  fail 0/88   28.5s  band [10.7, 13.6]
+[ep  25] train gap  +0.450%  fail 0/88   25.1s  band [10.4, 13.2]
+[ep  30] train gap  +0.252%  fail 0/88   18.6s  band [10.5, 13.3]
+[ep  35] train gap  +0.263%  fail 0/88   17.0s  band [10.6, 13.3]
+[ep  40] train gap  +0.189%  fail 0/88   14.9s  band [10.6, 12.9]
+[ep  45] train gap  +0.183%  fail 0/88   13.6s  band [10.6, 12.9]
+[ep  49] train gap  +0.083%  fail 0/88   13.5s  band [10.5, 12.9]
+
+======================================================================
+[TEST] reference = QCAC iterative (== global MINLP)
+  baseline  flat V, no cut           gap +11.608%  agree  57.3%
+  learned   arm=vcard                gap  +0.103%  agree  95.6%  fail 0/24
+  0.35s/instance   best train gap +0.083%
+======================================================================

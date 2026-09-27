@@ -1,0 +1,39 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+[setup] 112 instances -> 88 train / 24 test | ARM=vcard
+[anchor] n_min 5-10 (mean 7.5)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+[BASE] flat V, no cut: gap +10.546%  agree 57.1%  0.60s/inst  fail 0/24
+
+[net ] 187,630 params | outputs 238 (the old free-form cut head emitted 864)
+[ep   0] train gap  +3.989%  fail 0/88  130.0s  band [10.4, 14.4]
+[ep   5] train gap  +2.531%  fail 0/88   82.3s  band [10.5, 14.8]
+[ep  10] train gap  +1.559%  fail 0/88  119.3s  band [10.8, 14.6]
+[ep  15] train gap  +1.582%  fail 0/88   66.1s  band [11.0, 14.5]
+[ep  20] train gap  +1.337%  fail 0/88  180.0s  band [10.8, 14.9]
+[ep  25] train gap  +1.276%  fail 0/88   61.1s  band [11.3, 14.6]
+[ep  30] train gap  +0.661%  fail 0/88   59.8s  band [11.5, 14.2]
+[ep  35] train gap  +0.605%  fail 0/88  107.1s  band [11.5, 13.8]
+[ep  40] train gap  +0.496%  fail 0/88   58.4s  band [11.5, 13.5]
+[ep  45] train gap  +0.617%  fail 0/88   62.1s  band [11.5, 13.1]
+[ep  49] train gap  +0.434%  fail 0/88   71.9s  band [11.3, 12.8]
+
+======================================================================
+[TEST] reference = QCAC iterative (== global MINLP)
+  baseline  flat V, no cut           gap +10.546%  agree  57.1%
+  learned   arm=vcard                gap  +0.470%  agree  92.5%  fail 0/24
+  0.39s/instance   best train gap +0.371%
+======================================================================

@@ -1,0 +1,136 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+[setup] case118: 118 bus, 54 gen, 186 branch | 24 train / 8 test | K=8 cuts
+[setup] demand 34.0-48.6 pu, CV 10.30%
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+Set parameter Username
+Set parameter Username
+Set parameter Username
+Set parameter Username
+Set parameter Username
+Academic license - for non-commercial use only - expires 2027-01-17
+Academic license - for non-commercial use only - expires 2027-01-17
+Academic license - for non-commercial use only - expires 2027-01-17
+Set parameter Username
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+Set parameter Username
+Set parameter Username
+Set parameter Username
+Academic license - for non-commercial use only - expires 2027-01-17
+Academic license - for non-commercial use only - expires 2027-01-17
+Academic license - for non-commercial use only - expires 2027-01-17
+Academic license - for non-commercial use only - expires 2027-01-17
+Set parameter Username
+Academic license - for non-commercial use only - expires 2027-01-17
+Academic license - for non-commercial use only - expires 2027-01-17
+Set parameter Username
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+Academic license - for non-commercial use only - expires 2027-01-17
+Academic license - for non-commercial use only - expires 2027-01-17
+Set parameter Username
+Academic license - for non-commercial use only - expires 2027-01-17
+[ref ]  1/32
+[ref ]  2/32
+[ref ]  3/32
+[ref ]  4/32
+[ref ]  5/32
+[ref ]  6/32
+[ref ]  7/32
+[ref ]  8/32
+[ref ]  9/32
+[ref ] 10/32
+[ref ] 11/32
+[ref ] 12/32
+[ref ] 13/32
+[ref ] 14/32
+[ref ] 15/32
+[ref ] 16/32
+[ref ] 17/32
+[ref ] 18/32
+[ref ] 19/32
+[ref ] 20/32
+[ref ] 21/32
+[ref ] 22/32
+[ref ] 23/32
+[ref ] 24/32
+[ref ] 25/32
+[ref ] 26/32
+[ref ] 27/32
+[ref ] 28/32
+[ref ] 29/32
+[ref ] 30/32
+[ref ] 31/32
+[ref ] 32/32
+[ref ] 587s total
+[ref ] 32/32 solved, 16 distinct commitments, mean 152.1s, mean units 14.6
+
+[BASE] flat V, no cuts: gap +10.885% (max +14.071%)  agree 56.9%  0.69s/inst  fail 0/8   [1s]
+
+[net ] 189,780 params | smoothed grad, sigma=0.05, pairs=2
+[ep   0] train gap +11.057%  fail 0/24  |g| 1.34e-01   13.9s
+[ep   5] train gap +10.176%  fail 0/24  |g| 1.35e-01   13.5s
+[ep  10] train gap  +9.921%  fail 0/24  |g| 1.13e-01    7.5s
+[ep  15] train gap  +6.073%  fail 0/24  |g| 1.42e-01   11.4s
+[ep  20] train gap  +5.149%  fail 0/24  |g| 1.15e-01    9.1s
+[ep  25] train gap  +4.042%  fail 0/24  |g| 1.16e-01    8.6s
+[ep  30] train gap  +3.418%  fail 0/24  |g| 8.25e-02    5.4s
+[ep  35] train gap  +3.184%  fail 0/24  |g| 1.01e-01   13.7s
+[ep  40] train gap  +3.333%  fail 0/24  |g| 1.01e-01    8.5s
+[ep  45] train gap  +3.414%  fail 0/24  |g| 6.97e-02   10.1s
+[ep  50] train gap  +3.914%  fail 0/24  |g| 9.92e-02    4.4s
+[ep  55] train gap  +3.833%  fail 0/24  |g| 6.92e-02    3.8s
+[ep  59] train gap  +3.107%  fail 0/24  |g| 7.88e-02    4.2s
+
+==================================================================
+[TEST] reference = QCAC iterative (== global MINLP)
+  baseline  flat V, no cuts        gap +10.885%  agree  56.9%  fail 0/8
+  learned   V + cuts               gap  +3.249%  agree  78.5%  fail 0/8
+  best train gap +3.107%
+==================================================================

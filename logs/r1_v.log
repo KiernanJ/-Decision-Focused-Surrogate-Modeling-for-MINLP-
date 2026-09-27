@@ -1,0 +1,39 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+[setup] 112 instances -> 88 train / 24 test | ARM=v
+[anchor] n_min 5-10 (mean 7.5)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+[BASE] flat V, no cut: gap +10.546%  agree 57.1%  0.61s/inst  fail 0/24
+
+[net ] 187,630 params | outputs 236 (the old free-form cut head emitted 864)
+[ep   0] train gap +10.888%  fail 0/88  132.2s
+[ep   5] train gap  +6.800%  fail 0/88   72.8s
+[ep  10] train gap  +5.439%  fail 0/88   59.8s
+[ep  15] train gap  +5.146%  fail 0/88   69.3s
+[ep  20] train gap  +4.213%  fail 0/88   63.3s
+[ep  25] train gap  +3.206%  fail 0/88   60.7s
+[ep  30] train gap  +2.765%  fail 0/88   56.8s
+[ep  35] train gap  +2.389%  fail 0/88   56.1s
+[ep  40] train gap  +2.398%  fail 0/88   53.8s
+[ep  45] train gap  +1.982%  fail 0/88   55.0s
+[ep  49] train gap  +1.648%  fail 0/88   54.6s
+
+======================================================================
+[TEST] reference = QCAC iterative (== global MINLP)
+  baseline  flat V, no cut           gap +10.546%  agree  57.1%
+  learned   arm=v                    gap  +1.795%  agree  84.2%  fail 0/24
+  0.37s/instance   best train gap +1.525%
+======================================================================

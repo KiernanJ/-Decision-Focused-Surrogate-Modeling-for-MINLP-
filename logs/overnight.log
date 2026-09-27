@@ -1,0 +1,20 @@
+[22:18:18] P0  waiting for the case118 downward-repair runs already in flight
+[22:50:19] P0  done
+[22:50:19] P1  case300 references (2 x 40 instances)
+[23:16:18] P1  case300 seed 0: [ref s0] 40/40 solved, 23 distinct, 1557s
+[23:38:51] P1  case300 seed 1: [ref s1] 38/40 solved, 15 distinct, 1351s
+[23:38:51] P2  case300 training, v vs vcard, downward repair on
+[01:00:02] P2  case300 vcard:   learned   arm=vcard                gap  +0.454%  agree  87.3%  fail 0/20
+[02:22:52] P2  case300 v:   learned   arm=v                    gap  +1.108%  agree  76.7%  fail 0/20
+[02:22:52] P3  case118 extra references (seeds 3,4 -> +80 instances)
+[02:31:11] P3  case118 seed 3: [ref s3] 40/40 solved, 17 distinct, 497s
+[02:40:19] P3  case118 seed 4: [ref s4] 40/40 solved, 25 distinct, 547s
+[02:40:19] P4  case118 final, v vs vcard on ~192 instances
+[04:27:43] P4  case118 vcard:   learned   arm=vcard                gap  +0.103%  agree  95.8%  fail 0/48
+[05:44:33] P4  case118 v:   learned   arm=v                    gap  +0.137%  agree  92.3%  fail 0/48
+[05:44:33] P5  error figures
+[05:47:52] P5  case118: V + cardinality cut       48      4.17%        5.29%    0.103%    1.73s
+[05:53:12] P5  case300: V + cardinality cut       20     12.68%        6.32%    0.454%    5.87s
+[05:53:12] ALL DONE
+[05:53:12] P5  case300: 
+[05:53:12] ALL DONE

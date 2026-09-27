@@ -1,0 +1,44 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+[setup] case118: 118 bus, 54 gen, 186 branch | 24 train / 16 test | K=8 cuts
+[setup] demand 34.2-49.0 pu, CV 10.53%
+[ref ] cached /Users/parthbrahmbhatt/Library/CloudStorage/OneDrive-UW-Madison/All_Sem_@_UW/Sem6_spring2026/MINLP/Project/PyEPO/qcac_clean/results/ref_case118_s2_n40.npz
+[ref ] 40/40 solved, 19 distinct commitments, mean 185.2s, mean units 14.4
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+
+[BASE] flat V, no cuts: gap +10.497% (max +12.328%)  agree 56.9%  0.57s/inst  fail 0/16   [3s]
+
+[net ] 189,780 params | smoothed grad, sigma=0.05, pairs=2 | ARM=both (V learned, cuts on)
+[ep   0] train gap +11.227%  fail 0/24  |g| 1.76e-01   60.1s
+[ep   5] train gap +10.424%  fail 0/24  |g| 1.33e-01   39.0s
+[ep  10] train gap +10.448%  fail 0/24  |g| 2.02e-01   42.5s
+[ep  15] train gap  +7.233%  fail 0/24  |g| 1.31e-01   39.2s
+[ep  20] train gap  +4.844%  fail 0/24  |g| 1.29e-01   19.1s
+[ep  25] train gap  +4.165%  fail 0/24  |g| 1.31e-01   17.6s
+[ep  30] train gap  +3.950%  fail 0/24  |g| 1.14e-01   22.5s
+[ep  35] train gap  +3.508%  fail 0/24  |g| 9.50e-02   22.6s
+[ep  40] train gap  +2.704%  fail 0/24  |g| 7.09e-02   17.2s
+[ep  45] train gap  +2.432%  fail 0/24  |g| 8.29e-02   12.4s
+[ep  50] train gap  +2.450%  fail 0/24  |g| 6.86e-02   11.0s
+[ep  55] train gap  +2.214%  fail 0/24  |g| 6.44e-02   12.3s
+[ep  59] train gap  +2.004%  fail 0/24  |g| 6.05e-02   10.8s
+
+==================================================================
+[TEST] reference = QCAC iterative (== global MINLP)
+  baseline  flat V, no cuts        gap +10.497%  agree  56.9%  fail 0/16
+  learned   arm=both               gap  +1.925%  agree  84.3%  fail 0/16
+  best train gap +2.004%
+==================================================================

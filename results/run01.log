@@ -1,0 +1,14 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+case118: 118 buses, 186 branches, 54 generators
+  pmax  [1.00, 14.14] pu   total 105.8
+  c1    [2000, 4000]   c2 [100.0, 25000.0]
+  no-load cost  [615, 10050]
+  nominal load  42.42 pu
+instance: load 42.43 pu active, 14.35 pu reactive
+  reserve requirement 46.68 pu vs 105.8 pu installed
+Set parameter Username
+Academic license - for non-commercial use only - expires 2027-01-17
+model: 0 vars (54 binary), 0 linear, 0 quadratic

@@ -1,0 +1,15 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+case118: 118 bus / 54 gen, V in [0.94, 1.06]
+  instance 1: load  42.54 pu
+  instance 2: load  40.36 pu
+  instance 3: load  38.86 pu
+  instance 4: load  46.06 pu
+  instance 5: load  45.14 pu
+
+==================================================================
+instance 1  (load 42.54 pu)
+Set parameter Username
+Academic license - for non-commercial use only - expires 2027-01-17

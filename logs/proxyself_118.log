@@ -1,0 +1,257 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+[setup] case118: 192 instances, 144 train / 48 test
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+Process ForkPoolWorker-7:
+Traceback (most recent call last):
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/pool.py", line 114, in worker
+    task = get()
+           ^^^^^
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/queues.py", line 389, in get
+    return _ForkingPickler.loads(res)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: Can't get attribute 'cost_of' on <module '__main__' from '/Users/parthbrahmbhatt/Library/CloudStorage/OneDrive-UW-Madison/All_Sem_@_UW/Sem6_spring2026/MINLP/Project/PyEPO/qcac_clean/16_proxy_self.py'>
+Process ForkPoolWorker-6:
+Process ForkPoolWorker-12:
+Traceback (most recent call last):
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/pool.py", line 114, in worker
+    task = get()
+           ^^^^^
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/queues.py", line 389, in get
+    return _ForkingPickler.loads(res)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: Can't get attribute 'cost_of' on <module '__main__' from '/Users/parthbrahmbhatt/Library/CloudStorage/OneDrive-UW-Madison/All_Sem_@_UW/Sem6_spring2026/MINLP/Project/PyEPO/qcac_clean/16_proxy_self.py'>
+Process ForkPoolWorker-11:
+Traceback (most recent call last):
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/pool.py", line 114, in worker
+    task = get()
+           ^^^^^
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/queues.py", line 389, in get
+    return _ForkingPickler.loads(res)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: Can't get attribute 'cost_of' on <module '__main__' from '/Users/parthbrahmbhatt/Library/CloudStorage/OneDrive-UW-Madison/All_Sem_@_UW/Sem6_spring2026/MINLP/Project/PyEPO/qcac_clean/16_proxy_self.py'>
+Traceback (most recent call last):
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/pool.py", line 114, in worker
+    task = get()
+           ^^^^^
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/queues.py", line 389, in get
+    return _ForkingPickler.loads(res)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: Can't get attribute 'cost_of' on <module '__main__' from '/Users/parthbrahmbhatt/Library/CloudStorage/OneDrive-UW-Madison/All_Sem_@_UW/Sem6_spring2026/MINLP/Project/PyEPO/qcac_clean/16_proxy_self.py'>
+Process ForkPoolWorker-9:
+Traceback (most recent call last):
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/pool.py", line 114, in worker
+    task = get()
+           ^^^^^
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/queues.py", line 389, in get
+    return _ForkingPickler.loads(res)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: Can't get attribute 'cost_of' on <module '__main__' from '/Users/parthbrahmbhatt/Library/CloudStorage/OneDrive-UW-Madison/All_Sem_@_UW/Sem6_spring2026/MINLP/Project/PyEPO/qcac_clean/16_proxy_self.py'>
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+Process ForkPoolWorker-4:
+Traceback (most recent call last):
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/pool.py", line 114, in worker
+    task = get()
+           ^^^^^
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/queues.py", line 389, in get
+    return _ForkingPickler.loads(res)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: Can't get attribute 'cost_of' on <module '__main__' from '/Users/parthbrahmbhatt/Library/CloudStorage/OneDrive-UW-Madison/All_Sem_@_UW/Sem6_spring2026/MINLP/Project/PyEPO/qcac_clean/16_proxy_self.py'>
+Process ForkPoolWorker-1:
+Traceback (most recent call last):
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/pool.py", line 114, in worker
+    task = get()
+           ^^^^^
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/queues.py", line 389, in get
+    return _ForkingPickler.loads(res)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: Can't get attribute 'cost_of' on <module '__main__' from '/Users/parthbrahmbhatt/Library/CloudStorage/OneDrive-UW-Madison/All_Sem_@_UW/Sem6_spring2026/MINLP/Project/PyEPO/qcac_clean/16_proxy_self.py'>
+Process ForkPoolWorker-8:
+Traceback (most recent call last):
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/pool.py", line 114, in worker
+    task = get()
+           ^^^^^
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/queues.py", line 389, in get
+    return _ForkingPickler.loads(res)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: Can't get attribute 'cost_of' on <module '__main__' from '/Users/parthbrahmbhatt/Library/CloudStorage/OneDrive-UW-Madison/All_Sem_@_UW/Sem6_spring2026/MINLP/Project/PyEPO/qcac_clean/16_proxy_self.py'>
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+Process ForkPoolWorker-3:
+Traceback (most recent call last):
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/pool.py", line 114, in worker
+    task = get()
+           ^^^^^
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/queues.py", line 389, in get
+    return _ForkingPickler.loads(res)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: Can't get attribute 'cost_of' on <module '__main__' from '/Users/parthbrahmbhatt/Library/CloudStorage/OneDrive-UW-Madison/All_Sem_@_UW/Sem6_spring2026/MINLP/Project/PyEPO/qcac_clean/16_proxy_self.py'>
+Process ForkPoolWorker-10:
+Traceback (most recent call last):
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/pool.py", line 114, in worker
+    task = get()
+           ^^^^^
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/queues.py", line 389, in get
+    return _ForkingPickler.loads(res)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: Can't get attribute 'cost_of' on <module '__main__' from '/Users/parthbrahmbhatt/Library/CloudStorage/OneDrive-UW-Madison/All_Sem_@_UW/Sem6_spring2026/MINLP/Project/PyEPO/qcac_clean/16_proxy_self.py'>
+Process ForkPoolWorker-5:
+Traceback (most recent call last):
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/pool.py", line 114, in worker
+    task = get()
+           ^^^^^
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/queues.py", line 389, in get
+    return _ForkingPickler.loads(res)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: Can't get attribute 'cost_of' on <module '__main__' from '/Users/parthbrahmbhatt/Library/CloudStorage/OneDrive-UW-Madison/All_Sem_@_UW/Sem6_spring2026/MINLP/Project/PyEPO/qcac_clean/16_proxy_self.py'>
+Process ForkPoolWorker-2:
+Traceback (most recent call last):
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/pool.py", line 114, in worker
+    task = get()
+           ^^^^^
+  File "/Applications/anaconda3/lib/python3.12/multiprocessing/queues.py", line 389, in get
+    return _ForkingPickler.loads(res)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: Can't get attribute 'cost_of' on <module '__main__' from '/Users/parthbrahmbhatt/Library/CloudStorage/OneDrive-UW-Madison/All_Sem_@_UW/Sem6_spring2026/MINLP/Project/PyEPO/qcac_clean/16_proxy_self.py'>
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)

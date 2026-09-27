@@ -1,0 +1,40 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+case118: 118 bus / 54 gen, V in [0.94, 1.06]
+  instance 1: load  42.54 pu
+  instance 2: load  40.36 pu
+  instance 3: load  38.86 pu
+
+==================================================================
+instance 1  (load 42.54 pu)
+Set parameter Username
+Academic license - for non-commercial use only - expires 2027-01-17
+  QCAC iterative : 3 its, slack 1.85e-05, 14 units, 33s  -> true AC cost 164,684.1
+  global MINLP   : 14 units, 300s, MIP gap 0.335%  -> cost 164,684.0
+  agreement 54/54 gens   QCAC gap vs global +0.0001%
+  verify(global): p-resid 2.59e-05  q-resid 9.24e-05  V ok True  reserve ok True
+  verify(QCAC)  : p-resid 1.35e-05  q-resid 5.11e-05  V ok True  reserve ok True
+
+==================================================================
+instance 2  (load 40.36 pu)
+  QCAC iterative : 3 its, slack 1.05e-05, 14 units, 122s  -> true AC cost 154,957.0
+  global failed
+
+==================================================================
+instance 3  (load 38.86 pu)
+  QCAC iterative : 4 its, slack 4.96e-06, 13 units, 39s  -> true AC cost 148,268.9
+  global failed
+
+====================================================================================
+ inst    load    QCAC cost  global cost      gap   agree  QCAC s  glob s   MIPgap
+------------------------------------------------------------------------------------
+    1   42.54    164,684.1    164,684.0  0.0001%   54/54      33     300   0.335%
+====================================================================================
+QCAC vs global: mean gap +0.0001%  max |gap| 0.0001%
+commitment agreement: 54-54 of 54 (100.0% mean)
+speed: QCAC 33s vs global 300s (9.2x)
+max power-balance residual: QCAC 1.35e-05, global 2.59e-05
+
+saved results/compare_5_instances.npy
