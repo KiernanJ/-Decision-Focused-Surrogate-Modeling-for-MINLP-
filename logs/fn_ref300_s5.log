@@ -2,7 +2,6 @@ numba cannot be imported and numba functions are disabled.
 Probably the execution is slow.
 Please install numba to gain a massive speedup.
 (or if you prefer slow execution, set the flag numba=False to avoid this warning!)
-[setup] case300: 151 instances, 111 train / 40 test
 numba cannot be imported and numba functions are disabled.
 Probably the execution is slow.
 Please install numba to gain a massive speedup.
@@ -43,27 +42,76 @@ numba cannot be imported and numba functions are disabled.
 Probably the execution is slow.
 Please install numba to gain a massive speedup.
 (or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+Set parameter Username
+Set parameter Username
+Set parameter Username
 numba cannot be imported and numba functions are disabled.
 Probably the execution is slow.
 Please install numba to gain a massive speedup.
 (or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+Set parameter Username
+Set parameter Username
+Academic license - for non-commercial use only - expires 2027-01-17
+Academic license - for non-commercial use only - expires 2027-01-17
+Set parameter Username
+Set parameter Username
+Academic license - for non-commercial use only - expires 2027-01-17
+Academic license - for non-commercial use only - expires 2027-01-17
+Academic license - for non-commercial use only - expires 2027-01-17
+Set parameter Username
+Set parameter Username
+Set parameter Username
+Academic license - for non-commercial use only - expires 2027-01-17
+Academic license - for non-commercial use only - expires 2027-01-17
+Academic license - for non-commercial use only - expires 2027-01-17
+Set parameter Username
+Academic license - for non-commercial use only - expires 2027-01-17
+Academic license - for non-commercial use only - expires 2027-01-17
 numba cannot be imported and numba functions are disabled.
 Probably the execution is slow.
 Please install numba to gain a massive speedup.
 (or if you prefer slow execution, set the flag numba=False to avoid this warning!)
-[scale] label-free relaxation cost, mean 833,995
-[proxy-self] 237,381 params | smoothed gradient on deployment cost, NO labels
-[ep   0] train gap  +9.864%  fail 0/111  574.2s
-[ep   5] train gap  +1.095%  fail 0/111  421.9s
-[ep  10] train gap  +0.907%  fail 0/111  400.8s
-[ep  15] train gap  +0.757%  fail 0/111  397.7s
-[ep  20] train gap  +0.551%  fail 0/111  370.4s
-[ep  25] train gap  +0.544%  fail 0/111  410.7s
-[ep  30] train gap  +0.532%  fail 0/111  428.5s
-[ep  35] train gap  +0.522%  fail 0/111  419.1s
-[ep  39] train gap  +0.520%  fail 0/111  411.1s
-
-==================================================================
-[TEST] case300, 40 held out
-  NN proxy (SELF-SUPERVISED, no labels):  discrete 12.97%  continuous 4.02%  gap +0.524%
-==================================================================
+Set parameter Username
+Academic license - for non-commercial use only - expires 2027-01-17
+Academic license - for non-commercial use only - expires 2027-01-17
+[ref s5]  1/40
+[ref s5]  2/40
+[ref s5]  3/40
+[ref s5]  4/40
+[ref s5]  5/40
+[ref s5]  6/40
+[ref s5]  7/40
+[ref s5]  8/40
+[ref s5]  9/40
+[ref s5] 10/40
+[ref s5] 11/40
+[ref s5] 12/40
+[ref s5] 13/40
+[ref s5] 14/40
+[ref s5] 15/40
+[ref s5] 16/40
+[ref s5] 17/40
+[ref s5] 17/40
+[ref s5] 18/40
+[ref s5] 19/40
+[ref s5] 20/40
+[ref s5] 21/40
+[ref s5] 22/40
+[ref s5] 23/40
+[ref s5] 24/40
+[ref s5] 25/40
+[ref s5] 26/40
+[ref s5] 27/40
+[ref s5] 27/40
+[ref s5] 28/40
+[ref s5] 29/40
+[ref s5] 30/40
+[ref s5] 31/40
+[ref s5] 32/40
+[ref s5] 33/40
+[ref s5] 34/40
+[ref s5] 35/40
+[ref s5] 36/40
+[ref s5] 37/40
+[ref s5] 38/40
+[ref s5] 38/40 solved, 19 distinct, 785s

@@ -55,12 +55,15 @@ evaluation, the same learning rate, and a band initialisation derived from
 | *control:* random band | 38.43% | 62.14% | +8.933% | no |
 | *control:* mean band (no per-instance info) | 5.63% | 10.57% | +0.582% | no |
 
-**case300** — 151 instances, 111 train / 40 held out:
+**case300** — 151 instances, 111 train / 40 held out.
+(A further 194 references have since been generated, bringing the pool to 345;
+retraining on them is not yet done.)
 
 | method | discrete | continuous | gap | labels |
 |---|---|---|---|---|
 | relaxation only | 26.52% | 22.73% | +2.154% | – |
 | NN proxy (supervised on u\*) | 1.63% | 1.27% | −0.006% | **yes** |
+| NN proxy (self-supervised) | 12.97% | 4.02% | +0.524% | no |
 | ours: V only | 24.57% | 18.78% | +1.861% | no |
 | ours: V + constant penalty | 12.79% | 9.10% | +0.592% | no |
 | **ours: V + LEARNED cardinality cut** | **8.73%** | **5.49%** | **+0.296%** | no |
