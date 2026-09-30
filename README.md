@@ -73,8 +73,24 @@ retraining on them is not yet done.)
 ‖pg − pg\*‖₁ / Σpg\*, on the recovered dispatch. *gap* = true AC cost against
 the QCAC-iterative reference.
 
+### Computational time
+
+| | our time / instance | QCAC iterative reference | speed-up |
+|---|---|---|---|
+| case118 | 1.37 s | 47.0 s (IQR 32–65, n=15) | **34×** |
+| case300 | 4.88 s | 108.8 s (IQR 90–267, n=15) | **22×** |
+
+Measured sequentially on an idle machine. The reference is re-timed
+single-process: the times stored alongside the references were recorded 12-way
+parallel and are inflated. The sample size matters — QCAC iterative ranges
+63–426 s on case300, so a 4-sample median gave 120.4 s and 345.1 s for the same
+quantity ("25×" and "71×" for the same method). At n=15 the median drift over
+the last three samples is 0.0%.
+
 ![case118](results/FINAL_case118.png)
 ![case300](results/FINAL_case300.png)
+![time case118](results/TIME_case118.png)
+![time case300](results/TIME_case300.png)
 
 ## What this does and does not show
 

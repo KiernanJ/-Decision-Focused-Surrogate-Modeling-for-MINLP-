@@ -9,9 +9,9 @@
  "NN proxy (SUPERVISED on u*)": {
   "role": "proxy",
   "labels": "YES",
-  "disc": 1.7391304347826086,
-  "cont": 1.3298098153899827,
-  "gap": 0.00911901299541069
+  "disc": 1.6304347826086958,
+  "cont": 1.5730447806804557,
+  "gap": 0.028686639572226624
  },
  "NN proxy (self-supervised)": {
   "role": "proxy",

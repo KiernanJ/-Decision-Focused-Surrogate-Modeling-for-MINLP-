@@ -1,0 +1,6 @@
+[11:47:11] case300 timing (machine idle)
+[12:02:29] ours: V + learned cut                            4.88s     4.92s     8.93s
+[12:02:29] QCAC iterative (re-timed, single process)       120.4s    120.5s    185.2s   [n=4]
+[12:02:29]   speed-up of ours over the reference (median, like-for-like): 25x
+[12:02:29] wrote results/TIME_case300.png
+[12:02:29] case300 retrain on the 345-instance pool (down=6, matches case118)

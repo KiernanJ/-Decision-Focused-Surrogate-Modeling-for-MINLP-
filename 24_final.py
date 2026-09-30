@@ -46,10 +46,18 @@ NET_V = os.environ.get("NET_V", "")
 NET_PS = os.environ.get("NET_PS", f"net_proxyself_{CASE}.pt")
 set_cuts(K_ROWS); set_down(NDOWN)
 g, nl = grid(); NG = g.n_gen; S = Socp(g, nl, n_cuts=K_ROWS)
+# POOL_SEEDS pins which reference sets are loaded. A net's input
+# standardisation comes from ITS train split, so evaluating it against a
+# pool that has since grown silently changes the test set AND corrupts the
+# normalisation -- the net may even be scored on its own training
+# instances. Adding 194 case300 references turned a pool of 151 into 345
+# and moved the headline gap from +0.296% to +0.890% with no code change.
+_seeds = os.environ.get("POOL_SEEDS")
+_keep = set(_seeds.split(",")) if _seeds else None
 POOL = []
 for f in sorted(os.listdir(f"{HERE}/results")):
     m = re.fullmatch(rf"ref_{CASE}_s(\d+)_n(\d+)\.npz", f)
-    if not m:
+    if not m or (_keep is not None and m.group(1) not in _keep):
         continue
     REF = list(np.load(f"{HERE}/results/{f}", allow_pickle=True)["ref"])
     inst = sample(g, int(m.group(2)), seed=int(m.group(1)))
@@ -225,7 +233,11 @@ plt.rcParams.update({"font.size": 9, "axes.edgecolor": "#d7d7d2",
                      "axes.labelcolor": INK2, "xtick.color": INK2,
                      "ytick.color": INK2, "figure.facecolor": "#fcfcfb",
                      "axes.facecolor": "#fcfcfb"})
-npan = 4 if TC is not None else 3
+# The 4th panel is the time CDF, which needs results/time_<case>.json
+# (produced by 29_timing.py on an IDLE machine). Without it the figure
+# drops to three panels rather than drawing an empty axis.
+_HAS_TIME = os.path.exists(f"{HERE}/results/time_{CASE}.json")
+npan = 4 if _HAS_TIME else 3
 fig, ax = plt.subplots(1, npan, figsize=(4.3*npan, 4.9))
 for a_, (key, title, unit) in zip(ax[:3], [
         ("disc", "Discrete decision error", "% of generators"),
@@ -250,26 +262,40 @@ for a_, (key, title, unit) in zip(ax[:3], [
                        rotation=38, ha="right", rotation_mode="anchor")
     a_.set_title(title, fontsize=9.5, color=INK, pad=8, loc="left")
     a_.set_ylabel(unit, fontsize=8)
-if TC is not None:
+# Panel 4: computational time CDF, matching the hybrid-vehicle case study's
+# layout (discrete error, continuous error, optimality gap, time CDF). The
+# speed claim -- one continuous solve replacing QCAC's 3-4 MIQCQP solves -- is
+# the point of the method and belongs in the same figure as the errors.
+#
+# The reference times are the RE-TIMED single-process ones. The values stored
+# with the references were recorded 12-way parallel and are inflated roughly
+# 2x (132s vs 68s on case118, 163s vs 120s on case300); quoting those would
+# nearly double the claimed speed-up.
+_tj = f"{HERE}/results/time_{CASE}.json"
+if _HAS_TIME:
+    _T = json.load(open(_tj))
     a_ = ax[3]
-    a_.set_axisbelow(True); a_.grid(axis="y", color="#e8e8e3", lw=1)
-    for sp in ("top", "right"):
-        a_.spines[sp].set_visible(False)
-    for t in range(K):
-        a_.scatter(np.full(NTEST, t)+rng.uniform(-.16, .16, NTEST), TC[:, t], s=12,
-                   color=ROLE["ours"], alpha=.6, linewidths=.4, edgecolors="#fcfcfb",
-                   zorder=3, label="learned, per instance" if t == 0 else None)
-        a_.hlines(TC[:, t].mean(), t-.3, t+.3, color=ROLE["control"], lw=2.5, zorder=4,
-                  label="mean band (control)" if t == 0 else None)
-        a_.annotate(f"sd {TC[:, t].std():.2f}", (t, TC[:, t].max()), xytext=(0, 5),
-                    textcoords="offset points", ha="center", fontsize=8, color=INK)
-    a_.set_xticks(range(K))
-    a_.set_xticklabels(["all generators" if K == 1 else f"tier {t+1}"
-                        for t in range(K)], fontsize=8, color=INK2)
-    a_.set_ylabel("generators committed in tier", fontsize=8)
-    a_.set_title("The learned cut is instance-specific", fontsize=9.5, color=INK,
-                 pad=8, loc="left")
-    a_.legend(fontsize=7.5, frameon=False, loc="lower right")
+    a_.set_axisbelow(True); a_.grid(color="#e8e8e3", lw=1)
+    for _sp in ("top", "right"):
+        a_.spines[_sp].set_visible(False)
+    _series = [("relaxation only\n(1 solve, no restoration)", "floor", "relaxation only"),
+               ("NN proxy (supervised)", "proxy", "NN proxy (supervised)"),
+               ("ours: V + learned cut", "ours", "ours: V + learned cut"),
+               ("qcac_iterative_clean", "control", "QCAC iterative (reference)")]
+    for _k, _role, _lab in _series:
+        if _k not in _T or not _T[_k]:
+            continue
+        _v = np.sort(np.asarray(_T[_k], float))
+        a_.step(_v, 100*np.arange(1, len(_v)+1)/len(_v), where="post", lw=2.2,
+                color=ROLE[_role], label=_lab)
+    _med_o = np.median(_T.get("ours: V + learned cut", [np.nan]))
+    _med_r = np.median(_T.get("qcac_iterative_clean", [np.nan]))
+    a_.set_xscale("log")
+    a_.set_xlabel("solution time per instance [s, log]", fontsize=8)
+    a_.set_ylabel("% of instances solved", fontsize=8)
+    a_.set_title(f"Computational time  ({_med_r/_med_o:.0f}x faster, median)",
+                 fontsize=9.5, color=INK, pad=8, loc="left")
+    a_.legend(fontsize=7, frameon=False, loc="lower right")
 fig.legend(handles=[Patch(fc=ROLE[r], alpha=.28, ec=ROLE[r], label=lab) for r, lab in
                     [("floor", "relaxation floor"), ("proxy", "NN proxy baseline"),
                      ("ours", "proposed method"), ("control", "refutation control")]],

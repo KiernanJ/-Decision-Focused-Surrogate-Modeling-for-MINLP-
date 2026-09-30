@@ -1,0 +1,18 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+  using 15 converged reference timings from reftime_case300.json
+
+case300: 40 held out, timed sequentially on an idle machine
+
+arm                                             median      mean       max
+relaxation only (1 solve, no restoration)        0.16s     0.17s     0.43s
+ours: V + learned cut                            4.88s     5.03s    10.13s
+NN proxy (supervised)                            5.67s     6.12s    13.55s
+QCAC iterative (as recorded, 12-way contended)    201.2s    231.3s    961.0s
+QCAC iterative (converged, single process)      108.8s    182.5s    425.6s   [n=15, IQR 90-267s]
+
+  speed-up of ours over the reference (median, like-for-like): 22x
+
+wrote results/TIME_case300.png
