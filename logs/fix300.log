@@ -1,0 +1,7 @@
+[12:08:19] case300 K=1, down_train=2 == down_eval=2, init_frac 0.70
+[12:54:00]   learned   V + LEARNED tier cuts              +0.988%     19.35%   40
+[12:54:00]   CONTROL   V + mean band (no per-instance info)   +1.956%     20.91%   40
+[12:54:00]   learned +0.988%  vs best control +1.356%  ->  LEARNED CUT IS REAL
+[12:54:00] case300 FINAL figure (all arms evaluated at down=2)
+[13:07:55] wrote results/FINAL_case300.png and results/final_case300.json
+[13:07:55] DONE

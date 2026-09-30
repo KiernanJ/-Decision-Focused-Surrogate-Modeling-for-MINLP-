@@ -2,7 +2,6 @@ numba cannot be imported and numba functions are disabled.
 Probably the execution is slow.
 Please install numba to gain a massive speedup.
 (or if you prefer slow execution, set the flag numba=False to avoid this warning!)
-[setup] case118: 192 instances, 144 train / 48 test
 numba cannot be imported and numba functions are disabled.
 Probably the execution is slow.
 Please install numba to gain a massive speedup.
@@ -43,27 +42,76 @@ numba cannot be imported and numba functions are disabled.
 Probably the execution is slow.
 Please install numba to gain a massive speedup.
 (or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+Set parameter Username
 numba cannot be imported and numba functions are disabled.
 Probably the execution is slow.
 Please install numba to gain a massive speedup.
 (or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+Set parameter Username
 numba cannot be imported and numba functions are disabled.
 Probably the execution is slow.
 Please install numba to gain a massive speedup.
 (or if you prefer slow execution, set the flag numba=False to avoid this warning!)
-[scale] label-free relaxation cost, mean 168,116
-[proxy-self] 140,342 params | smoothed gradient on deployment cost, NO labels
-[ep   0] train gap +14.473%  fail 0/144  896.4s
-[ep   5] train gap  +2.222%  fail 0/144  183.1s
-[ep  10] train gap  +0.856%  fail 0/144  145.1s
-[ep  15] train gap  +0.376%  fail 0/144  119.4s
-[ep  20] train gap  +0.269%  fail 0/144  121.3s
-[ep  25] train gap  +0.237%  fail 0/144  126.5s
-[ep  30] train gap  +0.234%  fail 0/144  108.1s
-[ep  35] train gap  +0.231%  fail 0/144  106.6s
-[ep  39] train gap  +0.228%  fail 0/144  105.9s
-
-==================================================================
-[TEST] case118, 48 held out
-  NN proxy (SELF-SUPERVISED, no labels):  discrete 9.61%  continuous 12.61%  gap +0.242%
-==================================================================
+Set parameter Username
+Set parameter Username
+Set parameter Username
+Academic license - for non-commercial use only - expires 2027-01-17
+Academic license - for non-commercial use only - expires 2027-01-17
+Academic license - for non-commercial use only - expires 2027-01-17
+Academic license - for non-commercial use only - expires 2027-01-17
+Set parameter Username
+Set parameter Username
+Set parameter Username
+Academic license - for non-commercial use only - expires 2027-01-17
+Set parameter Username
+Academic license - for non-commercial use only - expires 2027-01-17
+Academic license - for non-commercial use only - expires 2027-01-17
+Academic license - for non-commercial use only - expires 2027-01-17
+Set parameter Username
+Academic license - for non-commercial use only - expires 2027-01-17
+Set parameter Username
+Academic license - for non-commercial use only - expires 2027-01-17
+Academic license - for non-commercial use only - expires 2027-01-17
+Set parameter Username
+Academic license - for non-commercial use only - expires 2027-01-17
+[ref s3]  0/40
+[ref s3]  0/40
+[ref s3]  1/40
+[ref s3]  2/40
+[ref s3]  3/40
+[ref s3]  4/40
+[ref s3]  5/40
+[ref s3]  6/40
+[ref s3]  7/40
+[ref s3]  8/40
+[ref s3]  9/40
+[ref s3] 10/40
+[ref s3] 11/40
+[ref s3] 12/40
+[ref s3] 13/40
+[ref s3] 14/40
+[ref s3] 14/40
+[ref s3] 15/40
+[ref s3] 16/40
+[ref s3] 17/40
+[ref s3] 18/40
+[ref s3] 19/40
+[ref s3] 20/40
+[ref s3] 21/40
+[ref s3] 22/40
+[ref s3] 23/40
+[ref s3] 24/40
+[ref s3] 25/40
+[ref s3] 26/40
+[ref s3] 27/40
+[ref s3] 28/40
+[ref s3] 29/40
+[ref s3] 30/40
+[ref s3] 31/40
+[ref s3] 32/40
+[ref s3] 33/40
+[ref s3] 34/40
+[ref s3] 35/40
+[ref s3] 36/40
+[ref s3] 37/40
+[ref s3] 37/40 solved, 19 distinct, 1102s

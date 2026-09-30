@@ -51,6 +51,16 @@ class Socp:
         self.p_rho = cp.Parameter(nonneg=True)
         self.p_ulo, self.p_uhi = cp.Parameter(G), cp.Parameter(G)
         self.p_A, self.p_b = cp.Parameter((n_cuts, 2*G)), cp.Parameter(n_cuts)
+        # Cap on how far a cut may be violated. 0 makes the cut HARD.
+        #
+        # Soft cuts alone are a trap. With a linear price on the violation, if
+        # a cut is violated at the optimum then the penalty's GRADIENT in the
+        # cut variables is the price, a constant, and the cut's RIGHT-HAND SIDE
+        # drops out of the optimality conditions entirely. Measured: the learned
+        # band was violated on 8/8 instances, and replacing it with [0,0], or
+        # with [0,0] shifted by -20, gave bit-identical results. The band was
+        # decorative; the gain came from a constant 1e4-per-generator penalty.
+        self.p_cutcap = cp.Parameter(nonneg=True)
 
         vr, vi = cp.Variable(n), cp.Variable(n)
         pg, qg, u = cp.Variable(G), cp.Variable(G), cp.Variable(G)
@@ -108,7 +118,7 @@ class Socp:
         # reserve, as a parameter of the demand so it re-solves with it
         C += [g.pmax @ u >= 1.10 * cp.sum(self.p_pd)]
         # learned cuts, priced rather than hard: a bad cut costs, never kills
-        C += [self.p_A @ cp.hstack([pg, u]) <= self.p_b + sc]
+        C += [self.p_A @ cp.hstack([pg, u]) <= self.p_b + sc, sc <= self.p_cutcap]
 
         self.cost = cp.sum(cp.multiply(g.c2, cp.square(pg))
                            + cp.multiply(g.c1, pg) + cp.multiply(nl, u))
@@ -118,7 +128,7 @@ class Socp:
 # %% one solve
 
     def solve(self, pd_, qd_, Vr0, Vi0, rho=1e6, u_lo=None, u_hi=None,
-              A=None, b=None):
+              A=None, b=None, cut_cap=0.0, soft_fallback=True):
         n, G, K = self.n, self.G, self.n_cuts
         fb, tb = self.g.f_bus.astype(int), self.g.t_bus.astype(int)
         self.p_pd.value, self.p_qd.value = np.asarray(pd_), np.asarray(qd_)
@@ -132,12 +142,24 @@ class Socp:
         self.p_uhi.value = np.ones(G) if u_hi is None else np.asarray(u_hi, float)
         if A is None:
             self.p_A.value = np.zeros((K, 2*G)); self.p_b.value = np.ones(K)
+            self.p_cutcap.value = 1e6          # no cut: cap is irrelevant
         else:
             self.p_A.value = np.asarray(A, float); self.p_b.value = np.asarray(b, float)
+            self.p_cutcap.value = float(cut_cap)
         try:
             self.prob.solve(solver=cp.CLARABEL)
         except Exception:
-            return None
+            self.v["u"].value = None
+        if self.v["u"].value is None and A is not None and soft_fallback:
+            # A hard cut can make the instance infeasible. Rather than lose the
+            # instance -- a constant failure penalty carries no gradient -- fall
+            # back to a softly priced cut so the step still costs rather than
+            # kills.
+            self.p_cutcap.value = 1e6
+            try:
+                self.prob.solve(solver=cp.CLARABEL)
+            except Exception:
+                return None
         if self.v["u"].value is None:
             return None
         return dict(u=self.v["u"].value.copy(), pg=self.v["pg"].value.copy(),

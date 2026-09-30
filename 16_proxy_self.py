@@ -58,7 +58,6 @@ if __name__ == "__main__":
     print(f"[setup] {CASE}: {len(POOL)} instances, {len(tr)} train / {len(te)} test",
           flush=True)
 
-    pool = mp.get_context("fork").Pool(a.procs, initializer=_init)
 
     # The proxy's u IS the fractional commitment handed to restoration, so it
     # rides the same _dep worker: V is flat and no cut is imposed. We pass the
@@ -103,10 +102,24 @@ if __name__ == "__main__":
         out = restore_price(POOL[j][0], POOL[j][1], uf)
         return (j, 1e9) if out is None else (j, out[1])
 
-    # label-free per-instance scale
+    # A fork Pool snapshots the parent at fork time, so EVERY function a
+    # worker runs must already be defined. Creating it earlier made all 12
+    # workers die instantly with "Can't get attribute 'cost_of'" while the
+    # parent blocked forever on results that were never coming -- 1h51m at
+    # 0% CPU. Total CPU is the cheap check that catches this.
+    pool = mp.get_context("fork").Pool(a.procs, initializer=_init)
+
+    # Label-free per-instance scale. The earlier version ran a FULL deployment
+    # per instance (a price() loop of up to 25 solves, plus 6 downward trials
+    # -- ~175 solves) purely to set a gradient magnitude. The relaxation cost
+    # at flat V is one solve, equally label-free, and serves the same purpose.
     SCALE = {}
-    for j, c in pool.imap_unordered(cost_of, [(j, np.ones(NG)) for j in range(len(POOL))]):
-        SCALE[j] = c if c < 1e8 else 1e5
+    for j in range(len(POOL)):
+        r = S.solve(POOL[j][0], POOL[j][1], np.ones(g.n_bus), np.zeros(g.n_bus),
+                    rho=1e6)
+        SCALE[j] = float(r["cost"]) if r else 1e5
+    print(f"[scale] label-free relaxation cost, mean {np.mean(list(SCALE.values())):,.0f}",
+          flush=True)
 
     net = torch.nn.Sequential(torch.nn.Linear(2*g.n_bus, 256), torch.nn.SiLU(),
                               torch.nn.Linear(256, 256), torch.nn.SiLU(),

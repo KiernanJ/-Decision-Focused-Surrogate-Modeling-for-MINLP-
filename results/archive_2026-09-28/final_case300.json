@@ -1,0 +1,58 @@
+{
+ "relaxation only (flat V)": {
+  "role": "floor",
+  "labels": "-",
+  "disc": 26.6304347826087,
+  "cont": 22.725437862733973,
+  "gap": 2.1549433823677746
+ },
+ "NN proxy (SUPERVISED on u*)": {
+  "role": "proxy",
+  "labels": "YES",
+  "disc": 1.7753623188405796,
+  "cont": 1.3597017664720206,
+  "gap": -0.004367554150850531
+ },
+ "ours: V only": {
+  "role": "ours",
+  "labels": "no",
+  "disc": 25.10869565217391,
+  "cont": 18.832723779955003,
+  "gap": 1.8780005354920255
+ },
+ "ours: V + constant penalty": {
+  "role": "ours",
+  "labels": "no",
+  "disc": 13.369565217391303,
+  "cont": 9.100746513318901,
+  "gap": 0.6086024319262038
+ },
+ "ours: V + LEARNED tiered cuts": {
+  "role": "ours",
+  "labels": "no",
+  "disc": 14.565217391304348,
+  "cont": 7.790987060049872,
+  "gap": 0.6383886041007526
+ },
+ "CONTROL: dummy band [0,0]": {
+  "role": "control",
+  "labels": "no",
+  "disc": 17.246376811594203,
+  "cont": 6.892927605688217,
+  "gap": 0.7566031661072664
+ },
+ "CONTROL: random band": {
+  "role": "control",
+  "labels": "no",
+  "disc": 18.15217391304348,
+  "cont": 7.470405711250339,
+  "gap": 1.7500966447372668
+ },
+ "CONTROL: mean band": {
+  "role": "control",
+  "labels": "no",
+  "disc": 14.384057971014494,
+  "cont": 6.77781312568816,
+  "gap": 1.4112374308634756
+ }
+}

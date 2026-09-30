@@ -2,7 +2,7 @@ numba cannot be imported and numba functions are disabled.
 Probably the execution is slow.
 Please install numba to gain a massive speedup.
 (or if you prefer slow execution, set the flag numba=False to avoid this warning!)
-[setup] case118: 192 instances, 144 train / 48 test
+[setup] case300: 151 inst, 111 train / 40 test | K=1 interleaved tiers, sizes [69] | HARD cuts
 numba cannot be imported and numba functions are disabled.
 Probably the execution is slow.
 Please install numba to gain a massive speedup.
@@ -51,19 +51,29 @@ numba cannot be imported and numba functions are disabled.
 Probably the execution is slow.
 Please install numba to gain a massive speedup.
 (or if you prefer slow execution, set the flag numba=False to avoid this warning!)
-[scale] label-free relaxation cost, mean 168,116
-[proxy-self] 140,342 params | smoothed gradient on deployment cost, NO labels
-[ep   0] train gap +14.473%  fail 0/144  896.4s
-[ep   5] train gap  +2.222%  fail 0/144  183.1s
-[ep  10] train gap  +0.856%  fail 0/144  145.1s
-[ep  15] train gap  +0.376%  fail 0/144  119.4s
-[ep  20] train gap  +0.269%  fail 0/144  121.3s
-[ep  25] train gap  +0.237%  fail 0/144  126.5s
-[ep  30] train gap  +0.234%  fail 0/144  108.1s
-[ep  35] train gap  +0.231%  fail 0/144  106.6s
-[ep  39] train gap  +0.228%  fail 0/144  105.9s
+[net ] 374,105 params | outputs 601
+[BASE] flat V, no cut: gap +2.155%  discrete 26.63%  n=40
 
-==================================================================
-[TEST] case118, 48 held out
-  NN proxy (SELF-SUPERVISED, no labels):  discrete 9.61%  continuous 12.61%  gap +0.242%
-==================================================================
+[ep   0] train gap  +3.157%  fail 0/48   78.6s  counts [48.3] sd [0.01]
+[ep   5] train gap  +1.086%  fail 0/48   64.6s  counts [47.6] sd [7.15]
+[ep  10] train gap  +1.097%  fail 0/48   78.4s  counts [48.5] sd [12.7]
+[ep  15] train gap  +1.190%  fail 0/48   71.7s  counts [53.9] sd [9.96]
+[ep  20] train gap  +1.108%  fail 0/48   81.5s  counts [51.7] sd [10.83]
+[ep  25] train gap  +0.948%  fail 0/48   71.6s  counts [48.6] sd [9.1]
+[ep  30] train gap  +0.920%  fail 0/48   76.9s  counts [53.] sd [9.77]
+[ep  34] train gap  +0.996%  fail 0/48   74.0s  counts [52.9] sd [10.71]
+
+========================================================================
+[TEST] case300, 40 held out, K=1, HARD cuts
+arm                                                gap   discrete    n
+  baseline  flat V, no cut                     +2.155%     26.63%   40
+  learned   V only (no cut)                    +1.485%     26.81%   40
+  learned   V + LEARNED tier cuts              +0.988%     19.35%   40
+  CONTROL   V + dummy band [0,0]               +1.365%     24.86%   40
+  CONTROL   V + random band                    +1.356%     22.54%   40
+  CONTROL   V + mean band (no per-instance info)   +1.956%     20.91%   40
+
+  per-instance spread of tier counts: sd [9.132] (mean 9.132)  -- a constant band has sd ~ 0
+
+  learned +0.988%  vs best control +1.356%  ->  LEARNED CUT IS REAL
+========================================================================

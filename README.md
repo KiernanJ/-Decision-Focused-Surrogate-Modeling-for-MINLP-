@@ -36,54 +36,75 @@ Measured over 112 instances, `n* − n_min ∈ [+6, +9]`, correlation 0.926.
 
 ## Results (held out)
 
-**case118** — 192 instances, 144 train / 48 test:
+Both cases run an **identical** configuration: K=1 cardinality cut imposed
+hard, 45 epochs, full batch, the same restoration depth in training and
+evaluation, the same learning rate, and a band initialisation derived from
+`n_min` rather than chosen per case.
 
-| method | discrete error | continuous error | gap | labels |
+**case118** — 192 instances, 144 train / 48 held out:
+
+| method | discrete | continuous | gap | labels |
 |---|---|---|---|---|
 | relaxation only (flat V, no cut) | 40.32% | 85.97% | +10.378% | – |
-| NN proxy (supervised on u\*) | 3.24% | 5.49% | +0.063% | **yes** |
-| ours: V only | 7.72% | 10.36% | +0.137% | no |
-| **ours: V + cardinality cut** | **4.17%** | **5.29%** | **+0.103%** | no |
+| NN proxy (supervised on u\*) | 3.32% | 5.21% | +0.057% | **yes** |
+| NN proxy (self-supervised) | 9.61% | 12.61% | +0.242% | no |
+| ours: V only | 22.53% | 23.34% | +3.319% | no |
+| ours: V + constant penalty | 4.17% | 5.29% | +0.103% | no |
+| **ours: V + LEARNED cardinality cut** | **4.05%** | 5.92% | **+0.049%** | no |
+| *control:* dummy band | 28.32% | 51.50% | +6.718% | no |
+| *control:* random band | 38.43% | 62.14% | +8.933% | no |
+| *control:* mean band (no per-instance info) | 5.63% | 10.57% | +0.582% | no |
 
-**case300** — 78 instances, 58 train / 20 test:
+**case300** — 151 instances, 111 train / 40 held out:
 
-| method | discrete error | continuous error | gap | labels |
+| method | discrete | continuous | gap | labels |
 |---|---|---|---|---|
-| relaxation only | 29.93% | 28.57% | +2.754% | – |
-| NN proxy (supervised on u\*) | 1.30% | 1.34% | +0.385% | **yes** |
-| ours: V only | 23.33% | 6.70% | +1.108% | no |
-| **ours: V + cardinality cut** | **12.68%** | **6.32%** | **+0.454%** | no |
+| relaxation only | 26.52% | 22.73% | +2.154% | – |
+| NN proxy (supervised on u\*) | 1.63% | 1.27% | −0.006% | **yes** |
+| ours: V only | 24.57% | 18.78% | +1.861% | no |
+| ours: V + constant penalty | 12.79% | 9.10% | +0.592% | no |
+| **ours: V + LEARNED cardinality cut** | **8.73%** | **5.49%** | **+0.296%** | no |
+| *control:* mean band | 9.60% | 6.85% | +0.605% | no |
 
-*discrete error* = % of generators committed wrongly.
-*continuous error* = ‖pg − pg\*‖₁ / Σpg\*, on the recovered dispatch.
-*gap* = true AC cost against the QCAC-iterative reference.
+*discrete* = % of generators committed wrongly. *continuous* =
+‖pg − pg\*‖₁ / Σpg\*, on the recovered dispatch. *gap* = true AC cost against
+the QCAC-iterative reference.
 
-![case118](results/errors_case118.png)
-![case300](results/errors_case300.png)
+![case118](results/FINAL_case118.png)
+![case300](results/FINAL_case300.png)
 
 ## What this does and does not show
 
-* **The supervised NN proxy is currently the strongest arm on both cases.** It
-  predicts the commitment directly and beats this method on gap and on discrete
-  error. It is trained on reference commitments — one QCAC solve per training
-  instance — which this method never uses. The defensible claim is therefore
-  *comparable accuracy without labels*, not superiority. A self-supervised proxy
-  (same signal as ours, no labels) is the comparison that decides whether the
-  relaxation in the loop is load-bearing; it is not finished yet.
-* **The cut's advantage shrinks as data grows.** With 88 training instances,
-  V-only scored +2.360% and V+cut +0.182% (13×). With 144, the same arms score
-  +0.137% and +0.103% (1.3×). Much of what the cut buys is compensating for a
-  data-starved V head. It still clearly reduces *discrete* error.
-* **case300 is data-starved**: 58 training instances for a 600-dimensional
-  voltage target. That is the likeliest reason the V head trails the proxy there.
-* **Free-form cuts do not work.** Learning 8×108 = 864 cut coefficients per
-  instance loses to no cuts at all on every seed tested. The cardinality cut
-  emits two numbers.
+* **The cut is learned, not a disguised constant.** Three controls exist to
+  refute that: a dummy band (any always-violated value), a random band, and a
+  mean band — the learned bounds averaged over the test set, carrying no
+  per-instance information. All fail on both cases; the mean-band control, the
+  sharpest, loses by 12x on case118 and 2.0x on case300. Learned bounds vary
+  per instance with sd 2.28 and 2.19 generators; a constant band has spread 0.
+* **Soft cuts are inert — this was a real bug, not a tuning issue.** With a
+  linearly priced cut that binds, the penalty gradient is constant and the
+  right-hand side drops out of the optimality conditions. A dummy band [0,0],
+  and [0,0] shifted by −20, reproduced the learned band bit-for-bit. Cuts are
+  imposed hard (`cut_cap=0`) with a softly priced fallback.
+* **Three alternatives were measured and rejected, not tuned away.**
+  *Tiering:* K=3 interleaved +0.351%, random partition +0.807%, contiguous
+  merit blocks +1.757%, against K=1's +0.049%.
+  *Learned rounding threshold* (L2O-MINLP): a per-instance threshold ties fixed
+  0.5 exactly on case118; the learned head settled at 0.499–0.500 on both cases
+  and scored identically to fixed rounding.
+  *Confidence-based variable fixing:* helps only with a labelled 96.5%-accurate
+  predictor; with the label-free one (9.6% error) discrete error worsens from
+  4.17% to 7.68% and 7 of 48 instances become infeasible.
+* **case118 is at its ceiling.** The oracle linearisation point, unbeatable by
+  any method, scores −0.002% against this method's +0.049%.
+* **case300 is data-limited, not method-limited.** Its V head predicts a
+  600-dimensional correction from 111 instances and barely beats the baseline
+  alone (+1.861% vs +2.154%). The supervised proxy reaches −0.006% there, at the
+  price of one reference solve per training instance.
 * **The reference is not a certified optimum.** QCAC iterative matches the global
-  MINLP optimum where both were run, but this method beats it on 13 of 24
-  instances in one experiment, so it is not optimal everywhere. Results are
-  stated relative to it, not to a proven optimum.
-* Seed replication used re-splits of one instance pool, which is closer to
+  MINLP optimum where both were run, but this method beat it on 13 of 24
+  instances in one experiment. Results are stated relative to it.
+* Seed replication used re-splits of one instance pool — closer to
   cross-validation than to independent replication.
 
 ## A note on the solver

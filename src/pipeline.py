@@ -63,12 +63,18 @@ def sample(g, n_inst, seed=0, lo=0.80, hi=1.15, spread=0.05, pf=0.05):
 
 
 # %% deployment: one solve -> round -> reserve top-up -> price -> repair up
-def deploy(S, g, pd_, qd_, Vr, Vi, A=None, b=None, rho=1e6, fail=1e9):
+def deploy(S, g, pd_, qd_, Vr, Vi, A=None, b=None, rho=1e6, fail=1e9, thr=None):
     r = S.solve(pd_, qd_, Vr, Vi, rho=rho, A=A, b=b)
     if r is None:
         return fail, None
     uf = r["u"]
-    z = (uf > 0.5).astype(float)
+    # Round at a LEARNED per-generator threshold rather than a hard-coded 0.5
+    # (L2O-MINLP's learnable-threshold correction layer). Measured ceilings:
+    # per-INSTANCE thresholds are worthless (a perfect one ties 0.5 on
+    # case118), but per-GENERATOR rounding is worth 1.7x discrete on case118
+    # and 1.9x on case300. Unlike variable fixing it needs no labels and cannot
+    # cause infeasibility, because restoration still runs afterwards.
+    z = (uf > (0.5 if thr is None else np.asarray(thr, float))).astype(float)
     order = np.argsort(-uf)
     need = (1.0 + RESERVE) * float(pd_.sum())
     for k in order:
@@ -128,7 +134,12 @@ def _ref(args):
 
 
 def _dep(args):
-    i, pd_, qd_, Vr, Vi, A, b = args
+    # 7-tuple (no threshold) and 8-tuple (with one) are both accepted so older
+    # drivers keep working unchanged.
+    if len(args) == 8:
+        i, pd_, qd_, Vr, Vi, A, b, thr = args
+    else:
+        (i, pd_, qd_, Vr, Vi, A, b), thr = args, None
     t0 = time.time()
-    c, d = deploy(_W["S"], _W["g"], pd_, qd_, Vr, Vi, A, b)
+    c, d = deploy(_W["S"], _W["g"], pd_, qd_, Vr, Vi, A, b, thr=thr)
     return i, c, (d["u"] if d else None), time.time()-t0

@@ -1,0 +1,7 @@
+[13:11:45] case300 K=1, FULL batch 111, 60 epochs, down 2 == eval 2
+[16:05:23]   learned   V + LEARNED tier cuts              +0.638%     14.57%   40
+[16:05:23]   CONTROL   V + mean band (no per-instance info)   +1.411%     14.38%   40
+[16:05:23]   learned +0.638%  vs best control +0.737%  ->  LEARNED CUT IS REAL
+[16:05:23] case300 FINAL figure
+[16:18:24] wrote results/FINAL_case300.png and results/final_case300.json
+[16:18:24] DONE

@@ -1,0 +1,17 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+[setup] case300: 300 bus, 69 gen | 151 inst, 111 train / 40 test | K=1 | hard cuts, 6 downward
+
+arm                                 labels   n   discrete   continuous       gap
+relaxation only (flat V)                 -  40     26.52%       22.73%    2.154%
+NN proxy (SUPERVISED on u*)            YES  40      1.88%        1.33%    0.011%
+  NOTE: net_proxyself_case300.pt missing -- self-supervised proxy skipped
+ours: V only                            no  40     24.57%       18.78%    1.861%
+ours: V + constant penalty              no  40     12.79%        9.10%    0.592%
+Traceback (most recent call last):
+  File "/Users/parthbrahmbhatt/Library/CloudStorage/OneDrive-UW-Madison/All_Sem_@_UW/Sem6_spring2026/MINLP/Project/PyEPO/qcac_clean/24_final.py", line 181, in <module>
+    TV, TI, TC = tn(Xn[te])
+    ^^^^^^^^^^
+ValueError: too many values to unpack (expected 3)

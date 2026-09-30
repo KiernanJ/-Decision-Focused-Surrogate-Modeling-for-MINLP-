@@ -1,0 +1,20 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+[setup] case300: 300 bus, 69 gen | 151 inst, 111 train / 40 test | K=1 | hard cuts, 2 downward
+
+arm                                 labels   n   discrete   continuous       gap
+relaxation only (flat V)                 -  40     26.63%       22.73%    2.155%
+NN proxy (SUPERVISED on u*)            YES  40      2.32%        1.86%    0.055%
+  NOTE: net_proxyself_case300.pt missing -- self-supervised proxy skipped
+ours: V only                            no  40     25.11%       18.83%    1.878%
+ours: V + constant penalty              no  40     13.37%        9.10%    0.609%
+ours: V + LEARNED tiered cuts           no  40     19.35%       10.85%    0.988%
+CONTROL: dummy band [0,0]               no  40     24.86%        9.76%    1.365%
+CONTROL: random band                    no  40     23.73%       10.80%    1.976%
+CONTROL: mean band                      no  40     20.91%       11.54%    1.956%
+
+  learned tier-count spread per instance: sd [9.132]  (a constant band has sd ~ 0)
+
+wrote results/FINAL_case300.png and results/final_case300.json

@@ -1,0 +1,20 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+[setup] case118: 118 bus, 54 gen | 192 inst, 144 train / 48 test | K=1 | hard cuts, 6 downward
+
+arm                                 labels   n   discrete   continuous       gap
+relaxation only (flat V)                 -  48     40.32%       85.97%   10.378%
+NN proxy (SUPERVISED on u*)            YES  48      3.28%        5.34%    0.058%
+NN proxy (self-supervised)              no  48      9.61%       12.61%    0.242%
+ours: V only                            no  48     22.53%       23.34%    3.319%
+ours: V + constant penalty              no  48      4.17%        5.29%    0.103%
+ours: V + LEARNED tiered cuts           no  48      4.17%        6.26%    0.052%
+CONTROL: dummy band [0,0]               no  48     41.05%       41.98%    9.217%
+CONTROL: random band                    no  48     41.05%       45.54%    9.446%
+CONTROL: mean band                      no  48      7.14%       10.96%    0.579%
+
+  learned tier-count spread per instance: sd [2.664]  (a constant band has sd ~ 0)
+
+wrote results/FINAL_case118.png and results/final_case118.json
