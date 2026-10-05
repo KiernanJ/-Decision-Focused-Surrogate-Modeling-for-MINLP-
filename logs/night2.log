@@ -1,6 +1,0 @@
-[09:58:23] A  case118 FINAL figure (result already in hand)
-[10:21:54] A  wrote results/FINAL_case118.png and results/final_case118.json
-[10:21:54] B  case300 K=1 learned cardinality (down_train 0 for speed)
-[11:10:42] B    learned   V + LEARNED tier cuts              +1.816%     17.61%   40
-[11:10:42] B    learned +1.816%  vs best control +1.003%  ->  *** DECORATIVE: a control matches the learned band ***
-[11:10:42] C  case300 self-supervised NN proxy

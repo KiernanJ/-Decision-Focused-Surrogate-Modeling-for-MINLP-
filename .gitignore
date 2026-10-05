@@ -1,19 +1,9 @@
 __pycache__/
 *.pyc
+logs/
 .DS_Store
-# Superseded checkpoints from intermediate experiments. Only the final nets for
-# each case are published; every earlier one is reproducible from the scripts.
-results/net_abl_*.pt
-results/net_d6_*.pt
-results/net_final_*.pt
-results/net_fix_*.pt
-results/net_r1_*.pt
-results/net_r2_*.pt
-results/net_run1.pt
-results/net_s1_*.pt
-results/net_s2_*.pt
-results/net_smoke.pt
-results/net_proxyself_*.pt
-results/ref_case118_run1.npz
-results/ref_case118_smoke.npz
-results/*_smoke.json
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.bbl
+paper/*.blg

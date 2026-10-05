@@ -63,7 +63,8 @@ def sample(g, n_inst, seed=0, lo=0.80, hi=1.15, spread=0.05, pf=0.05):
 
 
 # %% deployment: one solve -> round -> reserve top-up -> price -> repair up
-def deploy(S, g, pd_, qd_, Vr, Vi, A=None, b=None, rho=1e6, fail=1e9, thr=None):
+def deploy(S, g, pd_, qd_, Vr, Vi, A=None, b=None, rho=1e6, fail=1e9,
+           thr=None, order=None):
     r = S.solve(pd_, qd_, Vr, Vi, rho=rho, A=A, b=b)
     if r is None:
         return fail, None
@@ -75,7 +76,13 @@ def deploy(S, g, pd_, qd_, Vr, Vi, A=None, b=None, rho=1e6, fail=1e9, thr=None):
     # and 1.9x on case300. Unlike variable fixing it needs no labels and cannot
     # cause infeasibility, because restoration still runs afterwards.
     z = (uf > (0.5 if thr is None else np.asarray(thr, float))).astype(float)
-    order = np.argsort(-uf)
+    # Repair/top-up ORDER. Default is the network's confidence, which is
+    # right on case118 (conf +0.740% vs merit +2.112%) and WRONG on
+    # case300, where a cheapest-first merit order scores +0.164% against
+    # conf's +0.659%. Thresholding by uf and then topping up in uf order
+    # is idempotent -- it puts back exactly what the threshold removed --
+    # which is why the threshold is INERT under conf and only bites here.
+    order = np.argsort(-uf) if order is None else np.asarray(order, int)
     need = (1.0 + RESERVE) * float(pd_.sum())
     for k in order:
         if float(g.pmax @ z) >= need:
@@ -99,7 +106,14 @@ def deploy(S, g, pd_, qd_, Vr, Vi, A=None, b=None, rho=1e6, fail=1e9, thr=None):
     # its cardinality band low to leave room for the upward climb. Trying the
     # least-confident ON units -- the order the reserve top-up forced them on --
     # removes that asymmetry: measured 0.103% -> 0.029% at 6 trials.
-    for k in [t for t in np.argsort(uf) if z[t] > 0.5][:NDOWN]:
+    # The downward pass must MIRROR the order the top-up used: it removes the
+    # units that order trusts LEAST. With the default uf order that is
+    # argsort(uf); with a merit order it is the most EXPENSIVE units, i.e.
+    # the order reversed. Mixing the two -- top up cheapest-first, then remove
+    # least-confident -- scored +0.497% on case300 where the mirrored pair
+    # scored +0.164%.
+    down_order = np.argsort(uf) if order is None else order[::-1]
+    for k in [t for t in down_order if z[t] > 0.5][:NDOWN]:
         w = z.copy(); w[k] = 0.0
         if float(g.pmax @ w) < need:
             continue

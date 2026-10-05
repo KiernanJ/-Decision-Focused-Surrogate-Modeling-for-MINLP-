@@ -1,4 +1,0 @@
-[16:19:04] Q2  case300 references, seeds 2,3
-[16:40:16] Q2  seed 2: [ref s2] 36/40 solved, 18 distinct, 1269s
-[16:58:40] Q2  seed 3: [ref s3] 37/40 solved, 19 distinct, 1102s
-[16:58:40] Q3  case300 retrain on the larger pool
