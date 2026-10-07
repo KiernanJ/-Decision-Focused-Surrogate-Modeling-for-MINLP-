@@ -214,5 +214,219 @@
    "tied": 0
   }
  },
- "case300": {}
+ "case300": {
+  "ours": {
+   "n_seeds": 4,
+   "n_scored": 148,
+   "n_failed": 0,
+   "abs_gap": 1.464258298651123,
+   "signed_gap": 1.4603921307954355,
+   "median_abs_gap": 1.5023263938920135,
+   "disc": 17.96905601253427,
+   "cont": 25.304990654978425,
+   "median_secs": 79.47952342033386,
+   "per_seed_abs_gap": [
+    1.6341644057625937,
+    1.1598302598770327,
+    1.5319510372243133,
+    1.5310874917405526
+   ],
+   "choices": [
+    "conf|0.5",
+    "conf|0.5",
+    "merit|0.8",
+    "merit|0.8"
+   ],
+   "excluded": {
+    "no_ref": 2,
+    "not_converged": 9,
+    "ref_unpriceable": 0
+   },
+   "best_epochs": [
+    2,
+    22,
+    1,
+    2
+   ],
+   "proxy_cfg": [
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  "reference_median_secs": 664.5676863193512,
+  "proxy": {
+   "n_seeds": 4,
+   "n_scored": 148,
+   "n_failed": 0,
+   "abs_gap": 0.02267369249042536,
+   "signed_gap": -0.02251846525849179,
+   "median_abs_gap": 0.010259869680960116,
+   "disc": 2.105366235801019,
+   "cont": 2.611850502285384,
+   "median_secs": 29.508859872817993,
+   "per_seed_abs_gap": [
+    0.02250302981738451,
+    0.022426207685839042,
+    0.023352170614029714,
+    0.022413361844448157
+   ],
+   "choices": [
+    "merit|0.5",
+    "merit|0.5",
+    "conf|0.5",
+    "merit|0.5"
+   ],
+   "excluded": {
+    "no_ref": 2,
+    "not_converged": 9,
+    "ref_unpriceable": 0
+   },
+   "best_epochs": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "proxy_cfg": [
+    {
+     "lr": 0.003,
+     "epochs": 500,
+     "wd": 0.0
+    },
+    {
+     "lr": 0.003,
+     "epochs": 500,
+     "wd": 0.0001
+    },
+    {
+     "lr": 0.003,
+     "epochs": 500,
+     "wd": 0.0001
+    },
+    {
+     "lr": 0.001,
+     "epochs": 500,
+     "wd": 0.0001
+    }
+   ]
+  },
+  "nocut": {
+   "n_seeds": 4,
+   "n_scored": 148,
+   "n_failed": 0,
+   "abs_gap": 1.4761550650359017,
+   "signed_gap": 1.471592985032283,
+   "median_abs_gap": 1.5229520040583453,
+   "disc": 17.97884841363102,
+   "cont": 25.610264809768,
+   "median_secs": 76.51271080970764,
+   "per_seed_abs_gap": [
+    1.7654775339698094,
+    1.099745524509023,
+    1.5451118133214932,
+    1.4942853883432803
+   ],
+   "choices": [
+    "conf|0.5",
+    "conf|0.5",
+    "merit|0.8",
+    "merit|0.8"
+   ],
+   "excluded": {
+    "no_ref": 2,
+    "not_converged": 9,
+    "ref_unpriceable": 0
+   },
+   "best_epochs": [
+    2,
+    22,
+    1,
+    2
+   ],
+   "proxy_cfg": [
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  "untrained": {
+   "n_seeds": 4,
+   "n_scored": 148,
+   "n_failed": 0,
+   "abs_gap": 2.093479858386467,
+   "signed_gap": 2.0878085437026814,
+   "median_abs_gap": 1.962504671219599,
+   "disc": 22.18958088523306,
+   "cont": 33.61181361470908,
+   "median_secs": 71.08703899383545,
+   "per_seed_abs_gap": [
+    2.835716762507064,
+    2.8961151021809046,
+    1.3199880868049298,
+    1.3220994820529726
+   ],
+   "choices": [
+    "conf|0.5",
+    "conf|0.5",
+    "merit|0.8",
+    "merit|0.8"
+   ],
+   "excluded": {
+    "no_ref": 2,
+    "not_converged": 9,
+    "ref_unpriceable": 0
+   },
+   "best_epochs": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "proxy_cfg": [
+    null,
+    null,
+    null,
+    null
+   ]
+  },
+  "ours_minus_proxy": {
+   "n": 37,
+   "mean": 1.4415846061606978,
+   "ci95": [
+    1.2229757469348888,
+    1.6619121911406791
+   ],
+   "wilcoxon_p": 1.4551915228366852e-11,
+   "ours_better": 0,
+   "ours_worse": 37,
+   "tied": 0
+  },
+  "ours_minus_nocut": {
+   "n": 37,
+   "mean": -0.011896766384778492,
+   "ci95": [
+    -0.05974129646149575,
+    0.03224976268810156
+   ],
+   "wilcoxon_p": 0.9524598861316917,
+   "ours_better": 17,
+   "ours_worse": 20,
+   "tied": 0
+  },
+  "ours_minus_untrained": {
+   "n": 37,
+   "mean": -0.6292215597353444,
+   "ci95": [
+    -0.8232761561961346,
+    -0.43865530409270626
+   ],
+   "wilcoxon_p": 2.2185558918863535e-06,
+   "ours_better": 30,
+   "ours_worse": 7,
+   "tied": 0
+  }
+ }
 }

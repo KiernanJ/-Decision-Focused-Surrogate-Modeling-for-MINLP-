@@ -46,12 +46,19 @@ confidence order (the reserve top-up re-commits exactly what the threshold remov
 The release's case118 number (0.176%) relied on the per-generator threshold fitted on training
 instances; that fit is not part of this protocol.
 
-### case300 — ours and controls complete; PROXY PENDING (training labels still solving)
+### case300 — complete (37 scored test instances: 48 minus 9 non-converged and 2 infeasible references; 4 seeds)
 
-37 scored test instances (48 minus 9 non-converged and 2 infeasible references).
-Per-seed mean |gap|: ours 1.63 / 1.16 / 1.53 / 1.53; no-cut 1.77 / 1.10 / 1.55 / 1.49;
-untrained (s1–s3) 2.90 / 1.32 / 1.32 (s0 pending). Selected epochs 22 / 1 / 2 / 2: the validation
-loss rises after the first epochs, as in the release. Training does not help on case300.
+| method | mean \|gap\| | median \|gap\| | discrete | continuous | per-seed \|gap\| |
+|---|---|---|---|---|---|
+| supervised NN proxy | **0.023%** | 0.010% | **2.11%** | **2.61%** | 0.023 / 0.022 / 0.023 / 0.022 |
+| learned V + cut (ours) | 1.46% | 1.50% | 17.97% | 25.3% | 1.63 / 1.16 / 1.53 / 1.53 |
+| learned V, no cut | 1.48% | 1.52% | 17.98% | 25.6% | 1.77 / 1.10 / 1.55 / 1.49 |
+| untrained network | 2.09% | 1.96% | 22.19% | 33.6% | 2.84 / 2.90 / 1.32 / 1.32 |
+
+Paired per instance (n = 37):
+- ours − proxy = +1.44 pp, 95% CI [+1.22, +1.66] (proxy better on 37/37)
+- ours − no-cut = −0.01 pp, 95% CI [−0.06, +0.03], p = 0.95 (no effect of the cut)
+- ours − untrained = −0.63 pp, 95% CI [−0.82, −0.44] (training helps; selected epochs 22 / 1 / 2 / 2)
 
 ### Vehicle — complete (48 test instances, 4 seeds, all solvers single-threaded)
 
@@ -86,13 +93,12 @@ is worse than no cut; speed-up vs Gurobi at equal threads is ~25x, not 92x.
 ## Bottom line
 
 With the audit's corrections, the learned cut does not beat the no-cut control on any of the
-three problems, and the supervised proxy is far better on case118. What survives: the cone layer
+three problems, and the supervised proxy is far better on both AC-UC cases (37/37 and 41/43 instances). What survives: the cone layer
 differentiates degenerate conic programs where cvxpylayers does not (0.997 vs 0.750), and training
 the linearisation point helps on case118 (12.7% -> 1.4%). The paper's main claim does not hold in
 its current form; the framing is a decision for Parth and Kiernan.
 
 ## Still running / not done
-- case300 proxy (labels solving, ETA ~07:30, then ~1.5 h evaluation)
 - idle-machine timing for AC-UC (reference and methods) — current AC-UC times were taken under load
 - estimator comparison re-run
 - paper not rewritten: its central claim no longer holds, so the framing needs your decision first

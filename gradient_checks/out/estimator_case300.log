@@ -3,3 +3,25 @@ Probably the execution is slow.
 Please install numba to gain a massive speedup.
 (or if you prefer slow execution, set the flag numba=False to avoid this warning!)
 [case300] 300 bus / 69 gen | eps=1e-09 | 6 instances x 8 repeats
+inst 0 selfc 0.001  EXACT cos +1.0000 (0.88s)
+inst 1 selfc 0.003  EXACT cos +0.9998 (0.78s)
+inst 2 selfc 0.031  EXACT cos +0.9990 (0.77s)
+inst 3 selfc 0.002  EXACT cos +0.9997 (0.68s)
+inst 4 selfc 0.013  EXACT cos +0.9966 (0.69s)
+inst 5 selfc 0.005  EXACT cos +0.9868 (0.72s)
+
+==============================================================================
+case300: mean cosine vs the converged reference, over 6 instances
+
+EXACT LAYER   (1 solve + 1 LU):  cosine +0.9970   min +0.9868
+
+SMOOTHED ESTIMATOR (2P solves), mean +- sd over 8 independent draws of E:
+  sigma             P=1             P=2             P=4             P=8            P=16            P=32
+             (2 solves)      (4 solves)      (8 solves)     (16 solves)     (32 solves)     (64 solves)
+   0.05   +0.257+-0.227   +0.339+-0.246   +0.443+-0.187   +0.520+-0.148   +0.580+-0.132   +0.639+-0.081
+   0.15   +0.150+-0.281   +0.181+-0.277   +0.243+-0.273   +0.341+-0.187   +0.382+-0.160   +0.434+-0.113
+   0.50   +0.047+-0.292   +0.101+-0.300   +0.134+-0.246   +0.180+-0.236   +0.210+-0.153   +0.250+-0.112
+   1.00   +0.079+-0.290   +0.100+-0.323   +0.134+-0.237   +0.150+-0.233   +0.206+-0.169   +0.188+-0.172
+
+best smoothed cosine anywhere in the sweep: +0.6386   (exact layer: +0.9970)
+wrote gradient_checks/out/estimator_case300.json

@@ -3,3 +3,25 @@ Probably the execution is slow.
 Please install numba to gain a massive speedup.
 (or if you prefer slow execution, set the flag numba=False to avoid this warning!)
 [case118] 118 bus / 54 gen | eps=1e-08 | 6 instances x 8 repeats
+inst 0 selfc 0.025  EXACT cos +0.9833 (0.63s)
+inst 1 selfc 0.001  EXACT cos +0.9996 (0.65s)
+inst 2 selfc 0.001  EXACT cos +0.9999 (0.54s)
+inst 3 selfc 0.086  EXACT cos +0.9975 (0.51s)
+inst 4 selfc 0.003  EXACT cos +0.9682 (0.60s)
+inst5: reference not converged (selfc 0.216) -- skipped
+
+==============================================================================
+case118: mean cosine vs the converged reference, over 5 instances
+
+EXACT LAYER   (1 solve + 1 LU):  cosine +0.9897   min +0.9682
+
+SMOOTHED ESTIMATOR (2P solves), mean +- sd over 8 independent draws of E:
+  sigma             P=1             P=2             P=4             P=8            P=16            P=32
+             (2 solves)      (4 solves)      (8 solves)     (16 solves)     (32 solves)     (64 solves)
+   0.05   +0.328+-0.186   +0.433+-0.229   +0.576+-0.146   +0.678+-0.150   +0.766+-0.097   +0.827+-0.068
+   0.15   +0.275+-0.212   +0.388+-0.260   +0.505+-0.175   +0.596+-0.216   +0.685+-0.136   +0.744+-0.091
+   0.50   +0.254+-0.235   +0.326+-0.229   +0.420+-0.193   +0.492+-0.208   +0.538+-0.150   +0.595+-0.122
+   1.00   +0.131+-0.303   +0.185+-0.307   +0.281+-0.315   +0.357+-0.231   +0.451+-0.173   +0.471+-0.146
+
+best smoothed cosine anywhere in the sweep: +0.8268   (exact layer: +0.9897)
+wrote gradient_checks/out/estimator_case118.json
