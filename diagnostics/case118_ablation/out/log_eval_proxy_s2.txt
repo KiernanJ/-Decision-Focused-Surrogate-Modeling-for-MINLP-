@@ -1,0 +1,6 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+eval proxy      s2 thr=0.5    n=48/48 |gap| 0.0702% signed +0.0584%  disc 2.28%
+eval proxy      s2 thr=fitted n=48/48 |gap| 0.2734% signed +0.2641%  disc 3.20%

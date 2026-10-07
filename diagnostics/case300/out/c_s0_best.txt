@@ -1,0 +1,26 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+s0 best base batch loss 1.010664  |grad| V-head 1.319e-01  cut heads 2.311e-02  trunk 8.397e-03
+   all             grad eta 0.001   dL -1.171e-04   first-order prediction -1.341e-04
+   all             grad eta 0.01    dL -2.026e-03   first-order prediction -1.341e-03
+   all             grad eta 0.1     dL -4.611e-03   first-order prediction -1.341e-02
+   all             grad eta 1       dL +3.091e-02   first-order prediction -1.341e-01
+   all             sign eta 1e-05   dL -1.245e-03   first-order prediction -2.604e-04
+   all             sign eta 5e-05   dL -1.917e-03   first-order prediction -1.302e-03
+   all             sign eta 0.0005  dL -7.772e-03   first-order prediction -1.302e-02
+   V-head only     grad eta 0.001   dL -1.146e-04   first-order prediction -1.319e-04
+   V-head only     grad eta 0.01    dL -2.005e-03   first-order prediction -1.319e-03
+   V-head only     grad eta 0.1     dL -4.496e-03   first-order prediction -1.319e-02
+   V-head only     grad eta 1       dL +2.381e-02   first-order prediction -1.319e-01
+   V-head only     sign eta 1e-05   dL -1.204e-03   first-order prediction -2.171e-04
+   V-head only     sign eta 5e-05   dL -1.814e-03   first-order prediction -1.085e-03
+   V-head only     sign eta 0.0005  dL -7.178e-03   first-order prediction -1.085e-02
+   cut heads only  grad eta 0.001   dL -2.245e-05   first-order prediction -2.311e-05
+   cut heads only  grad eta 0.01    dL -1.180e-03   first-order prediction -2.311e-04
+   cut heads only  grad eta 0.1     dL -1.502e-03   first-order prediction -2.311e-03
+   cut heads only  grad eta 1       dL -5.783e-03   first-order prediction -2.311e-02
+   cut heads only  sign eta 1e-05   dL -1.763e-05   first-order prediction -1.884e-05
+   cut heads only  sign eta 5e-05   dL -1.090e-03   first-order prediction -9.421e-05
+   cut heads only  sign eta 0.0005  dL -2.541e-03   first-order prediction -9.421e-04

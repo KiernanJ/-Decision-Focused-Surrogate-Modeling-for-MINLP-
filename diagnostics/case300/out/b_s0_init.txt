@@ -1,0 +1,26 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+s0 init j  6 b[0]     ana +5.1022e-03 | h=0.001 fd +6.5235e-03 | h=0.0001 fd +5.7875e-03
+s0 init j  6 b[1]     ana -2.1835e-03 | h=0.001 fd -2.8446e-03 | h=0.0001 fd -5.4461e-04
+s0 init j  6 b[2]     ana +7.6121e-04 | h=0.001 fd +9.5135e-04 | h=0.0001 fd +1.8134e-03
+s0 init j  6 b[3]     ana +1.8872e-03 | h=0.001 fd +4.7156e-04 | h=0.0001 fd -8.4601e-04
+s0 init j  6 A rand   ana -5.5340e-03 | h=0.001 fd -3.3612e-03 | h=0.0001 fd -4.1074e-03
+s0 init j  6 Vr rand  ana +4.3458e-04 | h=0.0001 fd -1.5404e-02 | h=1e-05 fd -7.2857e-03 | h=1e-06 fd -1.3604e-01
+s0 init j  6 Vi rand  ana -6.5060e-03 | h=0.0001 fd -9.7407e-04 | h=1e-05 fd -1.0771e-02 | h=1e-06 fd -1.1156e+00
+s0 init j247 b[0]     ana +0.0000e+00 | h=0.001 fd -6.4508e-08 | h=0.0001 fd -1.1574e-05
+s0 init j247 b[1]     ana +0.0000e+00 | h=0.001 fd +1.1547e-06 | h=0.0001 fd -2.2319e-05
+s0 init j247 b[2]     ana -1.6843e-03 | h=0.001 fd -1.6758e-03 | h=0.0001 fd -1.7384e-03
+s0 init j247 b[3]     ana +3.0745e-03 | h=0.001 fd +3.0455e-03 | h=0.0001 fd +3.0524e-03
+s0 init j247 A rand   ana +3.1872e-03 | h=0.001 fd +3.1622e-03 | h=0.0001 fd +3.1784e-03
+s0 init j247 Vr rand  ana -3.4623e-03 | h=0.0001 fd -1.0794e-02 | h=1e-05 fd -1.0606e-02 | h=1e-06 fd -6.6110e-03
+s0 init j247 Vi rand  ana +6.8529e-03 | h=0.0001 fd -3.8481e-03 | h=1e-05 fd -3.5383e-03 | h=1e-06 fd -6.0009e-03
+fail 263 layer2
+s0 init j200 b[0]     ana +3.2080e-03 | h=0.001 fd +3.2322e-03 | h=0.0001 fd +3.4688e-03
+s0 init j200 b[1]     ana +0.0000e+00 | h=0.001 fd +9.8584e-07 | h=0.0001 fd +2.1975e-05
+s0 init j200 b[2]     ana +6.7495e-04 | h=0.001 fd +1.3714e-05 | h=0.0001 fd +8.3345e-05
+s0 init j200 b[3]     ana +0.0000e+00 | h=0.001 fd -1.9440e-05 | h=0.0001 fd -4.1658e-04
+s0 init j200 A rand   ana +1.2931e-03 | h=0.001 fd +1.9894e-03 | h=0.0001 fd +1.7143e-03
+s0 init j200 Vr rand  ana -3.2723e-02 | h=0.0001 fd -3.7999e-02 | h=1e-05 fd -3.4820e-02 | h=1e-06 fd -3.3455e-02
+s0 init j200 Vi rand  ana +6.0354e-03 | h=0.0001 fd +5.1233e-02 | h=1e-05 fd +5.1270e-02 | h=1e-06 fd +4.2390e-02

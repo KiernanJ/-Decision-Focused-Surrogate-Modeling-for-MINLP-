@@ -1,0 +1,6 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+eval flat_cut   s1 thr=0.5    n=48/48 |gap| 11.8359% signed +11.8359%  disc 36.30%
+eval flat_cut   s1 thr=fitted n=48/48 |gap| 2.0562% signed +2.0562%  disc 11.57%

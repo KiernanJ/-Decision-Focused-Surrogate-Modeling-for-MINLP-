@@ -1,0 +1,6 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+s1 init |dL/dV| via layer 2 (pricing) 2.401e-01   via layer 1 (decision) 4.547e-01   ratio 0.6x (median)   |dL/d(A,b)| 1.357e-01
+s1 best |dL/dV| via layer 2 (pricing) 1.172e-01   via layer 1 (decision) 1.211e-01   ratio 1.1x (median)   |dL/d(A,b)| 1.234e-02

@@ -1,0 +1,7 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+s1 init n=23 priced-converged=22  loss(at pred V)=1.0244 xi=0.58 | at flat V=1.0244 xi=0.58 | converged price=1.0049 | price - loss: mean -0.0199, >0 on 0/22 | committed 46.4
+s1 best n=23 priced-converged=22  loss(at pred V)=1.0043 xi=2.92 | at flat V=1.0210 xi=0.60 | converged price=0.9919 | price - loss: mean -0.0119, >0 on 0/22 | committed 47.0
+s1 net  n=23 priced-converged=22  loss(at pred V)=1.0378 xi=24.34 | at flat V=1.0584 xi=0.59 | converged price=1.0279 | price - loss: mean -0.0109, >0 on 0/22 | committed 54.3

@@ -1,0 +1,12 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+s3 best predV+cut    n=23 loss 1.0014  needs escalation 91%  mean margin 0.113
+s3 best predV nocut  n=23 loss 1.0009  needs escalation 83%  mean margin 0.108
+s3 best flatV+cut    n=23 loss 1.0237  needs escalation 39%  mean margin 0.043
+s3 best flatV nocut  n=23 loss 1.0247  needs escalation 43%  mean margin 0.046
+s3 net  predV+cut    n=23 loss 1.0205  needs escalation 96%  mean margin 0.300
+s3 net  predV nocut  n=23 loss 1.0206  needs escalation 74%  mean margin 0.272
+s3 net  flatV+cut    n=23 loss 1.0241  needs escalation 43%  mean margin 0.046
+s3 net  flatV nocut  n=23 loss 1.0247  needs escalation 43%  mean margin 0.046

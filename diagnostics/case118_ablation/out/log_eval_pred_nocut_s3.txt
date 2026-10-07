@@ -1,0 +1,6 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+eval pred_nocut s3 thr=0.5    n=48/48 |gap| 2.9713% signed +2.9713%  disc 15.43%
+eval pred_nocut s3 thr=fitted n=48/48 |gap| 0.3384% signed +0.3376%  disc 8.45%

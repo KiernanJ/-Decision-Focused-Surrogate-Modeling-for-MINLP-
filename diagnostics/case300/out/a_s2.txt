@@ -1,0 +1,10 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+s2 init n=24  fails=1  vmin=1  vmax=1  vdev=0  sat_r=0  sat_i=0  vi_max=0  xi_flat=0.5185  xi_pred=0.5185  xi_layer2=0.5832  relax_flat=1  relax_pred=1  relax_pred_cut=0.9997  rows_active_pred=0.5208  rows_active_flat=0.5208  rowslack_pred_med=8.32e-08  u_diff_cut=0.3731  u_sum=45.24  nfrac=47.57  n_above_thr=27.87  L=1.024  cost2=1.024  binding=1  margin=0.04348  gA=0.07935  gb=0.00254  gV=0.416  secs=40.07
+        head grad norms: trunk=2.47e-05  head_v=0.189  head_a=0.000383  head_al=0.00102  head_d=0.000447  head_a2=0.000421  head_d2=0.000377
+s2 best n=24  fails=1  vmin=0.9324  vmax=1.062  vdev=0.01248  sat_r=0  sat_i=0  vi_max=0.0324  xi_flat=0.5185  xi_pred=0.7323  xi_layer2=0.8026  relax_flat=1  relax_pred=0.987  relax_pred_cut=0.9851  rows_active_pred=0.2812  rows_active_flat=0.5417  rowslack_pred_med=0.7799  u_diff_cut=1.73  u_sum=43.73  nfrac=47.52  n_above_thr=24.65  L=1.003  cost2=1.003  binding=1  margin=0.0687  gA=0.03759  gb=0.001212  gV=0.3995  secs=36.96
+        head grad norms: trunk=0.0116  head_v=0.248  head_a=0.0104  head_al=0.0503  head_d=0.000227  head_a2=1.56e-05  head_d2=4.92e-06
+s2 net  n=24  fails=1  vmin=0.5002  vmax=1.581  vdev=0.1438  sat_r=0.0513  sat_i=0.03014  vi_max=0.3985  xi_flat=0.5185  xi_pred=18.76  xi_layer2=19.28  relax_flat=1  relax_pred=1.001  relax_pred_cut=0.9862  rows_active_pred=0.5521  rows_active_flat=0.7188  rowslack_pred_med=3.474e-08  u_diff_cut=10.04  u_sum=43.78  nfrac=40.96  n_above_thr=26.52  L=1.014  cost2=1.014  binding=1  margin=0.2626  gA=0.01142  gb=0.0003034  gV=0.1173  secs=39.58
+        head grad norms: trunk=0.0127  head_v=0.134  head_a=0.00396  head_al=0.013  head_d=6.97e-05  head_a2=0.0127  head_d2=5.24e-05

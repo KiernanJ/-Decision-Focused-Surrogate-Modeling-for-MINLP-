@@ -1,0 +1,26 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+s0 best j  6 b[0]     ana +1.4056e-03 | h=0.001 fd +1.4032e-03 | h=0.0001 fd +1.3951e-03
+s0 best j  6 b[1]     ana +0.0000e+00 | h=0.001 fd +4.1924e-07 | h=0.0001 fd +1.1931e-05
+s0 best j  6 b[2]     ana +0.0000e+00 | h=0.001 fd -5.5808e-07 | h=0.0001 fd +2.8830e-05
+s0 best j  6 b[3]     ana +0.0000e+00 | h=0.001 fd -2.3641e-07 | h=0.0001 fd +8.6247e-06
+s0 best j  6 A rand   ana -3.9001e-04 | h=0.001 fd -3.4156e-04 | h=0.0001 fd -3.2759e-04
+s0 best j  6 Vr rand  ana +3.5925e-02 | h=0.0001 fd +4.7117e-02 | h=1e-05 fd +4.7162e-02 | h=1e-06 fd +5.2373e-02
+s0 best j  6 Vi rand  ana -4.8740e-03 | h=0.0001 fd -3.0430e-03 | h=1e-05 fd -3.5170e-03 | h=1e-06 fd -1.0065e-03
+s0 best j247 b[0]     ana +0.0000e+00 | h=0.001 fd -1.2351e-06 | h=0.0001 fd +1.9905e-05
+s0 best j247 b[1]     ana +0.0000e+00 | h=0.001 fd -5.2165e-08 | h=0.0001 fd +2.5082e-05
+s0 best j247 b[2]     ana +0.0000e+00 | h=0.001 fd +9.0139e-07 | h=0.0001 fd -1.4171e-05
+s0 best j247 b[3]     ana -9.5146e-05 | h=0.001 fd -1.8067e-04 | h=0.0001 fd -1.9075e-04
+s0 best j247 A rand   ana -1.4343e-04 | h=0.001 fd -2.4113e-04 | h=0.0001 fd -2.4945e-04
+s0 best j247 Vr rand  ana +4.5549e-03 | h=0.0001 fd +9.2667e-04 | h=1e-05 fd +1.2704e-03 | h=1e-06 fd +2.1401e-03
+s0 best j247 Vi rand  ana -1.3850e-02 | h=0.0001 fd -1.7926e-02 | h=1e-05 fd -1.6747e-02 | h=1e-06 fd -1.6971e-02
+fail 263 layer2
+s0 best j200 b[0]     ana -1.0966e-03 | h=0.001 fd -1.1867e-03 | h=0.0001 fd -1.2252e-03
+s0 best j200 b[1]     ana +1.7364e-03 | h=0.001 fd +1.7721e-03 | h=0.0001 fd +1.7477e-03
+s0 best j200 b[2]     ana +0.0000e+00 | h=0.001 fd +1.1329e-06 | h=0.0001 fd +1.5892e-06
+s0 best j200 b[3]     ana +0.0000e+00 | h=0.001 fd -1.6334e-06 | h=0.0001 fd +3.4059e-05
+s0 best j200 A rand   ana +2.9400e-03 | h=0.001 fd +2.9663e-03 | h=0.0001 fd +2.9595e-03
+s0 best j200 Vr rand  ana -1.3139e-02 | h=0.0001 fd -1.8548e-02 | h=1e-05 fd -1.7965e-02 | h=1e-06 fd -1.8708e-02
+s0 best j200 Vi rand  ana +3.2019e-04 | h=0.0001 fd -1.7481e-03 | h=1e-05 fd -1.3327e-03 | h=1e-06 fd +2.0007e-03

@@ -1,0 +1,2 @@
+val        uncut+qz |gap| 0.1192% (exact 9/24)  ->  + tie-flip |gap| 0.0120% (exact 15/24, max 0.101%)  extra convex solves/inst 15.9  1s
+train[:48] uncut+qz |gap| 0.1466% (exact 13/48)  ->  + tie-flip |gap| 0.0321% (exact 29/48, max 0.494%)  extra convex solves/inst 17.5  2s

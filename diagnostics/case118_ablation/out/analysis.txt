@@ -1,0 +1,39 @@
+=== per-arm test results (48 instances x 4 seeds; mean over seeds) ===
+arm                          thr       |gap| %                   per-seed |gap|  signed %  disc %  fails
+flat V, no cuts              0.5       11.5850      11.585 11.585 11.585 11.585  +11.5850   35.69      0
+flat V, no cuts              fitted     2.3458          2.261 2.240 2.536 2.346   +2.3458   12.83      0
+flat V + learned cuts        0.5       11.6912      11.609 11.836 11.015 12.304  +11.6912   36.01      0
+flat V + learned cuts        fitted     2.2808          2.234 2.056 2.454 2.379   +2.2808   12.29      0
+learned V, no cuts           0.5        2.1079          0.635 0.747 4.079 2.971   +2.1079   11.26      0
+learned V, no cuts           fitted     0.3214          0.284 0.281 0.382 0.338   +0.3190    7.12      0
+learned V + cuts (paper)     0.5        0.7059          0.514 0.747 1.151 0.412   +0.7049    5.82      0
+learned V + cuts (paper)     fitted     0.1756          0.117 0.281 0.250 0.054   +0.1705    4.31      0
+supervised proxy             0.5        0.1033          0.098 0.054 0.070 0.190   +0.0921    2.43      0
+supervised proxy             fitted     0.3288          0.098 0.753 0.273 0.190   +0.3185    3.12      0
+
+=== paired differences in |gap| (first minus second; negative = first is better) ===
+learned V vs flat V (no cuts, thr 0.5)                          -9.4771 pp  95% CI [-10.4203, -8.5603]  p=7.11e-15  (better on 48/48)
+learned V vs flat V (no cuts, fitted thr)                       -2.0244 pp  95% CI [-2.2036, -1.8458]  p=7.11e-15  (better on 48/48)
+cuts on vs off (learned V, thr 0.5)                             -1.4020 pp  95% CI [-1.6341, -1.1770]  p=7.11e-15  (better on 48/48)
+cuts on vs off (learned V, fitted thr)                          -0.1458 pp  95% CI [-0.2012, -0.0932]  p=7.48e-06  (better on 32/48)
+cuts on vs off (flat V, thr 0.5)                                +0.1062 pp  95% CI [-0.2132, +0.4321]  p=0.468  (better on 18/48)
+cuts on vs off (flat V, fitted thr)                             -0.0651 pp  95% CI [-0.1066, -0.0256]  p=0.00284  (better on 26/48)
+fitted vs 0.5 threshold (paper arm)                             -0.5303 pp  95% CI [-0.7656, -0.3261]  p=3.79e-06  (better on 28/48)
+fitted vs 0.5 threshold (no learning)                           -9.2392 pp  95% CI [-10.3403, -8.1581]  p=7.11e-15  (better on 48/48)
+paper method vs proxy as published (thr 0.5)                    +0.0723 pp  95% CI [-0.0062, +0.1427]  p=0.00271  (better on 9/48)
+paper method vs proxy, both fitted thr                          -0.1533 pp  95% CI [-0.5126, +0.0977]  p=0.0204  (better on 9/48)
+learned V only vs proxy, both fitted thr                        -0.0074 pp  95% CI [-0.3666, +0.2391]  p=0.00019  (better on 9/48)
+
+=== fidelity checks against committed results ===
+s0 threshold fit: mine c=[-0.0981, -0.1682, -0.0158, 0.0363]  committed c=[-0.0981, -0.1682, -0.0158, 0.0363]
+s0 paper arm |gap|: mine fitted 0.1172 vs committed 0.1172;  mine 0.5 0.5138 vs committed 0.5138
+s0 proxy thr 0.5 |gap|: mine 0.0982 vs committed 0.1021
+s1 threshold fit: mine c=[-0.1115, -0.0508, 0.082, -0.0784]  committed c=[-0.1115, -0.0508, 0.082, -0.0784]
+s1 paper arm |gap|: mine fitted 0.2813 vs committed 0.2813;  mine 0.5 0.7468 vs committed 0.7468
+s1 proxy thr 0.5 |gap|: mine 0.0544 vs committed 0.0544
+s2 threshold fit: mine c=[-0.1189, -0.1223, 0.1974, -0.0564]  committed c=[-0.1189, -0.1223, 0.1974, -0.0564]
+s2 paper arm |gap|: mine fitted 0.2500 vs committed 0.2500;  mine 0.5 1.1511 vs committed 1.1511
+s2 proxy thr 0.5 |gap|: mine 0.0702 vs committed 0.0702
+s3 threshold fit: mine c=[-0.0478, -0.1883, 0.1599, 0.1089]  committed c=[-0.0478, -0.1883, 0.1599, 0.1089]
+s3 paper arm |gap|: mine fitted 0.0539 vs committed 0.0539;  mine 0.5 0.4119 vs committed 0.4119
+s3 proxy thr 0.5 |gap|: mine 0.1903 vs committed 0.1903
