@@ -1,0 +1,32 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+======================================================================
+POINT A: small well-posed SOCP
+  [mine] KKT solve relative residual: 1.19e-09
+  solution match (mine vs cvxpylayers): 8.33e-07
+  d loss / d pq   finite differences : [ 1.0543  0.2449 -0.5926 -0.7708 -0.3068  0.3711]
+                  MINE               : [ 1.0543  0.2449 -0.5926 -0.7708 -0.3068  0.3711]
+                  cvxpylayers        : [ 1.0543  0.2449 -0.5926 -0.7708 -0.3068  0.3711]
+  rel err  MINE vs fd        : 1.42e-08
+  rel err  cvxpylayers vs fd : 5.00e-08
+
+======================================================================
+POINT B: case118 QCAC, cuts binding
+  finite differences of <gl,u> w.r.t. b, at four step sizes
+    h=1e-02  [ 0.5461 -0.5198 -0.1101  1.157  -4.9319 -3.0474 -4.4102  5.9996]
+    h=1e-03  [ 5.9490e-01 -3.9338e-01 -3.0421e-03  1.1630e+00 -4.8057e+00 -2.9717e+00
+ -3.9585e+00  5.9991e+00]
+    h=3e-04  [ 5.9848e-01 -3.9251e-01  8.0016e-04  1.1592e+00 -4.8028e+00 -2.9715e+00
+ -3.9585e+00  6.0037e+00]
+  reference self-consistency (1e-3 vs 3e-4): 7.669e-04
+
+  cvxpylayers  u match: 5.89e-02   (202s)
+  cvxpylayers  d loss/db : [-0.0905 -0.2857  0.0071  0.0283 -0.2216 -0.0523 -0.3579  0.1816]
+  cvxpylayers  cosine vs converged fd: +0.7496
+
+  MINE         d loss/db : [ 1.0525 -0.7646  0.      1.2768 -4.5091 -2.6282 -3.5803  5.8591]
+  MINE         KKT relative residual: 3.41e-07
+  MINE         cosine vs converged fd: +0.9967
+{'selfc': 0.0007668833944546923, 'cvxpylayers_cos': 0.7496077058986262, 'cvxpylayers_u_mismatch': 0.05886492059597015, 'ours_cos': 0.9966647689802808}

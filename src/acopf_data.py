@@ -143,8 +143,23 @@ def load(case="case14") -> Grid:
                   0.25 * load_tot)
         pmax = np.where(huge, cap, pmax)
         pmin = np.where(huge, 0.0, pmin)
-    always_on = huge.copy()                     # see Grid.always_on
     qmax, qmin = gen[:, QMAX] / base, gen[:, QMIN] / base
+    # AUDIT FIX (2026-10-06): the ext_grid rows of ppc carry pandapower's
+    # placeholder limits (huge pmax, q = 0). The real MATPOWER limits of that
+    # unit are kept on net.ext_grid; use them and treat it as an ordinary
+    # committable unit (it was never forced on: always_on was not enforced).
+    # ppc generator order is [ext_grid rows, gen rows].
+    ne = len(net.ext_grid)
+    for k, (_, r) in enumerate(net.ext_grid.iterrows()):
+        if k >= len(pmax):
+            break
+        for col, arr, sc in (("max_p_mw", pmax, 1), ("min_p_mw", pmin, 1),
+                             ("max_q_mvar", qmax, 1), ("min_q_mvar", qmin, 1)):
+            v = r.get(col, np.nan)
+            if v is not None and np.isfinite(v):
+                arr[k] = float(v) / base
+    pmin = np.maximum(pmin, 0.0)
+    always_on = np.zeros(len(pmax), bool)
 
     # Quadratic cost, converted to per-unit input.
     #

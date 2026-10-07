@@ -84,11 +84,17 @@ def fd_b(j, h):
                     A=A0, b=bb, cut_cap=0.0)
         o.append(float(gl_u @ r["u"]))
     return (o[0]-o[1])/(2*h)
-print("  finite differences of <gl,u> w.r.t. b, at three step sizes")
-FD = {h: np.array([fd_b(j, h) for j in range(K)]) for h in (1e-1, 1e-2, 1e-3)}
+print("  finite differences of <gl,u> w.r.t. b, at four step sizes")
+FD = {h: np.array([fd_b(j, h) for j in range(K)]) for h in (1e-2, 1e-3, 3e-4)}
 for h, v in FD.items():
     print(f"    h={h:<6.0e} {np.array2string(v, precision=4)}")
-ref = FD[1e-2]
+# AUDIT FIX: the reference must be CONVERGED. h=1e-2 is not (it disagrees with
+# 1e-3); use the mean of h=1e-3 and 3e-4 and report their self-consistency.
+ref = 0.5*(FD[1e-3] + FD[3e-4])
+selfc = float(np.abs(FD[1e-3]-FD[3e-4]).max()/max(1e-12, np.abs(ref).max()))
+print(f"  reference self-consistency (1e-3 vs 3e-4): {selfc:.3e}")
+cosr = lambda v: float(v@ref/max(1e-30, np.linalg.norm(v))/np.linalg.norm(ref))
+RES = dict(selfc=selfc)
 
 t0 = time.time()
 try:
@@ -98,8 +104,8 @@ try:
     g_cl, x_cl = cl_grad(S.prob, pars, S.v["u"], vals, gl_u)
     print(f"\n  cvxpylayers  u match: {np.abs(x_cl-u_ref).max():.2e}   ({time.time()-t0:.0f}s)")
     print(f"  cvxpylayers  d loss/db : {np.array2string(g_cl[-2], precision=4)}")
-    print(f"  cvxpylayers  rel err vs fd(h=1e-2): "
-          f"{np.abs(g_cl[-2]-ref).max()/max(1e-12,np.abs(ref).max()):.2e}")
+    print(f"  cvxpylayers  cosine vs converged fd: {cosr(g_cl[-2]):+.4f}")
+    RES.update(cvxpylayers_cos=cosr(g_cl[-2]), cvxpylayers_u_mismatch=float(np.abs(x_cl-u_ref).max()))
 except Exception as e:
     print(f"\n  cvxpylayers FAILED: {type(e).__name__}: {str(e)[:200]}")
 
@@ -111,6 +117,8 @@ glc = np.zeros(x2.size); glc[uidx] = gl_u
 g2 = lay2.vjp(st2, glc)
 print(f"\n  MINE         d loss/db : {np.array2string(g2[0], precision=4)}")
 print(f"  MINE         KKT relative residual: {lay2.last_residual:.2e}")
-print(f"  MINE         rel err vs fd(h=1e-2): "
-      f"{np.abs(g2[0]-ref).max()/max(1e-12,np.abs(ref).max()):.2e}")
-print(f"\n  reference (finite differences, h=1e-2): {np.array2string(ref, precision=4)}")
+print(f"  MINE         cosine vs converged fd: {cosr(g2[0]):+.4f}")
+RES.update(ours_cos=cosr(g2[0]))
+import json
+json.dump(RES, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "vs_cvxpylayers.json"), "w"), indent=1)
+print(RES)

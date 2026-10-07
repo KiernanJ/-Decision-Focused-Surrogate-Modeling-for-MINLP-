@@ -74,7 +74,9 @@ class Socp:
         C = [cii >= g.vmin**2, cii <= g.vmax**2,
              cij >= -ph, cij <= ph, sij >= -ph, sij <= ph,
              vr >= -g.vmax, vr <= g.vmax, vi >= -g.vmax, vi <= g.vmax,
-             pg >= 0, pg <= g.pmax, qg >= g.qmin, qg <= g.qmax,
+             pg >= 0, pg <= g.pmax,
+             # AUDIT FIX: box must contain 0, else qmin>0 forces u=1 via qg<=qmax*u
+             qg >= np.minimum(g.qmin, 0.0), qg <= np.maximum(g.qmax, 0.0),
              u >= self.p_ulo, u <= self.p_uhi,
              vi[int(g.ref)] == 0, vr[int(g.ref)] >= 0]
 

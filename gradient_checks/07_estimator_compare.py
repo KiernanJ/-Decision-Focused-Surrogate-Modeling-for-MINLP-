@@ -100,5 +100,5 @@ print(f"\nbest smoothed cosine anywhere in the sweep: {best_sm:+.4f}"
       f"   (exact layer: {np.mean([r['exact'] for r in rows]):+.4f})")
 json.dump([{k:(v if k!="sm" else {f"{a}_{b}":c for (a,b),c in v.items()})
             for k,v in r.items()} for r in rows],
-          open(f"results/estimator_{CASE}.json","w"),indent=1)
-print(f"wrote results/estimator_{CASE}.json")
+          open(os.path.join(os.path.dirname(os.path.abspath(__file__)),"out",f"estimator_{CASE}.json"),"w"),indent=1)
+print(f"wrote gradient_checks/out/estimator_{CASE}.json")

@@ -15,7 +15,7 @@ R = HVRelax(VEH, n_cuts=4); net = CutNetHV(T, k_rows=2, hidden=16, seed=0)
 te, va, tr = splits(len(REF))
 X = torch.tensor(D/D.mean(), dtype=torch.float32)
 mu, sg = X[tr].mean(0), X[tr].std(0)+1e-6; Xn = (X-mu)/sg
-DD = DiffHV(R, VEH, tau=0.08)
+DD = DiffHV(R, VEH, tau=0.08, w_int=5.0)   # paper configuration
 rng = np.random.default_rng(0)
 
 def fd_conv(fn, x0, e, hs=(3e-3, 1e-3, 3e-4, 1e-4)):

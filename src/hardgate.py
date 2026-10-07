@@ -62,4 +62,6 @@ def work(args):
         return i, None, "no solution"
     return i, dict(u=np.asarray(r["u"]), cost=float(r["cost"]),
                    secs=time.time()-t0, iters=int(r.get("iters", -1)),
-                   slack=float(r.get("slack", np.nan))), None
+                   slack=float(r.get("slack", np.nan)),
+                   status=r.get("status", "?"), converged=bool(r.get("converged", False)),
+                   mip_gaps=[h.get("mip_gap", np.nan) for h in r.get("hist", [])]), None

@@ -1,0 +1,5 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+{'n_vars': 1872, 'n_active': 2185, 'rank': 1805, 'deficiency': 380, 'sv_at_rank': 6.521696133944574e-07, 'sv_next': 8.563915681629054e-13, 'kkt_size': 7935, 'kkt_cond': 1.7808045231046777e+21}

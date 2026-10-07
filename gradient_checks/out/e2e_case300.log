@@ -1,0 +1,12 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+89 {'cut': ([0.7867, 0.84, 0.0918], [True, True, True]), 'V': ([7.4382, 0.3749, 0.8143], [False, False, False])}
+217 {'cut': ([0.3306, 0.3262, 0.3264], [True, True, True]), 'V': ([0.7862, 4.3444, 0.6405], [True, True, True])}
+129 {'cut': ([9.7222, 3.4087, 2.7913], [False, False, False]), 'V': ([0.1462, 1.9502, 1.4697], [False, True, True])}
+91 {'cut': ([0.3957, 0.6475, 1.905], [True, False, False]), 'V': ([2.1436, 1.6326, 6.1416], [False, False, False])}
+75 {'cut': ([0.4927, 0.4449, 0.6766], [False, False, True]), 'V': ([0.5437, 2.0508, 0.6632], [False, False, False])}
+161 {'cut': ([0.1002, 0.0451, 0.0323], [True, True, True]), 'V': ([0.3133, 0.3453, 0.3723], [True, False, False])}
+case300 cut: 11 converged directions, median rel err 32.638%, within 10%: 27%
+case300 V: 6 converged directions, median rel err 112.798%, within 10%: 0%

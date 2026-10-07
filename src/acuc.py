@@ -50,7 +50,8 @@ def build(g, nl, pd_, qd_, u_type=GRB.BINARY, exact=True, rho=None,
     vr = m.addVars(n, lb=-g.vmax, ub=g.vmax)
     vi = m.addVars(n, lb=-g.vmax, ub=g.vmax)
     pg = m.addVars(G, lb=0.0, ub=g.pmax)
-    qg = m.addVars(G, lb=g.qmin, ub=g.qmax)
+    # AUDIT FIX: box must contain 0, else qmin>0 forces u=1 via qg<=qmax*u
+    qg = m.addVars(G, lb=np.minimum(g.qmin, 0.0), ub=np.maximum(g.qmax, 0.0))
     u = m.addVars(G, vtype=u_type, lb=0.0, ub=1.0)
     cii = m.addVars(n, lb=cl, ub=ch)
     cij = m.addVars(L, lb=-ph, ub=ph)
@@ -147,7 +148,7 @@ def build(g, nl, pd_, qd_, u_type=GRB.BINARY, exact=True, rho=None,
     m.setObjective(cost + pen, GRB.MINIMIZE)
     m.update()
     return m, dict(vr=vr, vi=vi, pg=pg, qg=qg, u=u, cii=cii, cij=cij,
-                   sij=sij, xi=xi), cost
+                   sij=sij, xi=xi, wv=wv, zv=zv), cost
 
 
 def _extract(V, g, cost, m):
@@ -214,33 +215,67 @@ def solve_global(g, nl, pd_, qd_, reserve=0.10, time_limit=600., threads=12,
 
 
 def solve_qcac_iterative(g, nl, pd_, qd_, reserve=0.10, rho0=1e3, mu=4.0,
-                         rho_max=1e10, eps=1e-3, max_iter=20, tl=120.,
+                         rho_max=1e10, eps=1e-3, max_iter=30, tl=120.,
                          threads=12, mip_gap=1e-3):
     """Constante-Flores & Li: linearise, penalise, re-linearise, escalate rho."""
     n, L = g.n_bus, g.n_branch
     Vr, Vi = np.ones(n), np.zeros(n)        # flat start
-    rho, hist, out = rho0, [], None
+    rho, hist, out, prev = rho0, [], None, None
     t0 = time.time()
+    status = "max_iter"
     for t in range(max_iter):
         m, V, cost = build(g, nl, pd_, qd_, GRB.BINARY, exact=False, rho=rho,
                            Vr0=Vr, Vi0=Vi, reserve=reserve, threads=threads)
         m.Params.TimeLimit = tl
         m.Params.MIPGap = mip_gap
+        # AUDIT FIX: deterministic effort. A wall-clock TimeLimit made reference
+        # quality depend on machine load; WorkLimit (Gurobi work units, ~1 s of
+        # single-thread work each) does not.
+        m.Params.TimeLimit = 1e6
+        m.Params.WorkLimit = tl
+        # AUDIT FIX: warm-start every iteration from the COMPLETE previous
+        # iterate. Under the new linearisation it is feasible once the slack is
+        # recomputed, so an iteration can no longer end without an incumbent.
+        # Before, such an iteration ENDED the loop and the earlier high-slack
+        # iterate was kept as the "reference" (41/268 case300, slack up to 2.35).
+        if prev is not None:
+            fb, tb = g.f_bus.astype(int), g.t_bus.astype(int)
+            pvr, pvi = prev["vr"], prev["vi"]
+            lin_ii = 2*Vr*pvr + 2*Vi*pvi - Vr**2 - Vi**2
+            lc = (Vr[tb]*pvr[fb] + Vr[fb]*pvr[tb] + Vi[tb]*pvi[fb] + Vi[fb]*pvi[tb]
+                  - Vr[fb]*Vr[tb] - Vi[fb]*Vi[tb])
+            ls = (Vi[tb]*pvr[fb] - Vi[fb]*pvr[tb] - Vr[tb]*pvi[fb] + Vr[fb]*pvi[tb]
+                  - Vr[fb]*Vi[tb] + Vr[tb]*Vi[fb])
+            xis = np.r_[np.abs(prev["cii"]-lin_ii), np.abs(prev["cij"]-lc), np.abs(prev["sij"]-ls)]
+            for key in ("vr", "vi", "pg", "qg", "u", "cii", "cij", "sij", "wv", "zv"):
+                for k, v in enumerate(prev[key]):
+                    V[key][k].Start = float(v)
+            for k, v in enumerate(xis):
+                V["xi"][k].Start = float(v)
         m.optimize()
         if m.SolCount == 0:
+            m.Params.WorkLimit = 4 * tl
+            m.optimize()
+        if m.SolCount == 0:
+            status = "no_incumbent"
             break
         slack = float(sum(V["xi"][k].X for k in range(n + 2*L)))
         out = _extract(V, g, cost, m)
+        prev = {key: np.array([V[key][k].X for k in range(len(V[key]))])
+                for key in ("vr", "vi", "pg", "qg", "u", "cii", "cij", "sij", "wv", "zv")}
         hist.append(dict(it=t+1, rho=rho, slack=slack, cost=out["cost"],
-                         n_on=int(out["u"].sum())))
+                         n_on=int(out["u"].sum()), mip_gap=float(m.MIPGap),
+                         grb_status=int(m.Status)))
         if slack <= eps:
+            status = "converged"
             break
         Vr = np.array([V["vr"][i].X for i in range(n)])
         Vi = np.array([V["vi"][i].X for i in range(n)])
         rho = min(mu * rho, rho_max)
     if out is not None:
         out.update(secs=time.time() - t0, iters=len(hist), hist=hist,
-                   slack=hist[-1]["slack"] if hist else np.nan)
+                   slack=hist[-1]["slack"] if hist else np.nan,
+                   status=status, converged=(status == "converged"))
     return out
 
 

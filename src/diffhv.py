@@ -74,8 +74,10 @@ class DiffHV:
         self.S, self.T = veh["S_MODES"], veh["T"]
         self.L1 = ConeLayer(R.prob, [R.p_A, R.p_b],
                             [R.v["Peng"], R.v["z"]], reg=reg)
+        # E is carried in layer 2 so the terminal-energy term eta*(E_max - E_T)
+        # reaches the gradient (audit 2026-10-06: it was omitted).
         self.L2 = ConeLayer(R.prob, [R.p_zlo, R.p_zhi],
-                            [R.v["Peng"], R.v["z"]], reg=reg2)
+                            [R.v["Peng"], R.v["z"], R.v["E"]], reg=reg2)
         self._built = False
 
     def _build(self, Dp, A, b):
@@ -136,6 +138,8 @@ class DiffHV:
         dcost = np.zeros(x2.size)
         dcost[self.sl2[pid]] = (2*al*pe)/scale
         dcost[self.sl2[zid]] = be/scale          # be'z enters through z
+        sE = self.sl2[R.v["E"].id]
+        dcost[sE.stop - 1] = -veh["eta"]/scale    # eta*(E_max - E_T)
         try:
             g2 = self.L2.vjp(st2, dcost)
         except RuntimeError:
