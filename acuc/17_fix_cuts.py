@@ -62,9 +62,23 @@ def main():
     print(f"[select] confidence {c} (label-free validation)", flush=True)
     tids = [i for i in te if data2.converged(REF.get(i))]
     Rf = run(tids, c, a.work); Rn = run(tids, None, a.work); RL = run(tids, None, 60.0)
+    # label-free safeguard: deployed cost vs the uncut relaxation (flat V). Instances whose ratio
+    # exceeds the largest VALIDATION ratio (+2%) are re-solved WITHOUT fixes; keep the cheaper.
+    Rv = run(va, c, a.work)
+    tau = 1.02*max(Rv[i]["cost"]/SC[i] for i in va if Rv.get(i) is not None)
+    flag = [i for i in tids if Rf.get(i) is not None and Rf[i]["cost"]/SC[i] > tau]
+    Rg = dict(Rf)
+    if flag:
+        Rre = run(flag, None, a.work)
+        for i in flag:
+            if Rre.get(i) is not None and Rre[i]["cost"] < Rf[i]["cost"]:
+                Rg[i] = dict(Rre[i]); Rg[i]["secs"] = Rf[i]["secs"] + Rre[i]["secs"]
+            else:
+                Rg[i] = dict(Rf[i]); Rg[i]["secs"] = Rf[i]["secs"] + (Rre[i]["secs"] if Rre.get(i) else 0)
+    print(f"[guard] threshold {tau:.4f} (validation, label-free); flagged {len(flag)}/{len(tids)} test instances", flush=True)
     Jr = dict(pool.imap_unordered(combopt_ac.price_ref, [(i, REF[i]["u"]) for i in tids]))
     allrows = {}
-    for name, R in (("fix-cuts W", Rf), ("no-cut W", Rn), ("no-cut W=60", RL)):
+    for name, R in (("fix-cuts W", Rf), ("fix+guard W", Rg), ("no-cut W", Rn), ("no-cut W=60", RL)):
         rows = []
         for i in tids:
             if Jr.get(i) is None or R.get(i) is None: continue
