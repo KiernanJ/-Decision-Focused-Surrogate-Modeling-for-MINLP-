@@ -1,0 +1,5 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+test pred_cut   s2 thr 0.65: n=47/48 |gap| 0.0477% signed -0.0306%  disc 2.81%  on 44.5  28.1s/inst

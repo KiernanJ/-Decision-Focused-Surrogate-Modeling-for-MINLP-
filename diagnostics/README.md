@@ -1,10 +1,11 @@
-# Diagnostics: what drives the learned surrogate (2026-10-06/07)
+# Diagnostics: what drives the learned surrogate (2026-10-06/08)
 
-This follows up `AUDIT.md`. That audit found that the case300 and vehicle results didn't hold under correct evaluation. These diagnostics ask why, and what the method does contribute. There are three studies:
+This follows up `AUDIT.md`. That audit found that the case300 and vehicle results didn't hold under correct evaluation. These diagnostics ask why, and what the method does contribute. There are four studies:
 
 1. **case118 component ablation** (§1): which parts produce the published case118 result.
-2. **case300 cut diagnosis** (§2): why the learned cuts are weak and inactive, and why the training loss rises.
-3. **Vehicle diagnosis** (§3): why the learned cut does worse than no cut.
+2. **case300 cut diagnosis** (§2.1–2.7): why the learned cuts are weak and inactive, and why the training loss rises.
+3. **case300 component ablation** (§2.8): the case118 ablation repeated on case300.
+4. **Vehicle diagnosis** (§3): why the learned cut does worse than no cut.
 
 All scripts only read the repo and write to their own `out/` folder. The outputs are included, so nothing needs re-running to follow this document. Section "Reproducing" below has the commands.
 
@@ -18,6 +19,10 @@ All scripts only read the repo and write to their own `out/` folder. The outputs
   - The supervised proxy is still more accurate: 0.10%, better on 39 of 48 instances.
 - **On case300, the cuts are weak by construction, get almost no gradient, and go slack once V moves.**
   - The training loss rises because of a discrete reserve-margin escalation inside `DiffDeploy` that the gradient can't see. Moving V away from flat triggers it.
+- **On case300, nothing learned matters once the restoration threshold is sensible** (§2.8).
+  - With the threshold chosen label-free on validation (0.65), the no-learning arm reaches 0.053% |gap|. The paper arm also scores 0.053%, and the proxy 0.075%.
+  - No paired comparison is significant, and every arm sits below the reference's own noise floor.
+  - The learned V only matters at threshold 0.5 (1.93% → 1.08%).
 - **On the vehicle problem, the gradients are exact, but there is almost nothing left for a cut to fix.**
   - The uncut relaxation plus the L1 projection is already within 0.12%.
   - Every remaining error is a near-tie rounding.
@@ -159,6 +164,46 @@ Measured as the training loss with cuts at the predicted V, minus the loss witho
 
 For comparison, V is worth about 1–2%.
 
+### 2.8 Component ablation on deployed cost (`case300_ablation/`)
+
+**Setup.** This is the case118 ablation (§1) repeated on case300, measured on deployed cost against the references. Results are in `case300_ablation/out/analysis.txt`.
+- Selected-epoch weights (`ck["best"]`); the paper evaluated the last epoch.
+- The paper's case300 restoration: merit order, reserve top-up, upward repair, NDOWN=40.
+- 48 test instances × 4 seeds. One instance (pool index 238) fails restoration for every arm, so comparisons use 47.
+- **Threshold:** a scalar threshold from {0.5, 0.65, 0.8}, chosen per arm and seed by label-free deployed cost on the 24 validation instances. It picked 0.65 for the relaxation arms (0.8 on one seed) and 0.5 for the proxy. Results at the paper's 0.8 (selected on test, `AUDIT.md` item 3) are also shown.
+- I didn't use the case118 per-generator fit: it would cost about 180 CPU-hours, and the committed case300 fits found almost no gain.
+- **Two scorings:** against the stored reference cost, and against the re-priced reference on the 38 test instances whose reference converged.
+- **Fidelity:** the paper arm at 0.8 matches `audit/out/precomputed/case300_best_s*.json` exactly on every instance and seed.
+
+**Mean test |gap|**
+
+| Arm | Threshold 0.5 | Validation-chosen | Paper's 0.8 | Converged refs, validation-chosen |
+|---|---|---|---|---|
+| Flat V, no cuts (no learning) | 1.93% | **0.053%** | 0.052% | 0.024% |
+| Flat V + learned cuts | 1.91% | 0.055% | 0.062% | 0.023% |
+| Learned V, no cuts | 1.08% | 0.052% | 0.059% | 0.020% |
+| Learned V + cuts (paper) | 0.90% | 0.053% | 0.066% | 0.018% |
+| Supervised proxy | 0.075% | 0.075% | 0.074% | 0.031% |
+
+**Paired differences at the validation-chosen threshold** (stored reference, 47 instances; negative = first arm better)
+
+| Comparison | Δ\|gap\| (pp) | 95% CI | p |
+|---|---|---|---|
+| Learned V vs flat V (no cuts) | −0.001 | [−0.011, +0.010] | 0.88 |
+| Cuts on vs off (learned V) | +0.001 | [−0.005, +0.009] | 0.72 |
+| Paper method vs no learning | +0.000 | [−0.014, +0.015] | 0.92 |
+| Paper method vs proxy | −0.022 | [−0.064, +0.009] | 0.72 |
+
+On converged references only, the paper arm beats no learning by −0.006 pp (CI [−0.018, 0.000], p = 0.11), better on 3 of 38 instances and worse on none.
+
+**Takeaways**
+1. **The rounding threshold does the work.** The relaxation over-commits. Raising the threshold to 0.65, followed by merit-order top-up and 40 downward trials, takes even the no-learning arm from 1.93% to 0.05%.
+2. **The learned V shifts the relaxation the right way,** roughly halving the error at 0.5. But a better threshold reaches the same result without learning.
+3. **The cuts make no measurable difference.**
+4. **case300 can't separate methods with this restoration.** All arms land between 0.02% and 0.08%, below the QCAC reference's own noise (about 0.1–0.2%). This is consistent with `AUDIT.md` item 3: the published case300 result reflected restoration tuning.
+
+**Contrast with case118.** On case118 the learned V took the no-learning baseline from 2.35% to 0.32% even with a fitted threshold (§1). That makes case118 the evidence for the learned convexification point. On case300, the honest claim is "restoration alone reaches the reference noise floor".
+
 ## 3. Vehicle: why the learned cut fails
 
 **Setup.** Paper configuration (K=2, hidden 16, `w_int` 5, 25 epochs) next to `w_int` 0, seeds 0–1, with per-epoch diagnostics on the 24 validation instances. The test split isn't used. Scripts are in `vehicle/`; the summary is in `vehicle/out/summary.txt`.
@@ -255,6 +300,11 @@ for a in pred_cut pred_nocut flat_cut proxy flat_nocut; do for s in 0 1 2 3; do 
 python analyse.py                  # out/analysis.txt
 ```
 
+**case300 ablation (`diagnostics/case300_ablation/`)** takes about 25 CPU-hours (roughly 3 hours on 10 cores). The launcher is resumable: finished jobs are skipped.
+```bash
+PY=/path/to/python sh run_all.sh 10   # 17 validation + 51 test jobs + reference pricing, then out/analysis.txt
+```
+
 ## Files
 
 ```
@@ -268,6 +318,12 @@ diagnostics/
   case300/
     c300common.py, a_state.py, b_fd.py, c_descent.py, d_price.py, e_ablate.py, f_vsplit.py, summarise.py
     out/*.json, out/*.txt  raw outputs and logs; out/summary.txt
+  case300_ablation/
+    abl300.py, analyse300.py, run_all.sh
+    out/val_*.json         validation scores and label-free threshold choice per arm / seed
+    out/test_*.json        per-instance test rows per arm / seed / threshold
+    out/refs.json          stored and re-priced references, convergence flags
+    out/analysis.txt       all tables in §2.8
   vehicle/
     common.py, diag_init.py, train_diag.py, summarise.py, tie_flip.py
     out/diag_init.json, out/train_*.json, out/log_*.txt, out/summary.txt, out/tie_flip.txt
@@ -280,3 +336,4 @@ diagnostics/
 - **The slack-bus generator bug** (`AUDIT.md` item 6) is present in every AC-UC arm. The comparisons hold, but the absolute numbers will shift once it's fixed.
 - **The AC-UC reference is a heuristic,** with a noise floor of about 0.1–0.2%. That's comparable to the cut and proxy differences in §1.
 - **Threshold-fit protocol.** The case118 threshold fit keeps the paper's protocol (fit at NDOWN=6, deploy at 25), applied identically to every arm.
+- **case300 ablation scope.** Only the threshold is chosen on validation. The merit order and NDOWN=40 are the paper's settings, which were chosen on test (`AUDIT.md` item 3). One validation instance fails restoration in every arm and is scored as 10 (as in the trainer), which shifts all validation scores equally.

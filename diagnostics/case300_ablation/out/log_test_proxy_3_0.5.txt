@@ -1,0 +1,5 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+test proxy      s3 thr 0.5: n=47/48 |gap| 0.0726% signed -0.0075%  disc 2.37%  on 44.5  23.8s/inst

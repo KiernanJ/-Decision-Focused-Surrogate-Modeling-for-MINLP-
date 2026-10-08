@@ -1,0 +1,91 @@
+test instances 48; converged references 38
+label-free threshold selected on validation (arm: seed0..3):
+  flat V, no cuts              s0:0.65
+  flat V + learned cuts        s0:0.65  s1:0.65  s2:0.65  s3:0.65
+  learned V, no cuts           s0:0.65  s1:0.8  s2:0.65  s3:0.65
+  learned V + cuts (paper)     s0:0.65  s1:0.65  s2:0.65  s3:0.65
+  supervised proxy             s0:0.5  s1:0.5  s2:0.5  s3:0.5
+
+=== per-arm test |gap| % (stored reference; mean over instances x seeds) ===
+arm                          rule      |gap|                 per-seed |gap|   signed  disc%    on fails
+flat V, no cuts              0.8      0.0515                          0.052  -0.0218   2.93  44.6     1
+flat V, no cuts              val      0.0525                          0.053  -0.0207   2.96  44.5     1
+flat V, no cuts              0.5      1.9267                          1.927  +1.8760  18.84  43.1     1
+flat V, no cuts              0.65     0.0525                          0.053  -0.0207   2.96  44.5     1
+flat V + learned cuts        0.8      0.0618        0.065 0.065 0.052 0.065  -0.0105   2.88  44.6     4
+flat V + learned cuts        val      0.0554        0.052 0.065 0.053 0.053  -0.0175   2.93  44.5     4
+flat V + learned cuts        0.5      1.9061        1.844 1.925 1.930 1.925  +1.8545  18.67  43.1     4
+flat V + learned cuts        0.65     0.0554        0.052 0.065 0.053 0.053  -0.0175   2.93  44.5     4
+learned V, no cuts           0.8      0.0592        0.048 0.063 0.059 0.067  +0.0009   3.18  44.6     4
+learned V, no cuts           val      0.0517        0.048 0.063 0.048 0.048  -0.0223   2.94  44.5     4
+learned V, no cuts           0.5      1.0766        0.988 1.231 1.162 0.925  +1.0064  11.87  43.4     4
+learned V, no cuts           0.65     0.0480        0.048 0.049 0.048 0.048  -0.0266   2.90  44.5     4
+learned V + cuts (paper)     0.8      0.0662        0.048 0.081 0.063 0.073  +0.0081   3.18  44.6     4
+learned V + cuts (paper)     val      0.0528        0.048 0.043 0.048 0.073  -0.0121   2.99  44.5     4
+learned V + cuts (paper)     0.5      0.8975        1.001 0.477 1.163 0.949  +0.8595  10.65  43.5     4
+learned V + cuts (paper)     0.65     0.0528        0.048 0.043 0.048 0.073  -0.0121   2.99  44.5     4
+supervised proxy             0.8      0.0741        0.076 0.072 0.075 0.074  -0.0028   2.48  44.3     4
+supervised proxy             val      0.0749        0.079 0.072 0.076 0.073  -0.0087   2.32  44.5     4
+supervised proxy             0.5      0.0749        0.079 0.072 0.076 0.073  -0.0087   2.32  44.5     4
+supervised proxy             0.65     0.0850        0.075 0.073 0.112 0.080  +0.0032   2.42  44.4     4
+
+=== per-arm test |gap| % (converged reference; mean over instances x seeds) ===
+arm                          rule      |gap|                 per-seed |gap|   signed  disc%    on fails
+flat V, no cuts              0.8      0.0227                          0.023  +0.0060   2.48  42.2     0
+flat V, no cuts              val      0.0239                          0.024  +0.0073   2.52  42.2     0
+flat V, no cuts              0.5      2.2821                          2.282  +2.2708  21.51  40.6     0
+flat V, no cuts              0.65     0.0239                          0.024  +0.0073   2.52  42.2     0
+flat V + learned cuts        0.8      0.0227        0.023 0.023 0.023 0.023  +0.0060   2.48  42.2     0
+flat V + learned cuts        val      0.0233        0.023 0.023 0.024 0.024  +0.0066   2.50  42.2     0
+flat V + learned cuts        0.5      2.2566        2.180 2.280 2.286 2.280  +2.2442  21.30  40.6     0
+flat V + learned cuts        0.65     0.0233        0.023 0.023 0.024 0.024  +0.0066   2.50  42.2     0
+learned V, no cuts           0.8      0.0206        0.018 0.025 0.020 0.020  +0.0037   2.50  42.1     0
+learned V, no cuts           val      0.0196        0.018 0.025 0.018 0.018  -0.0004   2.44  42.1     0
+learned V, no cuts           0.5      1.2859        1.189 1.453 1.409 1.092  +1.2690  13.42  40.8     0
+learned V, no cuts           0.65     0.0187        0.018 0.021 0.018 0.018  -0.0021   2.40  42.1     0
+learned V + cuts (paper)     0.8      0.0252        0.018 0.038 0.020 0.025  +0.0077   2.53  42.1     0
+learned V + cuts (paper)     val      0.0179        0.018 0.016 0.018 0.020  -0.0021   2.40  42.1     0
+learned V + cuts (paper)     0.5      1.0629        1.195 0.554 1.406 1.097  +1.0474  11.71  40.9     0
+learned V + cuts (paper)     0.65     0.0179        0.018 0.016 0.018 0.020  -0.0021   2.40  42.1     0
+supervised proxy             0.8      0.0313        0.033 0.028 0.031 0.033  +0.0139   2.09  42.0     0
+supervised proxy             val      0.0313        0.033 0.030 0.032 0.030  +0.0067   1.96  42.2     0
+supervised proxy             0.5      0.0313        0.033 0.030 0.032 0.030  +0.0067   1.96  42.2     0
+supervised proxy             0.65     0.0446        0.032 0.031 0.077 0.039  +0.0221   2.07  42.0     0
+
+=== paired |gap| differences (stored reference, threshold rule val); negative = first better ===
+learned V vs flat V (no cuts)                         -0.0008 pp  95% CI [-0.0112, +0.0096]  p=0.878  (first better on 6/47, worse on 4)
+cuts on vs off (learned V)                            +0.0011 pp  95% CI [-0.0054, +0.0091]  p=0.721  (first better on 6/47, worse on 4)
+cuts on vs off (flat V)                               +0.0029 pp  95% CI [-0.0015, +0.0103]  p=0.655  (first better on 1/47, worse on 1)
+paper method vs no learning                           +0.0003 pp  95% CI [-0.0141, +0.0148]  p=0.917  (first better on 4/47, worse on 2)
+paper method vs proxy                                 -0.0221 pp  95% CI [-0.0643, +0.0087]  p=0.719  (first better on 15/47, worse on 12)
+learned V only vs proxy                               -0.0232 pp  95% CI [-0.0630, +0.0050]  p=0.569  (first better on 16/47, worse on 12)
+
+=== paired |gap| differences (stored reference, threshold rule 0.8); negative = first better ===
+learned V vs flat V (no cuts)                         +0.0077 pp  95% CI [-0.0067, +0.0309]  p=0.79  (first better on 6/47, worse on 5)
+cuts on vs off (learned V)                            +0.0070 pp  95% CI [-0.0005, +0.0181]  p=0.508  (first better on 5/47, worse on 5)
+cuts on vs off (flat V)                               +0.0103 pp  95% CI [+0.0000, +0.0310]  p=0.317  (first better on 0/47, worse on 1)
+paper method vs no learning                           +0.0147 pp  95% CI [-0.0020, +0.0409]  p=0.345  (first better on 3/47, worse on 3)
+paper method vs proxy                                 -0.0080 pp  95% CI [-0.0483, +0.0281]  p=0.738  (first better on 16/47, worse on 13)
+learned V only vs proxy                               -0.0149 pp  95% CI [-0.0578, +0.0218]  p=0.739  (first better on 17/47, worse on 14)
+
+=== paired |gap| differences (converged reference, threshold rule val); negative = first better ===
+learned V vs flat V (no cuts)                         -0.0043 pp  95% CI [-0.0133, +0.0006]  p=0.612  (first better on 5/38, worse on 2)
+cuts on vs off (learned V)                            -0.0018 pp  95% CI [-0.0051, +0.0002]  p=0.249  (first better on 4/38, worse on 2)
+cuts on vs off (flat V)                               -0.0006 pp  95% CI [-0.0019, +0.0000]  p=0.317  (first better on 1/38, worse on 0)
+paper method vs no learning                           -0.0060 pp  95% CI [-0.0179, +0.0000]  p=0.109  (first better on 3/38, worse on 0)
+paper method vs proxy                                 -0.0134 pp  95% CI [-0.0464, +0.0058]  p=0.778  (first better on 9/38, worse on 10)
+learned V only vs proxy                               -0.0116 pp  95% CI [-0.0417, +0.0061]  p=0.639  (first better on 10/38, worse on 11)
+
+=== paired |gap| differences (converged reference, threshold rule 0.8); negative = first better ===
+learned V vs flat V (no cuts)                         -0.0020 pp  95% CI [-0.0066, +0.0006]  p=0.612  (first better on 5/38, worse on 2)
+cuts on vs off (learned V)                            +0.0046 pp  95% CI [-0.0008, +0.0147]  p=0.866  (first better on 4/38, worse on 3)
+cuts on vs off (flat V)                               +0.0000 pp  95% CI [+0.0000, +0.0000]  p=1  (first better on 0/38, worse on 0)
+paper method vs no learning                           +0.0025 pp  95% CI [-0.0006, +0.0083]  p=1  (first better on 2/38, worse on 1)
+paper method vs proxy                                 -0.0061 pp  95% CI [-0.0249, +0.0075]  p=0.794  (first better on 10/38, worse on 11)
+learned V only vs proxy                               -0.0107 pp  95% CI [-0.0397, +0.0080]  p=0.738  (first better on 11/38, worse on 12)
+
+=== fidelity: paper arm, selected-epoch weights, thr 0.8 vs audit/out/precomputed/case300_best_s*.json ===
+s0: 47 instances compared, max |difference| in gap 0.00e+00 pp
+s1: 47 instances compared, max |difference| in gap 0.00e+00 pp
+s2: 47 instances compared, max |difference| in gap 0.00e+00 pp
+s3: 47 instances compared, max |difference| in gap 0.00e+00 pp

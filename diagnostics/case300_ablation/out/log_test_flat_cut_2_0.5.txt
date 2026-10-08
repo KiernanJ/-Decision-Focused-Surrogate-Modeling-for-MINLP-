@@ -1,0 +1,5 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+test flat_cut   s2 thr 0.5: n=47/48 |gap| 1.9298% signed +1.8791%  disc 18.93%  on 43.2  27.3s/inst
