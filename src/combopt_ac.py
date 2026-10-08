@@ -108,10 +108,30 @@ def _rank_flips(i, u, pg, vr, vi):
     return ok
 
 
-def improve(i, u, c0, pg, vr, vi, k=6, rounds=8):
+def _pred(i, u, pg, vr, vi):
+    """exact-layer predicted cost change of flipping each unit (None if the layer fails)."""
+    from framework import v_params
+    g, S, L2 = _W["g"], _W["S"], _W["L2"]; p, q = _W["inst"][i]
+    VP = v_params(vr, vi, g.f_bus.astype(int), g.t_bus.astype(int))
+    S.solve(p, q, vr, vi, rho=1e6, u_lo=u, u_hi=u)
+    if not _W["L2_built"]:
+        L2.build_structure([u, u] + VP); _W["sl"] = L2.var_slices(); _W["L2_built"] = True
+    x, st = L2.forward([u, u] + VP, tol=1e-10)
+    if x is None: return None
+    dc = np.zeros(x.size); dc[_W["sl"][S.v["pg"].id]] = 2*g.c2*pg + g.c1; dc[_W["sl"][S.v["u"].id]] = _W["nl"]
+    try:
+        gr = L2.vjp(st, dc)
+    except RuntimeError:
+        return None
+    return (gr[0] + gr[1])*(1.0 - 2.0*u)
+
+
+def improve(i, u, c0, pg, vr, vi, k=6, rounds=8, swaps=4):
     """Exact-layer-guided local search: rank single flips by the conic layer's d cost/d u,
-    price the top-k, accept the first improvement, re-rank; stop when none improves."""
-    u = u.copy()
+    price the top-k, accept the first improvement, re-rank. When no single flip improves,
+    try SWAPS (one unit off + one unit on, reserve-feasible), ranked by the summed predicted
+    change, top swaps x swaps priced. Stop when neither improves."""
+    u = u.copy(); g = _W["g"]; need = _W["need_f"]*float(_W["inst"][i][0].sum())
     for _ in range(rounds):
         moved = False
         for kk in _rank_flips(i, u, pg, vr, vi)[:k]:
@@ -119,6 +139,17 @@ def improve(i, u, c0, pg, vr, vi, k=6, rounds=8):
             r = _price(i, w)
             if r is not None and r[0] < c0 - 1e-9:
                 u, c0, pg, vr, vi = w, r[0], r[1], r[2], r[3]; moved = True; break
+        if not moved and swaps:
+            pr = _pred(i, u, pg, vr, vi)
+            if pr is not None:
+                offs = [j for j in np.argsort(pr) if u[j] > 0.5][:swaps]; ons = [j for j in np.argsort(pr) if u[j] < 0.5][:swaps]
+                pairs = sorted([(pr[a_] + pr[b_], a_, b_) for a_ in offs for b_ in ons])
+                for _, a_, b_ in pairs:
+                    w = u.copy(); w[a_] = 0.0; w[b_] = 1.0
+                    if float(g.pmax @ w) < need: continue
+                    r = _price(i, w)
+                    if r is not None and r[0] < c0 - 1e-9:
+                        u, c0, pg, vr, vi = w, r[0], r[1], r[2], r[3]; moved = True; break
         if not moved:
             break
     return u, c0, pg
@@ -152,6 +183,61 @@ def final2(args):
     return i, dict(u=u, cost=c, cost_proj=d[1])
 
 
+def old_restore(i, uf, thr, oname, ndown=40):
+    """the audit pipeline's restoration: round at thr -> reserve top-up in order (merit or
+    confidence) -> upward repair -> ndown downward trials in the mirrored order."""
+    g = _W["g"]; pd_ = _W["inst"][i][0]; uf = np.asarray(uf, float)
+    z = (uf > thr).astype(float)
+    order = _W["merit"] if oname == "merit" else np.argsort(-uf, kind="stable")
+    need = _W["need_f"]*float(pd_.sum())
+    for k in order:
+        if float(g.pmax @ z) >= need: break
+        z[k] = 1.0
+    best = None
+    for _ in range(g.n_gen + 1):
+        r = _price(i, z)
+        if r is not None:
+            best = (z.copy(), r[0], r[1]); break
+        off = [k for k in order if z[k] < 0.5]
+        if not off: return None
+        z[off[0]] = 1.0
+    if best is None: return None
+    z, cost, pg = best
+    for k in [t for t in order[::-1] if z[t] > 0.5][:ndown]:
+        w = z.copy(); w[k] = 0.0
+        if float(g.pmax @ w) < need: continue
+        r = _price(i, w)
+        if r is not None and r[0] < cost:
+            z, cost, pg = w, r[0], r[1]
+    return z, cost, pg
+
+
+def final_best(args):
+    """deployment: candidates = (cut projection + guided search), (merit restoration thr 0.8),
+    (confidence restoration thr 0.5); keep the cheapest PRICED one (label-free)."""
+    i, uhat, A, b, k, rounds = args
+    cands = {}
+    d = deploy(i, uhat, A, b)
+    if d is not None:
+        u, c, pg = improve(i, *d, k=k, rounds=rounds, swaps=0); cands["proj+search"] = (u, c, pg)
+    for name, thr, o in (("merit0.8", 0.8, "merit"), ("conf0.5", 0.5, "conf")):
+        r = old_restore(i, uhat, thr, o)
+        if r is not None: cands[name] = r
+    if not cands: return i, None
+    name = min(cands, key=lambda n: cands[n][1]); u, c, pg = cands[name]
+    return i, dict(u=u, cost=c, pg=pg, winner=name, costs={n: v[1] for n, v in cands.items()})
+
+
+def target_old(args):
+    """self-supervised training target: cheaper of the two fast label-free restorations."""
+    i, uhat = args
+    best = None
+    for thr, o in ((0.8, "merit"), (0.5, "conf")):
+        r = old_restore(i, uhat, thr, o)
+        if r is not None and (best is None or r[1] < best[1]): best = r
+    return i, (None if best is None else best[0])
+
+
 def final(args):
     """deployment used at test time: cut-constrained projection + guided local search."""
     i, uhat, A, b, k, rounds = args
@@ -183,6 +269,97 @@ def work(args):
         w = w.copy(); w[k] = 1.0 - w[k]
         neigh.append((w.copy(), _price(i, w) is not None))
     return i, dict(u=u, cost=c0, pg=pg, desc=desc, order=order, neigh=neigh, n_priced=len(cand))
+
+
+def proj_only(args):
+    """training step: cut-constrained projection only (no pricing)."""
+    i, uhat, A, b = args
+    return i, _project(i, uhat, A, b)
+
+
+def miqcqp(args):
+    """deployment: ONE time-limited MIQCQP of the QCAC UC linearised at V (learned or flat),
+    with optional learned cut rows A u <= b (hard; priced slack fallback), then AC pricing
+    of the commitment (upward merit repair if pricing fails)."""
+    import time
+    from gurobipy import GRB
+    import gurobipy as gp
+    from acuc import build
+    i, V, A, b, work, rho = args
+    g = _W["g"]; p, q = _W["inst"][i]; t0 = time.time()
+    vr, vi = (np.ones(g.n_bus), np.zeros(g.n_bus)) if V is None else V
+    m, X, cost = build(g, _W["nl"], p, q, GRB.BINARY, exact=False, rho=rho, Vr0=vr, Vi0=vi, threads=1)
+    if A is not None:
+        s = m.addVars(len(b), lb=0)
+        for r in range(len(b)):
+            m.addConstr(gp.quicksum(float(A[r, k])*X["u"][k] for k in range(g.n_gen)) <= float(b[r]) + s[r])
+        m.setObjective(m.getObjective() + 1e6*gp.quicksum(s[r] for r in range(len(b))))
+    m.Params.TimeLimit = 1e6; m.Params.WorkLimit = work; m.Params.MIPGap = 1e-4
+    m.optimize()
+    if m.SolCount == 0:
+        # no incumbent within the work limit: label-free fallback (same for every arm)
+        uh = relax((i, V))[1]
+        best = None
+        if uh is not None:
+            for thr, o in ((0.8, "merit"), (0.5, "conf")):
+                r = old_restore(i, uh[0], thr, o)
+                if r is not None and (best is None or r[1] < best[1]): best = r
+        if best is None:
+            return i, None
+        r = _price(i, best[0])
+        return i, dict(u=best[0], cost=best[1], pg=best[2], vr=r[2] if r else vr, vi=r[3] if r else vi,
+                       secs=time.time()-t0, t_mip=time.time()-t0, mipgap=np.nan, fallback=True)
+    u = np.array([round(X["u"][k].X) for k in range(g.n_gen)], float)
+    t_mip = time.time() - t0
+    for _ in range(g.n_gen + 1):
+        r = _price(i, u)
+        if r is not None:
+            return i, dict(u=u, cost=r[0], pg=r[1], vr=r[2], vi=r[3], secs=time.time()-t0, t_mip=t_mip, mipgap=float(m.MIPGap), fallback=False)
+        off = [k for k in _W["merit"] if u[k] < 0.5]
+        if not off: return i, None
+        u[off[0]] = 1.0
+    return i, None
+
+
+def miqcqp_fix(args):
+    """time-limited MIQCQP at V with learned FIXING cuts: u_k = 1 for k in on_set, u_k = 0
+    for k in off_set (the simplest cuts; Xavier et al.'s affine subspace)."""
+    i, V, on_set, off_set, work, rho = args
+    G = _W["g"].n_gen
+    rows, rhs = [], []
+    for k in on_set:  e = np.zeros(G); e[k] = -1.0; rows.append(e); rhs.append(-1.0)   # -u_k <= -1
+    for k in off_set: e = np.zeros(G); e[k] = 1.0; rows.append(e); rhs.append(0.0)     #  u_k <= 0
+    A = np.array(rows) if rows else None; b = np.array(rhs) if rows else None
+    return miqcqp((i, V, A, b, work, rho))
+
+
+def miqcqp_warm(args):
+    """cut-guided warm start: stage 1 = MIQCQP WITH learned cuts (work w1); stage 2 = MIQCQP
+    WITHOUT cuts (work w2) started from stage 1's commitment; return the cheaper priced one.
+    Total work w1 + w2 = the no-cut arm's budget."""
+    import time
+    from gurobipy import GRB
+    import gurobipy as gp
+    from acuc import build
+    i, V, A, b, w1, w2, rho = args
+    t0 = time.time()
+    _, r1 = miqcqp((i, V, A, b, w1, rho))
+    g = _W["g"]; p, q = _W["inst"][i]
+    vr, vi = (np.ones(g.n_bus), np.zeros(g.n_bus)) if V is None else V
+    m, X, cost = build(g, _W["nl"], p, q, GRB.BINARY, exact=False, rho=rho, Vr0=vr, Vi0=vi, threads=1)
+    m.Params.TimeLimit = 1e6; m.Params.WorkLimit = w2; m.Params.MIPGap = 1e-4
+    if r1 is not None:
+        for k in range(g.n_gen): X["u"][k].Start = float(r1["u"][k])
+    m.optimize()
+    cands = [] if r1 is None else [r1]
+    if m.SolCount:
+        u = np.array([round(X["u"][k].X) for k in range(g.n_gen)], float)
+        pr = _price(i, u)
+        if pr is not None:
+            cands.append(dict(u=u, cost=pr[0], pg=pr[1], vr=pr[2], vi=pr[3], fallback=False))
+    if not cands: return i, None
+    best = min(cands, key=lambda d: d["cost"]); best = dict(best); best["secs"] = time.time() - t0
+    return i, best
 
 
 def price_ref(args):
