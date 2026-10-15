@@ -81,12 +81,37 @@ class Grid:
                 f"gen cap {self.pmax.sum():.3f} pu")
 
 
+def read_m(case):
+    """minimal MATPOWER .m reader (version 2): baseMVA, bus, gen, branch, gencost."""
+    import os, re
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "pglib", f"{case}.m")
+    txt = open(path).read()
+    out = {"version": "2", "baseMVA": float(re.search(r"mpc\.baseMVA\s*=\s*([\d.]+)", txt).group(1))}
+    for key in ("bus", "gen", "branch", "gencost"):
+        body = re.search(r"mpc\." + key + r"\s*=\s*\[(.*?)\];", txt, re.S).group(1)
+        body = "\n".join(line.split("%")[0] for line in body.splitlines())   # strip comments first
+        rows = [r.strip() for r in body.split(";")]
+        out[key] = np.array([[float(v) for v in r.split()] for r in rows if r])
+    return out
+
+
 def load(case="case14") -> Grid:
     import pandapower as pp
     import pandapower.networks as pn
 
-    net = getattr(pn, case)()
-    pp.runpp(net, calculate_voltage_angles=True, init="flat")
+    if case.startswith("pglib"):
+        # PGLib-OPF benchmark case (realistic line ratings; "api" = stressed loading):
+        # parsed from its MATPOWER .m file, then converted like any pandapower case.
+        from pandapower.converter.pypower import from_ppc
+        net = from_ppc(read_m(case), f_hz=60, validate_conversion=False)
+    else:
+        net = getattr(pn, case)()
+    try:
+        pp.runpp(net, calculate_voltage_angles=True, init="flat")
+    except Exception:
+        # only the static ppc tables are used below; a stressed PGLib case (case300 "api") does not
+        # converge in Newton from a flat start, and a DC power flow builds the same tables.
+        pp.rundcpp(net)
     ppc = net._ppc
     base = ppc["baseMVA"]
     bus, branch, gen = ppc["bus"], ppc["branch"], ppc["gen"]

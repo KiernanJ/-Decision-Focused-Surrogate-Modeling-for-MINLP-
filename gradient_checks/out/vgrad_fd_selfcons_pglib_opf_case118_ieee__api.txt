@@ -1,0 +1,37 @@
+inst 183 flat V    rho 1e+04 h 1e-03 | FD self-cons 0.9999 (|fw-bw|/|fd| median 0.027) | ENVELOPE corr 1.0000 signs 8/8 rel.err 0.0029 | PASS
+inst 183 flat V    rho 1e+04 h 1e-04 | FD self-cons 0.9999 (|fw-bw|/|fd| median 0.018) | ENVELOPE corr 1.0000 signs 8/8 rel.err 0.0043 | PASS
+inst 183 flat V    rho 1e+04 h 1e-05 | FD self-cons 0.9877 (|fw-bw|/|fd| median 0.099) | ENVELOPE corr 0.9951 signs 8/8 rel.err 0.1009 | FD unreliable
+inst 183 V-net s0  rho 1e+04 h 1e-03 | FD self-cons 0.9980 (|fw-bw|/|fd| median 0.646) | ENVELOPE corr 0.9983 signs 8/8 rel.err 0.0587 | PASS
+inst 183 V-net s0  rho 1e+04 h 1e-04 | FD self-cons 0.9553 (|fw-bw|/|fd| median 2.316) | ENVELOPE corr 0.9800 signs 8/8 rel.err 0.2743 | FD unreliable
+inst 183 V-net s0  rho 1e+04 h 1e-05 | FD self-cons 0.0432 (|fw-bw|/|fd| median 2.795) | ENVELOPE corr 0.6946 signs 6/8 rel.err 0.7978 | FD unreliable
+inst 183 V-net s1  rho 1e+05 h 1e-03 | FD self-cons 0.9809 (|fw-bw|/|fd| median 1.152) | ENVELOPE corr 0.9785 signs 8/8 rel.err 0.2594 | FD unreliable
+inst 183 V-net s1  rho 1e+05 h 1e-04 | FD self-cons 0.0079 (|fw-bw|/|fd| median 3.067) | ENVELOPE corr 0.3613 signs 5/8 rel.err 0.9855 | FD unreliable
+inst 183 V-net s1  rho 1e+05 h 1e-05 | FD self-cons 0.1380 (|fw-bw|/|fd| median 5.370) | ENVELOPE corr 0.5076 signs 5/8 rel.err 0.9748 | FD unreliable
+inst 183 V-net s2  rho 1e+05 h 1e-03 | FD self-cons 0.9077 (|fw-bw|/|fd| median 1.002) | ENVELOPE corr 0.9902 signs 8/8 rel.err 0.2334 | FD unreliable
+inst 183 V-net s2  rho 1e+05 h 1e-04 | FD self-cons -0.3383 (|fw-bw|/|fd| median 3.339) | ENVELOPE corr 0.4689 signs 5/8 rel.err 0.9745 | FD unreliable
+inst 183 V-net s2  rho 1e+05 h 1e-05 | FD self-cons 0.1557 (|fw-bw|/|fd| median 3.180) | ENVELOPE corr 0.1723 signs 4/8 rel.err 0.9970 | FD unreliable
+inst 109 flat V    rho 1e+04 h 1e-03 | FD self-cons 0.9803 (|fw-bw|/|fd| median 1.054) | ENVELOPE corr 0.9967 signs 8/8 rel.err 0.0858 | FD unreliable
+inst 109 flat V    rho 1e+04 h 1e-04 | FD self-cons 0.9803 (|fw-bw|/|fd| median 0.974) | ENVELOPE corr 0.9966 signs 8/8 rel.err 0.0821 | FD unreliable
+inst 109 flat V    rho 1e+04 h 1e-05 | FD self-cons 0.9665 (|fw-bw|/|fd| median 0.463) | ENVELOPE corr 0.9560 signs 8/8 rel.err 0.2961 | FD unreliable
+inst 109 V-net s0  rho 1e+04 h 1e-03 | FD self-cons 0.9972 (|fw-bw|/|fd| median 0.168) | ENVELOPE corr 0.9996 signs 8/8 rel.err 0.0296 | PASS
+inst 109 V-net s0  rho 1e+04 h 1e-04 | FD self-cons 0.9939 (|fw-bw|/|fd| median 0.387) | ENVELOPE corr 0.9967 signs 8/8 rel.err 0.0825 | PASS
+inst 109 V-net s0  rho 1e+04 h 1e-05 | FD self-cons 0.2736 (|fw-bw|/|fd| median 1.590) | ENVELOPE corr 0.8865 signs 5/8 rel.err 0.4863 | FD unreliable
+inst 109 V-net s1  rho 1e+05 h 1e-03 | FD self-cons 0.9909 (|fw-bw|/|fd| median 0.273) | ENVELOPE corr 0.9951 signs 8/8 rel.err 0.1230 | PASS
+inst 109 V-net s1  rho 1e+05 h 1e-04 | FD self-cons 0.6620 (|fw-bw|/|fd| median 2.436) | ENVELOPE corr 0.4975 signs 6/8 rel.err 0.9604 | FD unreliable
+inst 109 V-net s1  rho 1e+05 h 1e-05 | FD self-cons -0.4225 (|fw-bw|/|fd| median 27.584) | ENVELOPE corr 0.3851 signs 6/8 rel.err 0.9531 | FD unreliable
+inst 109 V-net s2  rho 1e+05 h 1e-03 | FD self-cons 0.9969 (|fw-bw|/|fd| median 0.203) | ENVELOPE corr 0.9978 signs 8/8 rel.err 0.0889 | PASS
+inst 109 V-net s2  rho 1e+05 h 1e-04 | FD self-cons 0.6225 (|fw-bw|/|fd| median 0.780) | ENVELOPE corr 0.8891 signs 7/8 rel.err 0.4726 | FD unreliable
+inst 109 V-net s2  rho 1e+05 h 1e-05 | FD self-cons -0.0081 (|fw-bw|/|fd| median 1.743) | ENVELOPE corr 0.2296 signs 3/8 rel.err 0.9823 | FD unreliable
+inst 139 flat V    rho 1e+04 h 1e-03 | FD self-cons 0.9859 (|fw-bw|/|fd| median 1.240) | ENVELOPE corr 0.9980 signs 8/8 rel.err 0.0751 | FD unreliable
+inst 139 flat V    rho 1e+04 h 1e-04 | FD self-cons 0.9878 (|fw-bw|/|fd| median 1.252) | ENVELOPE corr 0.9983 signs 8/8 rel.err 0.0717 | FD unreliable
+inst 139 flat V    rho 1e+04 h 1e-05 | FD self-cons 0.8776 (|fw-bw|/|fd| median 0.665) | ENVELOPE corr 0.9969 signs 8/8 rel.err 0.2089 | FD unreliable
+inst 139 V-net s0  rho 1e+04 h 1e-03 | FD self-cons 0.9931 (|fw-bw|/|fd| median 0.201) | ENVELOPE corr 0.9997 signs 8/8 rel.err 0.0247 | PASS
+inst 139 V-net s0  rho 1e+04 h 1e-04 | FD self-cons 0.9531 (|fw-bw|/|fd| median 0.222) | ENVELOPE corr 0.9889 signs 7/8 rel.err 0.1507 | FD unreliable
+inst 139 V-net s0  rho 1e+04 h 1e-05 | FD self-cons -0.1154 (|fw-bw|/|fd| median 1.798) | ENVELOPE corr 0.7664 signs 6/8 rel.err 0.7875 | FD unreliable
+inst 139 V-net s1  rho 1e+05 h 1e-03 | FD self-cons 0.9850 (|fw-bw|/|fd| median 0.405) | ENVELOPE corr 0.9992 signs 8/8 rel.err 0.0440 | FD unreliable
+inst 139 V-net s1  rho 1e+05 h 1e-04 | FD self-cons 0.8794 (|fw-bw|/|fd| median 3.813) | ENVELOPE corr 0.9599 signs 7/8 rel.err 0.3445 | FD unreliable
+inst 139 V-net s1  rho 1e+05 h 1e-05 | FD self-cons -0.0825 (|fw-bw|/|fd| median 14.983) | ENVELOPE corr 0.5843 signs 6/8 rel.err 0.8123 | FD unreliable
+inst 139 V-net s2  rho 1e+05 h 1e-03 | FD self-cons 0.9905 (|fw-bw|/|fd| median 0.379) | ENVELOPE corr 0.9896 signs 8/8 rel.err 0.1427 | FAIL
+inst 139 V-net s2  rho 1e+05 h 1e-04 | FD self-cons 0.3006 (|fw-bw|/|fd| median 0.680) | ENVELOPE corr 0.7349 signs 6/8 rel.err 0.7513 | FD unreliable
+inst 139 V-net s2  rho 1e+05 h 1e-05 | FD self-cons -0.3457 (|fw-bw|/|fd| median 2.896) | ENVELOPE corr 0.0906 signs 5/8 rel.err 0.9754 | FD unreliable
+done

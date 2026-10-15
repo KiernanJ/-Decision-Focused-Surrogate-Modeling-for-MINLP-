@@ -93,8 +93,15 @@ class DiffDeploy:
 
     def __init__(self, S, g, nl, reserve=0.10, tau=0.08, thr=0.5, mu=10.0,
                  z_clip=0.02, rho=1e6, reg=1e-8, reg2=1e-10, margin=0.02,
-                 margins=(0.02, 0.08, 0.16, 0.28, 0.45, 0.70)):
+                 margins=(0.02, 0.08, 0.16, 0.28, 0.45, 0.70), env2=False, S1=None, cut_cap=0.0):
         self.S, self.g, self.nl = S, g, nl
+        # env2 (2026-10-10): layer 2 is a VALUE (the priced cost), so take its exact envelope gradient
+        # 1/2 x'dPx + dq'x + y'(dA x - db) instead of the VJP, which is unreliable off flat V.
+        self.env2 = env2
+        # S1 (2026-10-10): optional SMOOTHED copy of the model for LAYER 1 only (Socp(..., u_smooth>0)); layer 2
+        # (pricing) and deployment keep the original model S.
+        self.S1 = S if S1 is None else S1
+        self.cut_cap = cut_cap   # 0 = hard cuts (original); >0 = soft cuts, violation priced (as in the MIQCQP deployment)
         self.reserve, self.tau, self.thr, self.mu = reserve, tau, thr, mu
         self.z_clip, self.rho, self.margin = z_clip, rho, margin
         self.margins = tuple(margins)
@@ -106,8 +113,10 @@ class DiffDeploy:
         # and folded back to (Vr, Vi) by v_chain.
         self.fb = g.f_bus.astype(int); self.tb = g.t_bus.astype(int)
         VP = [S.p_Vr0, S.p_Vi0, S.p_V0sq, S.p_VVc, S.p_VVs]
-        self.L1 = ConeLayer(S.prob, [S.p_A, S.p_b] + VP,
-                            [S.v["pg"], S.v["u"]], reg=reg)
+        S1_ = self.S1
+        VP1 = [S1_.p_Vr0, S1_.p_Vi0, S1_.p_V0sq, S1_.p_VVc, S1_.p_VVs]
+        self.L1 = ConeLayer(S1_.prob, [S1_.p_A, S1_.p_b] + VP1,
+                            [S1_.v["pg"], S1_.v["u"]], reg=reg)
         self.L2 = ConeLayer(S.prob, [S.p_ulo, S.p_uhi] + VP,
                             [S.v["pg"], S.v["u"]], reg=reg2)
         self._built = False
@@ -116,12 +125,13 @@ class DiffDeploy:
         if self._built:
             return
         VP = v_params(Vr, Vi, self.fb, self.tb)
-        self.S.solve(pd_, qd_, Vr, Vi, rho=self.rho, A=A, b=b, cut_cap=0.0)
+        self.S1.solve(pd_, qd_, Vr, Vi, rho=self.rho, A=A, b=b, cut_cap=self.cut_cap)
         self.L1.build_structure([np.asarray(A, float), np.asarray(b, float)] + VP)
         z = np.full(self.g.n_gen, 0.5)
         self.S.solve(pd_, qd_, Vr, Vi, rho=self.rho, u_lo=z, u_hi=z)
         self.L2.build_structure([z, z] + VP)
         self.sl1, self.sl2 = self.L1.var_slices(), self.L2.var_slices()
+        self.uid1 = self.S1.v["u"].id
         self._built = True
 
     def __call__(self, pd_, qd_, Vr, Vi, A, b, scale, want_grad=True,
@@ -136,7 +146,7 @@ class DiffDeploy:
         pid, uid = S.v["pg"].id, S.v["u"].id
 
         # ---- LAYER 1: the relaxation with the learned cut ----
-        r1 = S.solve(pd_, qd_, Vr, Vi, rho=self.rho, A=A, b=b, cut_cap=0.0)
+        r1 = self.S1.solve(pd_, qd_, Vr, Vi, rho=self.rho, A=A, b=b, cut_cap=self.cut_cap)
         if r1 is None:
             return None, None, None, dict(fail="layer1")
         uf = r1["u"]
@@ -189,10 +199,15 @@ class DiffDeploy:
         dcost = np.zeros(x2.size)
         dcost[self.sl2[pid]] = (2*g.c2*pg + g.c1)/scale
         dcost[self.sl2[uid]] = self.nl/scale            # nl'z enters through u = z
-        try:
-            g2 = self.L2.vjp(st2, dcost)
-        except RuntimeError:
-            return loss, None, None, dict(**info, fail="lu_layer2")
+        if self.env2:
+            x_, y_ = st2["x"], st2["y"]
+            g2 = [np.array([0.5*x_ @ (D["dP"] @ x_) + D["dq"] @ x_ + y_ @ (D["dA"] @ x_ - D["db"]) for D in self.L2._struct["dirs"][pi]])/scale
+                  for pi in range(7)]
+        else:
+            try:
+                g2 = self.L2.vjp(st2, dcost)
+            except RuntimeError:
+                return loss, None, None, dict(**info, fail="lu_layer2")
         glo, ghi = g2[0], g2[1]
         dz = glo + ghi                                   # z pins BOTH bounds
         dVr2, dVi2 = v_chain(g2[2:], Vr, Vi, self.fb, self.tb)   # V via layer 2
@@ -217,7 +232,7 @@ class DiffDeploy:
         #   and the rank-one reserve term flips sign with them.
         info["dthr"] = -duf
         dL1 = np.zeros(x1.size)
-        dL1[self.sl1[uid]] = duf
+        dL1[self.sl1[self.uid1]] = duf
         try:
             g1 = self.L1.vjp(st1, dL1)
         except RuntimeError:

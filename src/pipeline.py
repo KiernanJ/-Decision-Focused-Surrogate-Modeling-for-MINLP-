@@ -41,9 +41,14 @@ def set_cuts(k):
 def grid(case=None):
     case = case or CASE
     g = load(case)
-    lo, hi = VBOUNDS.get(case, (0.94, 1.06))
-    g.vmin = np.full(g.n_bus, lo)
-    g.vmax = np.full(g.n_bus, hi)
+    if case.startswith("pglib"):          # PGLib files carry real per-bus limits (pandapower's ppc has 0/2)
+        from acopf_data import read_m
+        b = read_m(case)["bus"]; assert len(b) == g.n_bus
+        g.vmin, g.vmax = b[:, 12].copy(), b[:, 11].copy()
+    else:
+        lo, hi = VBOUNDS.get(case, (0.94, 1.06))
+        g.vmin = np.full(g.n_bus, lo)
+        g.vmax = np.full(g.n_bus, hi)
     return g, no_load_cost(g, 0.15)
 
 

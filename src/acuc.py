@@ -263,9 +263,14 @@ def solve_qcac_iterative(g, nl, pd_, qd_, reserve=0.10, rho0=1e3, mu=4.0,
         out = _extract(V, g, cost, m)
         prev = {key: np.array([V[key][k].X for k in range(len(V[key]))])
                 for key in ("vr", "vi", "pg", "qg", "u", "cii", "cij", "sij", "wv", "zv")}
+        # record this iteration's linearisation point, penalty and full solution, so the
+        # final MIQCQP can be re-solved to a tighter gap (ref_polish); no effect otherwise.
+        out.update(lin_vr=Vr.copy(), lin_vi=Vi.copy(), lin_rho=rho, start=dict(prev),
+                   xi=np.array([V["xi"][k].X for k in range(n + 2*L)]))
         hist.append(dict(it=t+1, rho=rho, slack=slack, cost=out["cost"],
                          n_on=int(out["u"].sum()), mip_gap=float(m.MIPGap),
-                         grb_status=int(m.Status)))
+                         grb_status=int(m.Status), lin_vr=Vr.copy(), lin_vi=Vi.copy(),
+                         vr=prev["vr"].copy(), vi=prev["vi"].copy(), u=prev["u"].copy()))
         if slack <= eps:
             status = "converged"
             break

@@ -1,0 +1,21 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+inst 183 flat V    rho 1e+04 | ENVELOPE corr 1.0000 signs 8/8 rel.err 0.0043 PASS | old VJP corr 0.999 signs 8/8
+inst 183 V-net s0  rho 1e+04 | ENVELOPE corr 0.9800 signs 8/8 rel.err 0.2743 FAIL | old VJP corr 0.301 signs 4/8
+inst 183 V-net s1  rho 1e+05 | ENVELOPE corr 0.3613 signs 5/8 rel.err 0.9855 FAIL | old VJP corr 0.338 signs 4/8
+inst 183 V-net s2  rho 1e+05 | ENVELOPE corr 0.4689 signs 5/8 rel.err 0.9745 FAIL | old VJP corr -0.084 signs 4/8
+inst 109 flat V    rho 1e+04 | ENVELOPE corr 0.9966 signs 8/8 rel.err 0.0821 PASS | old VJP corr 0.987 signs 8/8
+inst 109 V-net s0  rho 1e+04 | ENVELOPE corr 0.9967 signs 8/8 rel.err 0.0825 PASS | old VJP corr 0.719 signs 5/8
+inst 109 V-net s1  rho 1e+05 | ENVELOPE corr 0.4975 signs 6/8 rel.err 0.9604 FAIL | old VJP corr 0.033 signs 5/8
+inst 109 V-net s2  rho 1e+05 | ENVELOPE corr 0.8891 signs 7/8 rel.err 0.4726 FAIL | old VJP corr 0.622 signs 5/8
+inst 139 flat V    rho 1e+04 | ENVELOPE corr 0.9983 signs 8/8 rel.err 0.0717 PASS | old VJP corr 0.996 signs 8/8
+inst 139 V-net s0  rho 1e+04 | ENVELOPE corr 0.9889 signs 7/8 rel.err 0.1507 FAIL | old VJP corr 0.683 signs 6/8
+inst 139 V-net s1  rho 1e+05 | ENVELOPE corr 0.9599 signs 7/8 rel.err 0.3445 FAIL | old VJP corr 0.860 signs 6/8
+inst 139 V-net s2  rho 1e+05 | ENVELOPE corr 0.7349 signs 6/8 rel.err 0.7513 FAIL | old VJP corr 0.422 signs 6/8
+GATE FAILED

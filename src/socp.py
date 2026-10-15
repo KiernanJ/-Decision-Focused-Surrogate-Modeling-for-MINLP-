@@ -37,7 +37,7 @@ import cvxpy as cp
 
 
 class Socp:
-    def __init__(self, g, nl, n_cuts=8, cut_price=1e4):
+    def __init__(self, g, nl, n_cuts=8, cut_price=1e4, u_smooth=0.0):
         n, L, G = g.n_bus, g.n_branch, g.n_gen
         fb, tb = g.f_bus.astype(int), g.t_bus.astype(int)
         self.g, self.nl, self.n_cuts = g, nl, n_cuts
@@ -124,8 +124,13 @@ class Socp:
 
         self.cost = cp.sum(cp.multiply(g.c2, cp.square(pg))
                            + cp.multiply(g.c1, pg) + cp.multiply(nl, u))
+        # u_smooth (2026-10-10): TRAINING-LAYER ONLY. The relaxation is degenerate in u (corner solutions that
+        # jump with the cut), so d u*/d(A, b) is not well defined -- the exact layer's answer depended on its
+        # regularisation eps (gradient_checks/09). A small strongly convex term gamma*sum (u - 1/2)^2 makes u* unique
+        # and smooth in the cut parameters, so the implicit (KKT) derivative exists. Deployment never uses it.
+        smooth = u_smooth*cp.sum_squares(u - 0.5) if u_smooth > 0 else 0
         self.prob = cp.Problem(
-            cp.Minimize(self.cost + self.p_rho*cp.sum(xi) + cut_price*cp.sum(sc)), C)
+            cp.Minimize(self.cost + self.p_rho*cp.sum(xi) + cut_price*cp.sum(sc) + smooth), C)
 
 # %% one solve
 
@@ -149,7 +154,7 @@ class Socp:
             self.p_A.value = np.asarray(A, float); self.p_b.value = np.asarray(b, float)
             self.p_cutcap.value = float(cut_cap)
         try:
-            self.prob.solve(solver=cp.CLARABEL)
+            self.prob.solve(solver=cp.CLARABEL, warm_start=False)
         except Exception:
             self.v["u"].value = None
         if self.v["u"].value is None and A is not None and soft_fallback:
@@ -159,12 +164,12 @@ class Socp:
             # kills.
             self.p_cutcap.value = 1e6
             try:
-                self.prob.solve(solver=cp.CLARABEL)
+                self.prob.solve(solver=cp.CLARABEL, warm_start=False)
             except Exception:
                 return None
         if self.v["u"].value is None:
             return None
-        return dict(u=self.v["u"].value.copy(), pg=self.v["pg"].value.copy(),
+        return dict(u=self.v["u"].value.copy(), pg=self.v["pg"].value.copy(), qg=self.v["qg"].value.copy(),
                     vr=self.v["vr"].value.copy(), vi=self.v["vi"].value.copy(),
                     cost=float(self.cost.value), slack=float(self.v["xi"].value.sum()),
                     cut_slack=float(self.v["sc"].value.sum()), status=self.prob.status)
@@ -172,7 +177,7 @@ class Socp:
 # %% price a commitment: QCAC's own re-linearisation loop with u FIXED
 
     def price(self, pd_, qd_, u_fixed, rho0=1e3, mu=4.0, rho_max=1e10,
-              eps=1e-6, max_iter=25):
+              eps=1e-6, max_iter=25, check=None):
         """Cost of a given commitment, re-linearising until the slack vanishes.
 
         This is how a commitment gets a physically meaningful price without the
@@ -189,8 +194,13 @@ class Socp:
                 # WITH iters set -- callers index it, and omitting it turned a
                 # rare solver hiccup into a crash that killed two 60-epoch runs.
                 return dict(**last, iters=it) if last is not None else None
+            # check (2026-10-09): optional PHYSICS acceptance test of the priced point. slack ~ 0
+            # only says the lifted products match their linearisation at the OLD V; the true
+            # products differ by O(|V - V_old|^2). On light grids V has stopped moving by then, but
+            # on PGLib "api" this stopped at iteration ~8 with P/Q residuals ~5e-3 pu, 0.2% line
+            # overloads and a cost ~0.7% too high; iterating on converges to the exact-AC value.
             last, Vr, Vi = r, r["vr"], r["vi"]
-            if r["slack"] <= eps:
+            if r["slack"] <= eps and (check is None or check(r)):
                 return dict(**r, iters=it+1)
             rho = min(rho*mu, rho_max)
         return dict(**last, iters=max_iter) if last else None
