@@ -49,7 +49,8 @@ labelled loads only (118 on case118, 114 on case300, 118 on PGLib, up to 100 / 1
 - `figures/` vehicle figures (AC figures are regenerated after the case300 / PGLib tests).
 - `acuc/results/` trained clean-pipeline artifacts (V-net `_env_nc`, cuts / rows `_lfc`, label-free targets `_nc`) and test references.
 
-Superseded work (older method variants, previous paper, diagnostics) was removed from the repository.
+Superseded work (older method variants, previous paper, diagnostics, the long-solve teachers `teacher_*_w120/w180.json`, the old checkpoints and the old long-solve scripts) was removed from the repository; it remains in the git history.
+Note: `40_vnet_layer.py` (without `nocuts`), `46_unit_cuts_layer.py` and `52_general_rows_on_top.py` still have a default teacher path that pointed to the removed long-solve files; always pass the label-free targets explicitly, exactly as `acuc/clean_redo_*.sh` does (the code is unchanged so the pre-registered hashes in `acuc/RESULTS.md` still match).
 
 ## Generalized integer cuts (exploratory, validation only, one model each)
 The per-unit cuts `u_k >= l_k / u_k <= h_k` were replaced by general linear rows over the integer variables (no per-unit fixing anywhere; `acuc/67_generalized_integer_cuts.py`,
