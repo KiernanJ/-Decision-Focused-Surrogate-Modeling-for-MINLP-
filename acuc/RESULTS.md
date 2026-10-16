@@ -588,3 +588,107 @@ Seeds: V-net seed 0, proxy seeds 0,1,2. Pre-registration with hashes/statistics 
 | 2026-10-14_2030_val_full_pglib_opf_case118_ieee__api_env_nc_lfc | pglib_opf_case118_ieee__api VALIDATION FULL METHOD (rho_1e5): rho 1e+05, label-free score 3.587906 (no validation references -> no four-metric report), fallbacks 2 |
 | 2026-10-14_2038_val_full_pglib_opf_case118_ieee__api_env_nc_lfc | pglib_opf_case118_ieee__api VALIDATION FULL METHOD (rho_3e5): rho 3e+05, label-free score 3.587794 (no validation references -> no four-metric report), fallbacks 1 |
 | 2026-10-14_2046_val_full_pglib_opf_case118_ieee__api_env_nc_lfc | pglib_opf_case118_ieee__api VALIDATION FULL METHOD (rho_1e6): rho 1e+06, label-free score 3.587987 (no validation references -> no four-metric report), fallbacks 1 |
+
+## PRE-REGISTRATION of the CLEAN case300 + PGLib FINAL TESTS (written 2026-10-15 07:15, BEFORE any fresh5 result exists for these cases)
+Method = the clean label-free pipeline (acuc/clean_redo_300_pglib_2026-10-13.sh + resume2_pglib_2026-10-14.sh): V-net trained on the UNCUT relaxation (`_env_nc`, selected rho 1e4 both cases),
+label-free best-of targets at that V (`_nc`; case300 422 targets, PGLib 355 = 118/144 train + 237/300 extra), integer cuts `_lfc` (c = 0.9 both; epoch 8 both) and general rows `_lfc` (case300 epoch 8, PGLib epoch 1), all trained at the deployed V.
+Nothing from a long solve, a reference or a test/fresh draw reaches V-net, cuts, rows or the deployment rho (independent audit 2026-10-13: no leakage; chain scripts as run).
+Deployment rho (label-free rule: smallest rho within 0.001 of the minimum of the full-pipeline score on ALL 24 validation draws): case300 1e4 (scores 1.015163 / 1.015479 / 1.015933 / 1.015876 / 1.015688 for 1e4..1e6);
+PGLib 1e4 (3.587896 / 3.587884 / 3.587906 / 3.587794 / 3.587987; all within 2e-4, rule -> 1e4). RETRY: NOT used (a retry at rho 1e4 equals the deployment rho for both cases, so it is a no-op by construction).
+Test draw = fresh5 (never scored for case300 / PGLib), scored ONCE per case, on an idle machine (load 2.1, 0 python processes at 07:10), order case300 then PGLib.
+References (56_refs_fresh2.py, made after training, never used in training/selection): case300 40/48 converged (excluded 735 740 746 748 761 775 776 778), PGLib 42/48 converged (excluded 734 751 756 769 770 779). Exclusion = reference not converged, same set for both methods.
+Commands (3 seeds; V-net seed 0 for all seeds, seeds vary the proxy):
+  `DEPLOY_RHO=1e4 python acuc/55_final_eval.py case300 0,1,2 fresh5 _lfc _nc vseed0`
+  `DEPLOY_RHO=1e4 python acuc/55_final_eval.py pglib_opf_case118_ieee__api 0,1,2 fresh5 _lfc _nc vseed0`
+Statistics (same as every earlier AC test): paired per instance on the seed-averaged |gap| AND on the signed gap; tie <= 1e-3 pp; Wilcoxon on thresholded differences with n_nonzero; sign test; failures = losses; 95% CI.
+Report: gap mean | median | discrete | continuous | time | failures for ours and the supervised NN proxy, per case, plus fallback / repair counts.
+sha1 (first 12): case300 vnet 10a3c0d74f59, cuts a0f5eda7779a, rows ca1f05838846, fresh5 refs 363daf7009fe | PGLib vnet 9ba8ba90fc4e, cuts 5e9d7e5f2ed7, rows 61f219f9d2ea, fresh5 refs 36699d4a36c5.
+Code: 55_final_eval.py 642c4edb19bf, combopt_ac.py 8d4cdb907757, data2.py 4355758a55bd, vnetio.py fbbb35ea8f9d, 60_selfteacher.py 263877b01887, 46_unit_cuts_layer.py 7459490bba94, 52_general_rows_on_top.py ae22c053dc70, 40_vnet_layer.py a2a75ec9dc54.
+MUST DISCLOSE: n = 1 trained pipeline per case; the 24 validation draws were used for every design choice (c, epochs, rho); the proxy trains on 114 (case300) / 118 (PGLib) labelled loads vs our 422 / 355 own targets;
+PGLib: the reference is a weak heuristic and strict pricing is path-dependent there (see the fresh4 audit), so |gap| and signed gap can disagree; case300 references are certified only to ~1e-3; some training loads had no own target (case300: 8/144 train + 14/300 extra; PGLib: 26/144 train + 63/300 extra).
+| 2026-10-15_1104_FINAL_case300_fresh5_lfc_nc_vseed0_seeds0-1-2 | FINAL case300 untouched (40 inst, seeds [0, 1, 2]) OUR METHOD: gap mean | median | disc | cont | time | failures = 0.0825+-0.0000% | 0.0132+-0.0000% | 2.68+-0.00% | 3.74+-0.00% | 39.28+-4.27s | 0 |
+| 2026-10-15_1104_FINAL_case300_fresh5_lfc_nc_vseed0_seeds0-1-2 | FINAL case300 untouched (40 inst, seeds [0, 1, 2]) supervised NN proxy: gap mean | median | disc | cont | time | failures = 0.0872+-0.0124% | 0.0103+-0.0010% | 2.74+-0.15% | 3.07+-0.17% | 1.17+-0.04s | 0 |
+| 2026-10-15_1114_FINAL_pglib_opf_case118_ieee__api_fresh5_lfc_nc_vseed0_seeds0-1-2 | FINAL pglib_opf_case118_ieee__api untouched (42 inst, seeds [0, 1, 2]) OUR METHOD: gap mean | median | disc | cont | time | failures = 0.3910+-0.0000% | 0.2956+-0.0000% | 7.10+-0.00% | 6.58+-0.00% | 10.10+-0.74s | 0 |
+| 2026-10-15_1114_FINAL_pglib_opf_case118_ieee__api_fresh5_lfc_nc_vseed0_seeds0-1-2 | FINAL pglib_opf_case118_ieee__api untouched (42 inst, seeds [0, 1, 2]) supervised NN proxy: gap mean | median | disc | cont | time | failures = 0.1050+-0.0070% | 0.0057+-0.0013% | 1.75+-0.03% | 1.17+-0.10% | 2.05+-0.18s | 0 |
+
+## CLEAN case300 + PGLib FINAL TESTS on fresh5 (untouched, pre-registered above, run ONCE 2026-10-15 11:04-11:17, DEPLOY_RHO=1e4, no retry, seeds 0,1,2; logs final_clean300_fresh5.log, final_cleanpglib_fresh5.log)
+| case | method | gap mean | gap median | discrete err | continuous err | time median | seed-avg paired ours-proxy (pre-registered) |
+|---|---|---|---|---|---|---|---|
+| case300 (40/48) | OURS (clean, label-free) | 0.0825% | 0.0132% | 2.68% | 3.74% | 39.3 s | |gap| -0.005 pp, CI [-0.112,+0.102], Wilcoxon p=0.74, sign p=1.0 (17/7/16); signed +0.002 pp p=0.82 -> TIE |
+| | supervised NN proxy | 0.0872% | 0.0103% | 2.74% | 3.07% | 1.17 s | fallbacks ours 1/seed; proxy repairs 2-3 |
+| PGLib api (42/48) | OURS (clean, label-free) | 0.3910% | 0.2956% | 7.10% | 6.58% | 10.1 s | |gap| +0.286 pp, CI [+0.171,+0.394], p=8.7e-6, sign p=2.8e-6 (6/0/36) -> PROXY CLOSER TO THE REFERENCE |
+| | supervised NN proxy | 0.1050% | 0.0057% | 1.75% | 1.17% | 2.05 s | SIGNED -0.326 pp, p=8.2e-7 (37/0/5) -> ours CHEAPER than the proxy; signed vs reference: ours -0.307% (min -1.57%), proxy +0.018% |
+The two pre-registered metrics DISAGREE on PGLib (as on fresh4 with the earlier method): report both. Caveat from the fresh4 audit still applies: the PGLib reference is a weak heuristic and strict pricing is path-dependent there, so "cheaper than the reference" is not a proven advantage (needs an exact AC-OPF check with the commitment fixed).
+Reference medians (sequential QCAC, converged only): case300 327 s, PGLib 663 s. Ours ran with a screensaver using ~1 core at the start (load 4.1 at 11:04), so times are slightly pessimistic.
+Wall time of the two tests was 10 min + 3 min (3 seeds x 40/42 loads on 11 workers) -- far below my 1-1.5 h estimate.
+| 2026-10-15_2212_geninteger_case118_ham_K0_M0_smoke | case118 VALIDATION gen-int-cuts ham K_I=0 M=0 r=3 rho=3e+05: gap mean | median | disc | cont | time | fallbacks = 0.4004% | 0.2883% | 5.56% | 18.35% | 8.8s | fallbacks 1; label-free score 0.968729 |
+
+## GENERALIZED INTEGER CUTS, overnight experiment 1 (written 2026-10-15 22:30, BEFORE any full result; VALIDATION ONLY -- every case118 test draw and vehicle pool is already spent)
+Question (PI): can the integer cuts be GENERAL linear rows over the integer variables (a'u <= b, a and b produced by the network) instead of the one-variable cuts u_k >= l_k / u_k <= h_k? The per-unit cut-net, its threshold c and all unit fixings are REMOVED from these runs (lo = 0, hi = 1 -> inert unit rows in the layer; the deployed MIQCQP receives only the learned rows).
+Script acuc/67_generalized_integer_cuts.py (audited 2026-10-15 by an independent agent: no unit fixing survives, no reference/long solve/test/fresh draw reaches training or selection; fixes applied: DEPLOY_RHO assert, seeds, anchors only when used, validation-set-size assert, r grid up to 20). Chain acuc/night_geninteger_2026-10-15.sh, status logs/night_geninteger.status.
+Variants (case118, V-net `_env_nc`, targets `_nc` (best-of, no cuts), DEPLOY_RHO=3e5, W=10, soft rows priced 1e6): none (control: V-net + one short solve) | rows K_I=2, 8, 32 (learned integer rows a2'u<=b2, CutNetK integer category, anchored at the uncut relaxation) | ham (ONE learned Hamming-ball row sum_k[p_k(1-u_k)+(1-p_k)u_k] <= r, centre p = MLP warm-started by BCE on our own targets, r from {1,2,3,5,8,12,20} by the label-free score) | ham + 2 mixed rows | rows K_I=8 + 2 mixed | rows K_I=32 + 2 mixed.
+Training: tracking through the exact layer + validity (own target must satisfy every row), FD gate first (same pass rule as 52: a variant whose gate fails is reported as NOT TRAINED, never bypassed), epoch chosen by the LABEL-FREE score on ALL 24 validation draws among trained epochs.
+Comparator (current method, per-unit fixings + 2 mixed rows, same V-net/rho/W/draws): label-free score 0.961770; validation four metrics 0.1286% | 0.0523% | 4.76% | 8.71% | 10.6 s (21 draws with references). No-cut V-net alone: label-free 1.0048 (diagnostic 65).
+A variant COUNTS AS WORKING if label-free score <= 0.9638 (within 0.002 of the comparator) AND validation gap mean <= 0.26% (twice the comparator). A working variant would still need a fresh untouched draw + new references before any test claim.
+MUST DISCLOSE: each variant's label-free score is a minimum over epochs (and over r for ham) on the same 24 validation draws, with 0 selections for none and 10-17 for the others -> mildly optimistic for the learned variants (the comparator also had epoch selection); one trained model per variant; the four metrics are report-only; the Hamming row is the local-branching / predict-and-search family (Fischetti-Lodi; Han et al. 2023), our difference is the label-free training through the exact layer.
+| 2026-10-15_2225_geninteger_case118_none_K0_M0_n1 | case118 VALIDATION gen-int-cuts none K_I=0 M=0 r=1 rho=3e+05: gap mean | median | disc | cont | time | fallbacks = 4.2296% | 0.2403% | 19.40% | 13.12% | 10.0s | fallbacks 7; label-free score 1.004816 |
+| 2026-10-15_2228_geninteger_case118_ham_K0_M0_n1 | case118 VALIDATION gen-int-cuts ham K_I=0 M=0 r=1 rho=3e+05: gap mean | median | disc | cont | time | fallbacks = 0.1189% | 0.0479% | 4.14% | 7.71% | 9.1s | fallbacks 3; label-free score 0.961620 |
+| 2026-10-15_2308_geninteger_case118_rows_K8_M0_n1 | case118 VALIDATION gen-int-cuts rows K_I=8 M=0 r=1 rho=3e+05: gap mean | median | disc | cont | time | fallbacks = 1.0696% | 0.1918% | 7.85% | 10.03% | 25.0s | fallbacks 12; label-free score 0.969618 |
+| 2026-10-15_2345_geninteger_case118_rows_K2_M0_n1 | case118 VALIDATION gen-int-cuts rows K_I=2 M=0 r=1 rho=3e+05: gap mean | median | disc | cont | time | fallbacks = 0.8671% | 0.1735% | 7.50% | 11.44% | 24.3s | fallbacks 12; label-free score 0.968767 |
+| 2026-10-16_0021_geninteger_case118_rows_K32_M0_n1 | case118 VALIDATION gen-int-cuts rows K_I=32 M=0 r=1 rho=3e+05: gap mean | median | disc | cont | time | fallbacks = 2.4106% | 0.2755% | 13.14% | 12.25% | 9.5s | fallbacks 10; label-free score 0.981482 |
+| 2026-10-16_0103_geninteger_case118_ham_K0_M2_n1 | case118 VALIDATION gen-int-cuts ham K_I=0 M=2 r=2 rho=3e+05: gap mean | median | disc | cont | time | fallbacks = 0.7351% | 0.1370% | 6.61% | 9.72% | 8.6s | fallbacks 2; label-free score 0.966948 |
+| 2026-10-16_0142_geninteger_case118_rows_K8_M2_n1 | case118 VALIDATION gen-int-cuts rows K_I=8 M=2 r=1 rho=3e+05: gap mean | median | disc | cont | time | fallbacks = 1.4854% | 0.4563% | 10.58% | 17.67% | 9.1s | fallbacks 7; label-free score 0.974495 |
+| 2026-10-16_0219_geninteger_case118_rows_K32_M2_n1 | case118 VALIDATION gen-int-cuts rows K_I=32 M=2 r=1 rho=3e+05: gap mean | median | disc | cont | time | fallbacks = 1.9543% | 0.2403% | 12.70% | 14.32% | 9.2s | fallbacks 9; label-free score 0.977823 |
+
+## GENERALIZED INTEGER CUTS, overnight experiment 1 RESULTS (2026-10-15 22:25 -> 2026-10-16 03:00; validation only, case118, DEPLOY_RHO=3e5, no unit fixings in any variant; logs gi_n1_*.log)
+| variant | label-free score | gap mean | gap median | discrete | continuous | time | fallbacks | verdict (score <= 0.9638 AND gap mean <= 0.26%) |
+|---|---|---|---|---|---|---|---|---|
+| current: per-unit fixings + 2 mixed rows (comparator) | 0.9618 | 0.1286% | 0.0523% | 4.76% | 8.71% | 10.6 s | 1 | - |
+| none (V-net + short solve; control) | 1.0048 | 4.230% | 0.240% | 19.40% | 13.12% | 10.0 s | 7 | fails |
+| **ham: 1 Hamming row, r=1** | **0.9616** | **0.1189%** | 0.0479% | 4.14% | 7.71% | 9.1 s | 3 | **WORKS** |
+| ham r=2 + 2 mixed rows | 0.9669 | 0.735% | 0.137% | 6.61% | 9.72% | 8.6 s | 2 | fails |
+| rows K_I=2 | 0.9688 | 0.867% | 0.174% | 7.50% | 11.44% | 24.3 s | 12 | fails |
+| rows K_I=8 | 0.9696 | 1.070% | 0.192% | 7.85% | 10.03% | 25.0 s | 12 | fails |
+| rows K_I=32 | 0.9815 | 2.411% | 0.276% | 13.14% | 12.25% | 9.5 s | 10 | fails |
+| rows K_I=8 + 2 mixed | 0.9745 | 1.485% | 0.456% | 10.58% | 17.67% | 9.1 s | 7 | fails |
+| rows K_I=32 + 2 mixed | 0.9778 | 1.954% | 0.240% | 12.70% | 14.32% | 9.2 s | 9 | fails |
+Reading: learned integer rows from the CutNetK integer category do NOT replace the per-unit fixings (all fail; many fallbacks, up to 12/24). The single learned Hamming-ball row (r=1, centre = our own-target network) matches the comparator on validation (0.9616 vs 0.9618; gap 0.119% vs 0.129%).
+CAVEATS: (a) the ham score is the minimum over 10 epochs that vary 0.9617-0.986 (and over r), so it is optimistic; the warm-start (initial) score was 0.9717; (b) r=1 means at most about one flip from the predicted commitment, i.e. nearly the same restriction strength as fixing 52/54 units -- general in FORM, similar in EFFECT; (c) one trained model per variant, no seeds; (d) validation only -- needs seeds, a fresh untouched draw with new references, and then a test.
+
+## HAMMING ROW AT THE PROXY'S DATA SIZE (written 2026-10-16, before the runs; VALIDATION ONLY)
+Request: train the learned Hamming-ball row (mode ham, 1 row, M=0, no unit fixings) on the SAME NUMBER of loads as the supervised NN proxy (118 labelled training loads on case118). Ours uses NTRAIN=118 loads drawn at random (seeded) from the 144 ORIGINAL training loads that have our own target; no extra unlabeled loads, no reference used to pick them (the proxy's 118 are the loads with a converged reference; ours are a different seeded 118, so the overlap is partial). V-net is still the clean `_env_nc` trained earlier on the 144 training loads without labels (not retrained).
+Runs: SEED 0, 1, 2 (seed changes the subset, the centre-net init, the batch order); r from {1,2,3,5,8,12,20} and the epoch by the label-free score on ALL 24 validation draws; DEPLOY_RHO=3e5, W=10; same working criterion as before (label-free score <= 0.9638 and validation gap mean <= 0.26%); comparator 0.9618 / 0.1286%; the full-data (444) ham run scored 0.9616 / 0.1189%.
+Script chain acuc/night_ham118_2026-10-16.sh (status logs/night_ham118.status). Same disclosures as above (selection optimism, validation reuse, no test).
+| 2026-10-16_0839_geninteger_case118_ham_K0_M0_n118s0 | case118 VALIDATION gen-int-cuts ham K_I=0 M=0 r=1 rho=3e+05: gap mean | median | disc | cont | time | fallbacks = 0.7765% | 0.0533% | 6.88% | 7.30% | 11.4s | fallbacks 4; label-free score 0.967721 |
+| 2026-10-16_0941_geninteger_case118_ham_K0_M0_n118s1 | case118 VALIDATION gen-int-cuts ham K_I=0 M=0 r=3 rho=3e+05: gap mean | median | disc | cont | time | fallbacks = 0.8816% | 0.2403% | 7.85% | 13.03% | 11.4s | fallbacks 7; label-free score 0.968949 |
+| 2026-10-16_1006_geninteger_case118_ham_K0_M0_n118s2 | case118 VALIDATION gen-int-cuts ham K_I=0 M=0 r=2 rho=3e+05: gap mean | median | disc | cont | time | fallbacks = 0.3282% | 0.2187% | 4.06% | 11.33% | 11.1s | fallbacks 5; label-free score 0.963229 |
+
+## HAMMING ROW AT THE PROXY'S DATA SIZE: RESULTS (2026-10-16 08:39 -> 10:31, validation only, case118, 118 training loads from the original training split, DEPLOY_RHO=3e5; logs gi_n118_ham_s{0,1,2}.log)
+| run | r | epoch | label-free score | gap mean | gap median | discrete | continuous | time | fallbacks | criterion (<=0.9638 AND gap mean <=0.26%) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| seed 0 | 1 | 1 | 0.9677 | 0.7765% | 0.0533% | 6.88% | 7.30% | 11.4 s | 4 | fails |
+| seed 1 | 3 | 1 | 0.9689 | 0.8816% | 0.2403% | 7.85% | 13.03% | 11.4 s | 7 | fails |
+| seed 2 | 2 | 6 | 0.9632 | 0.3282% | 0.2187% | 4.06% | 11.33% | 11.1 s | 5 | fails (gap) |
+| mean of 3 seeds | | | 0.9666 | 0.662% | 0.171% | 6.26% | 10.55% | 11.3 s | 5.3 | |
+| 444 loads, seed 0 only (earlier) | 1 | 9 | 0.9616 | 0.1189% | 0.0479% | 4.14% | 7.71% | 9.1 s | 3 | works |
+| current method (per-unit fixings + 2 mixed rows, 444 loads) | | | 0.9618 | 0.1286% | 0.0523% | 4.76% | 8.71% | 10.6 s | 1 | comparator |
+Reading: at the proxy's data size (118 loads) the Hamming row does NOT meet the pre-registered criterion in any of 3 seeds, and the chosen r / epoch differ across seeds (r = 1, 3, 2). The 444-load result is one model, so data size and seed noise are not separated yet (444-load seeds 1, 2 not run). Validation only; no test number.
+
+## HAMMING ROW ON OTHER PROBLEMS, a first look (written 2026-10-16 ~13:45, validation only, ONE seed, ONE model; exploratory "to get the idea", no test)
+case300: `DEPLOY_RHO=1e4 python 67_generalized_integer_cuts.py case300 ham 0 0 _n1` (all 422 own targets, V-net `_env_nc`, W=30, r from {1,2,3,5,8,12,20} + epoch by the label-free score on ALL 24 validation draws). Comparator = current case300 full method at rho 1e4: label-free 1.015163; validation four metrics 0.0521% | 0.0212% | 3.43% | 4.25% | 41.3 s (22 draws with references).
+Vehicle MILP (vehicle 0 only) and MINLP: new script dixit_vehicle/20_hamming_vehicle.py (integer Hamming row = L1 ball sum_t |z_t - zhat_t| <= r with aux variables, centre net trained through the exact vehicle layer; same label-free targets and validation as the final vehicle runs). Comparator = the current method's own bundle (per-step integer cuts + 2 general rows) deployed on the same validation profiles.
+Same disclosures as the case118 Hamming experiments (selection optimism, validation reuse, one model).
+
+## HAMMING (L1-ball) ROW ON THE VEHICLE, first look (2026-10-16 ~14:10, validation only, ONE seed, vehicle 0 for the MILP; script dixit_vehicle/20_hamming_vehicle.py; logs dixit_vehicle/logs/ham_veh_*.log)
+Centre net = MLP warm-started by MSE on the label-free targets (zhat = 3*sigmoid), fine-tuned through the exact layer (gate passed: corr 1.000 / 0.999), r from {1,2,3,5,8,12} + epoch by the label-free score on all 24 validation profiles; one short solve W=0.01 with the soft L1 ball; no per-step bounds, no general rows. Four metrics on the 24 validation profiles with references (gap mean | median | disc | cont | time):
+| problem | Hamming row (r) | label-free | current final method (same profiles) | label-free | supervised proxy (same profiles) |
+|---|---|---|---|---|---|
+| MILP vehicle 0 | 0.0118% / 0.0000% / 5.54% / 5.50% / 25.3 ms (r=3) | 1.003755 | 0.0000% / 0.0000% / 0.00% / 0.00% / 12.2 ms | 1.003637 | 0.0040% / 0.0000% / 2.03% / 2.02% / 5.6 ms |
+| MINLP | 1.3959% / 1.3545% / 8.53% / 7.93% / 16.7 ms (r=1) | 1.034004 | 0.3319% / 0.1508% / 4.77% / 4.61% / 27.8 ms | 1.023163 | 0.6169% / 0.4990% / 6.58% / 6.21% / 15.0 ms |
+Reading: MILP v0 is easy for everyone (all gaps ~0); the Hamming row is slightly worse than the current per-step cuts (0.012% vs 0.000%). On the MINLP the Hamming row is clearly WORSE than both the current method and the proxy (1.40% vs 0.33% vs 0.62%); the best epoch was epoch 0 (fine-tuning did not help) and r=1 was selected (larger r worse).
+CAVEATS: untuned implementation (centre = MSE regression on ordinal levels; a classification centre may be better), one seed, validation only, vehicle 0 only for the MILP.
+| 2026-10-16_1405_geninteger_case300_ham_K0_M0_n1 | case300 VALIDATION gen-int-cuts ham K_I=0 M=0 r=3 rho=1e+04: gap mean | median | disc | cont | time | fallbacks = 0.0449% | 0.0202% | 2.96% | 3.27% | 25.8s | fallbacks 4; label-free score 1.014999 |
+
+## HAMMING ROW ON case300, first look (run 2026-10-16 13:50 -> 16:25, validation only, ONE model, 422 own targets, DEPLOY_RHO=1e4, W=30; log gi_case300_ham.log)
+r = 3 (label-free), epoch 6; label-free 1.014999 (epochs all 1.0150-1.0159, flat); validation four metrics (22 draws with references): gap mean 0.0449% | median 0.0202% | discrete 2.96% | continuous 3.27% | 25.8 s | fallbacks 4.
+Comparator (current case300 full method at rho 1e4, same V-net/draws): label-free 1.015163; 0.0521% | 0.0212% | 3.43% | 4.25% | 41.3 s | fallbacks 1. -> the Hamming row matches / is marginally better on validation. NOTE the time is not like-for-like: the Hamming run skips the anchor solve (the current method adds it), and its score is a min over epochs and r on the same 24 draws. No test number; all case300 draws other than fresh5 are validation/training and fresh5 is spent.

@@ -4,9 +4,9 @@ A short Gurobi solve is made reliable by cuts that a neural network learns **wit
 exact differentiable conic layer; its own best answers on training loads are the only targets. The baseline is a supervised NN proxy that
 needs a converged reference solve for every training load.
 
-Status (2026-10-14): **case118 and both hybrid-vehicle problems are final.** The clean case300 and PGLib-api pipelines are trained and
-validated; their untouched-test results are pending and will be added here. The full log (pre-registrations, test results, audits and
-disclosures) is `acuc/RESULTS.md`.
+Status (2026-10-16): the clean method is tested on **case118, case300, PGLib-118 (api) and the hybrid vehicle (MILP and MINLP)**, each on untouched test
+draws scored once. Generalized integer cuts (a learned Hamming-ball row instead of per-unit fixings) are an exploratory, validation-only study (last section).
+The full log (pre-registrations, test results, audits and disclosures) is `acuc/RESULTS.md`.
 
 ## The method in 6 steps
 1. **Problem and data.** AC unit commitment (QCAC convexification of AC power flow; IEEE 118-bus, 54 units, load scale 0.55-1.30) and a
@@ -28,13 +28,17 @@ gap mean | gap median | discrete error | continuous error | median time
 
 | problem | ours (no labels) | supervised NN proxy | paired test (pre-registered) |
 |---|---|---|---|
-| case118, fresh5 (39 loads) | 1.025% / 0.056% / 6.03% / 7.77% / 10.9 s | 1.051% / 0.021% / 6.28% / 6.80% / 0.29 s | tie (Wilcoxon p=0.39) |
-| case118, fresh6 (40 loads) | 0.107% / 0.083% / 2.92% / 5.68% / 11.4 s | 0.807% / 0.021% / 5.45% / 6.48% / 0.36 s | lower mean, not significant (p=0.26) |
+| case118, set 1 (39 loads) | 1.025% / 0.056% / 6.03% / 7.77% / 10.9 s | 1.051% / 0.021% / 6.28% / 6.80% / 0.29 s | tie (Wilcoxon p=0.39) |
+| case118, set 2 (40 loads) | 0.107% / 0.083% / 2.92% / 5.68% / 11.4 s | 0.807% / 0.021% / 5.45% / 6.48% / 0.36 s | lower mean, not significant (p=0.26) |
+| case300 (40 loads) | 0.0825% / 0.0132% / 2.68% / 3.74% / 39.3 s | 0.0872% / 0.0103% / 2.74% / 3.07% / 1.17 s | tie (p=0.74) |
+| PGLib-118 api (42 loads) | 0.391% / 0.296% / 7.10% / 6.58% / 10.1 s | 0.105% / 0.006% / 1.75% / 1.17% / 2.05 s | proxy closer to the reference (p=8.7e-6); signed cost: ours cheaper (-0.33 pp, p=8e-7) |
 | vehicle MILP, 8 vehicles (734 profiles) | 0.084% / 0.001% / 9.25% / 9.21% / 10.9 ms | 0.876% / 0.007% / 9.91% / 9.51% / 4.0 ms | better on 8/8 vehicles (sign test p=0.0078) |
 | vehicle MINLP (48 profiles) | 0.532% / 0.243% / 5.07% / 4.84% / 18.2 ms | 0.759% / 0.473% / 6.96% / 6.45% / 7.1 ms | better, p=0.018 |
 
-Training data: ours uses 444 loads on case118 (144 + 300 unlabeled) and 400 / 444 profiles on the vehicle MILP / MINLP; the proxy uses the
-labelled loads only (118 on case118, up to 100 / 144 on the vehicle). Disclosures, exclusions and audits: `acuc/RESULTS.md`.
+On PGLib the two pre-registered metrics disagree (|gap| to the reference vs signed cost); the PGLib reference is a weak heuristic, so "cheaper than the reference" is not a proven advantage.
+
+Training data: ours uses 444 / 422 / 355 loads on case118 / case300 / PGLib (own targets, incl. 300 extra unlabeled loads) and 400 / 444 profiles on the vehicle MILP / MINLP; the proxy uses the
+labelled loads only (118 on case118, 114 on case300, 118 on PGLib, up to 100 / 144 on the vehicle). Disclosures, exclusions and audits: `acuc/RESULTS.md`.
 
 ## Layout
 - `src/` library: conic layer (`conelayer.py`, `socp.py`), QCAC model and solvers (`acuc.py`, `combopt_ac.py`), cut networks
@@ -46,3 +50,10 @@ labelled loads only (118 on case118, up to 100 / 144 on the vehicle). Disclosure
 - `acuc/results/` trained clean-pipeline artifacts (V-net `_env_nc`, cuts / rows `_lfc`, label-free targets `_nc`) and test references.
 
 Superseded work (older method variants, previous paper, diagnostics) was removed from the repository.
+
+## Generalized integer cuts (exploratory, validation only, one model each)
+The per-unit cuts `u_k >= l_k / u_k <= h_k` were replaced by general linear rows over the integer variables (no per-unit fixing anywhere; `acuc/67_generalized_integer_cuts.py`,
+`dixit_vehicle/20_hamming_vehicle.py`). Learned integer rows (K = 2, 8, 32, with or without 2 mixed rows) did **not** work on case118 (label-free score 0.969-0.982 vs 0.962; validation gap 0.9-2.4%).
+One learned **Hamming-ball row** (`sum_k p_k(1-u_k) + (1-p_k)u_k <= r`, centre from a network trained on our own targets, r chosen label-free) matched the current method on validation:
+case118 0.119% vs 0.129% gap, case300 0.045% vs 0.052%; it was worse on the vehicle MINLP (1.40% vs 0.33%), roughly equal on the easy MILP vehicle 0, and failed the criterion at 118 training loads (3 seeds).
+These are validation numbers selected on the same 24 draws (optimistic), with no test; the Hamming row is the local-branching / predict-and-search family, and r = 1-3 restricts about as strongly as fixing.
