@@ -1,0 +1,1 @@
+VEH_LF=1 OMP_NUM_THREADS=1 ../../env/bin/python 16_vehicle_final.py test >  2  38.26s user 1.12s system 237% cpu 16.600 total

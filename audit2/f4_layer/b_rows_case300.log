@@ -1,0 +1,46 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+Set parameter Username
+Set parameter LicenseID to value 2756177
+Academic license - for non-commercial use only - expires 2026-12-17
+Set parameter Username
+Set parameter LicenseID to value 2756177
+Academic license - for non-commercial use only - expires 2026-12-17
+[case300] row 0 coefficients: alpha(pg) |.|mean 1.654 max 2.000; a(u) mean -0.256 range [-1.000, 3.000]
+[case300] rows anchored on 24/24 validation draws; depth at anchor (A w_anchor - b) mean [0.08946578 0.0874296 ] min 0.017 max 0.238
+[case300] row value at the DEPLOY-LIKE relaxation (no rows; >0 = row would cut it off): per row mean [-16.00837992 -15.97310661], violated fraction [0.04166667 0.04166667]
+[case300] L1 |u_anchor(gamma=1000) - u(gamma=0)| (same fractional rows, rho 1e6): mean 0.177 median 0.040 max 1.223
+[case300] L1 |u_anchor - u_deploy-like relaxation (hard fixings, deploy rho, gamma 0)|: mean 2.597 median 2.462 max 10.227
+[case300] # units whose u crosses 0.5 differently because of smoothing: mean 0.083 median 0.000 max 2.000
+[case300] # fractional u in the smoothed anchor: mean 26.583 median 23.000 max 69.000
+[case300] # fractional u unsmoothed: mean 25.000 median 23.000 max 63.000
+[case300] deployed MIQCQP (W=30.0, rho 1e+04) on 12 draws: commitment changed by rows on 6/12 draws (units changed: [3, 0, 4, 0, 0, 0, 1, 6, 2, 1, 0, 0])
+[case300]   row residual A x - b at the rows-ON MIQCQP solution: binding(|r|<=1e-6) 0.00, slack(r<-1e-6) 1.00, VIOLATED(r>1e-6, paid at 1e6) 0.00; mean slack [-22.15945891 -22.14264967]
+[case300]   row residual at the rows-OFF MIQCQP solution: violated (row would cut it off) 0.00; per row mean [-20.91954665 -20.89620569]
+[case300]   MIQCQP cost on vs off (relative, linearised QCAC cost): mean -0.0291% max |.| 0.2034%

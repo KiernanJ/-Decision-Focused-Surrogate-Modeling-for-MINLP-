@@ -1,0 +1,49 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+18:59:47 [case118 val] c=0.9, cut epoch 2, rows epoch 6, V-net 10000.0 [deployment rho overridden: 3e+05], RHO 300000, W 10.0; proxy labels 118/21
+Set parameter Username
+Set parameter Username
+Set parameter Username
+Set parameter LicenseID to value 2756177
+Set parameter Username
+Set parameter LicenseID to value 2756177
+Set parameter LicenseID to value 2756177
+Set parameter LicenseID to value 2756177
+Academic license - for non-commercial use only - expires 2026-12-17
+Academic license - for non-commercial use only - expires 2026-12-17
+Academic license - for non-commercial use only - expires 2026-12-17
+Academic license - for non-commercial use only - expires 2026-12-17
+<scratch>/repo_abl/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+<scratch>/repo_abl/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+<scratch>/repo_abl/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+19:00:45 done A4h: failures 0, fallbacks 0 [58s]
+<scratch>/repo_abl/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+19:01:45 done A5h: failures 0, fallbacks 0 [59s]
+19:02:48 done A6h: failures 0, fallbacks 1 [63s]
+19:03:46 done A7h: failures 0, fallbacks 1 [58s]
+19:04:47 done A0h: failures 0, fallbacks 1 [61s]
+19:05:50 done A6bh: failures 0, fallbacks 1 [63s]
+19:06:31 done A3ah: failures 0, fallbacks 0 [41s]
+19:06:31 ALL DONE

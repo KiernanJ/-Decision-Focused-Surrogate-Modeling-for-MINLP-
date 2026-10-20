@@ -1,0 +1,20 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+[pglib_opf_case118_ieee__api] inst 640 h 1e-02 mode lu (resid 1.4e-09) interior dirs 8 | FD self-cons +1.000 | corr +1.0000 cos +1.0000 rel.err 0.000 | cos(VJP, trivial imitation) +1.0000
+[pglib_opf_case118_ieee__api] inst 640 h 1e-03 mode lu (resid 1.4e-09) interior dirs 8 | FD self-cons +1.000 | corr +1.0000 cos +1.0000 rel.err 0.000 | cos(VJP, trivial imitation) +1.0000
+[pglib_opf_case118_ieee__api] inst 49 h 1e-02 mode lu (resid 1.4e-09) interior dirs 8 | FD self-cons +1.000 | corr +1.0000 cos +1.0000 rel.err 0.000 | cos(VJP, trivial imitation) +1.0000
+[pglib_opf_case118_ieee__api] inst 49 h 1e-03 mode lu (resid 1.4e-09) interior dirs 8 | FD self-cons +1.000 | corr +1.0000 cos +1.0000 rel.err 0.000 | cos(VJP, trivial imitation) +1.0000
+[pglib_opf_case118_ieee__api] inst 21 h 1e-02 mode lu (resid 1.1e-09) interior dirs 8 | FD self-cons +1.000 | corr +1.0000 cos +1.0000 rel.err 0.000 | cos(VJP, trivial imitation) +1.0000
+[pglib_opf_case118_ieee__api] inst 21 h 1e-03 mode lu (resid 1.1e-09) interior dirs 8 | FD self-cons +1.000 | corr +1.0000 cos +1.0000 rel.err 0.000 | cos(VJP, trivial imitation) +1.0000
+[pglib_opf_case118_ieee__api] inst 658 h 1e-02 mode lu (resid 8.6e-09) interior dirs 8 | FD self-cons +1.000 | corr +1.0000 cos +1.0000 rel.err 0.003 | cos(VJP, trivial imitation) +1.0000
+[pglib_opf_case118_ieee__api] inst 658 h 1e-03 mode lu (resid 8.6e-09) interior dirs 8 | FD self-cons +1.000 | corr +1.0000 cos +1.0000 rel.err 0.003 | cos(VJP, trivial imitation) +1.0000
+[pglib_opf_case118_ieee__api] track_soft over 20 training instances: KKT modes {'lu': 18, 'lu+reg': 2}; residual of regularised solves: ['3.2e-08', '2.9e-08']
+[pglib_opf_case118_ieee__api] active cut coordinates per instance (l>0 or h<1): mean 53.8/54; cos(VJP gradient, trivial imitation gradient 2(u-u_own)/G on binding rows): median 1.0000, min 0.9884
+[pglib_opf_case118_ieee__api] forward statuses: {'Solved': 20}
+[pglib_opf_case118_ieee__api] cos(VJP, trivial) all: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.998, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.988, 1.0]; fraction >= 0.9: 1.00; per mode: {'lu': np.float64(1.0), 'lu+reg': np.float64(0.993)}

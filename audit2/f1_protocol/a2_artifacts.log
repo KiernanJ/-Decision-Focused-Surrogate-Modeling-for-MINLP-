@@ -1,0 +1,24 @@
+===== case118
+ V-net: keys ['rho', 'sel', 'state'], sel=10000.0, stored rho=10000.0, state None? False
+ unit cuts: keys ['c', 'epoch', 'last', 'state', 'v_cur', 'val'], c=0.9, epoch=2, val=0.966475, v_cur(warm start)=0.966189
+   max |selected - last| weight diff 1.372e-02
+ rows: keys ['K', 'epochs', 'init', 'sel_hist', 'selected', 'selected_epoch', 'trained'], K=2, selected_epoch=6, trained None? False, n epochs saved 10
+   sel_hist (epoch, score, fallbacks): (off, 0.966475, 3), (-1, 0.972927, 3), (0, 0.966193, 1), (1, 0.979376, 0), (2, 0.979512, 0), (3, 0.966360, 0), (4, 0.966343, 1), (5, 0.971294, 1), (6, 0.966189, 1), (7, 0.966605, 0), (8, 0.972235, 0), (9, 0.979389, 0)
+ teacher train_nc: 144 targets; in train 144, in extra 0, overlap held-out 0; mean units on 13.5
+ teacher extra_nc: 444 targets; in train 144, in extra 300, overlap held-out 0; mean units on 13.6
+===== case300
+ V-net: keys ['rho', 'sel', 'state'], sel=10000.0, stored rho=10000.0, state None? False
+ unit cuts: keys ['c', 'epoch', 'last', 'state', 'v_cur', 'val'], c=0.9, epoch=8, val=1.015312, v_cur(warm start)=1.015094
+   max |selected - last| weight diff 8.405e-03
+ rows: keys ['K', 'epochs', 'init', 'sel_hist', 'selected', 'selected_epoch', 'trained'], K=2, selected_epoch=8, trained None? False, n epochs saved 10
+   sel_hist (epoch, score, fallbacks): (off, 1.015315, 1), (-1, 1.017693, 3), (0, 1.015218, 2), (1, 1.015307, 2), (2, 1.015303, 2), (3, 1.015168, 2), (4, 1.015219, 2), (5, 1.015168, 2), (6, 1.015195, 2), (7, 1.015175, 2), (8, 1.015163, 1), (9, 1.015207, 1)
+ teacher train_nc: 136 targets; in train 136, in extra 0, overlap held-out 0; mean units on 44.0
+ teacher extra_nc: 422 targets; in train 136, in extra 286, overlap held-out 0; mean units on 44.2
+===== pglib_opf_case118_ieee__api
+ V-net: keys ['rho', 'sel', 'state'], sel=10000.0, stored rho=10000.0, state None? False
+ unit cuts: keys ['c', 'epoch', 'last', 'state', 'v_cur', 'val'], c=0.9, epoch=8, val=3.588155, v_cur(warm start)=3.587858
+   max |selected - last| weight diff 5.079e-03
+ rows: keys ['K', 'epochs', 'init', 'sel_hist', 'selected', 'selected_epoch', 'trained'], K=2, selected_epoch=1, trained None? False, n epochs saved 10
+   sel_hist (epoch, score, fallbacks): (off, 3.588155, 0), (-1, 3.588399, 3), (0, 3.588235, 2), (1, 3.587896, 2), (2, 3.588246, 2), (3, 3.588261, 2), (4, 3.588283, 1), (5, 3.588283, 1), (6, 3.588283, 1), (7, 3.588619, 1), (8, 3.588283, 1), (9, 3.588283, 1)
+ teacher train_nc: 118 targets; in train 118, in extra 0, overlap held-out 0; mean units on 49.5
+ teacher extra_nc: 355 targets; in train 118, in extra 237, overlap held-out 0; mean units on 49.4

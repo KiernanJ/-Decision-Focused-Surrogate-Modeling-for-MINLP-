@@ -1,0 +1,2 @@
+pglib_opf_case118_ieee__api: REF QCAC cost vs strict: mean +3.409% | same-u price with the reference stopping rule (slack<=1e-3, no physics check) vs strict: mean +1.642% [min +1.066, max +2.491], iters [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8]
+case118: REF QCAC cost vs strict: mean +0.000% | same-u price with the reference stopping rule (slack<=1e-3, no physics check) vs strict: mean +0.000% [min +0.000, max +0.000], iters [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]

@@ -1,0 +1,8 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+<scratch>/repo_grad/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+[case118] rho 1e+04 (train rho 1e+04) n=72: J(V-net)/J(flat) mean 0.9875 (min 0.9851, max 0.9916); lin. slack V-net 0.000 vs flat 0.164 (median); relaxation cost part V-net/flat 0.9993
+[case118] rho 3e+05 (train rho 1e+04) n=72: J(V-net)/J(flat) mean 0.8656 (min 0.8376, max 0.8915); lin. slack V-net 0.000 vs flat 0.032 (median); relaxation cost part V-net/flat 0.9344

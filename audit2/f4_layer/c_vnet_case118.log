@@ -1,0 +1,6 @@
+[case118] V-net sel=10000.0 rho=1e+04; strict refs available: 224 (tr 118, va 21, te 43)
+  V-net output over all 888 draws: |V-1| max 0.3023, mean over buses&draws 0.1306; |V| range [0.9605, 1.0642]; angle range [-0.2982, 0.1774] rad
+  input dependence: mean over buses of std across draws: V-net |V| 0.00549, angle 0.01650
+  train       n=118: complex |V-Vref| mean/maxbus: V-net 0.0543/0.1299  flat 0.1367/0.2987  mean-ref const 0.0650/0.1151 | |V| err V-net 0.0151 flat 0.0274 | angle err V-net 0.0494 flat 0.1291 rad | per-bus angle corr (pred vs ref across inst) median 0.772
+  validation  n= 21: complex |V-Vref| mean/maxbus: V-net 0.0472/0.1168  flat 0.1451/0.3062  mean-ref const 0.0600/0.1048 | |V| err V-net 0.0147 flat 0.0260 | angle err V-net 0.0421 flat 0.1383 rad | per-bus angle corr (pred vs ref across inst) median 0.768
+  test(orig)  n= 43: complex |V-Vref| mean/maxbus: V-net 0.0521/0.1318  flat 0.1353/0.2928  mean-ref const 0.0628/0.1198 | |V| err V-net 0.0152 flat 0.0280 | angle err V-net 0.0468 flat 0.1273 rad | per-bus angle corr (pred vs ref across inst) median 0.773

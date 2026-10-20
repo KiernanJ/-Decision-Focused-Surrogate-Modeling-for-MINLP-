@@ -1,0 +1,6 @@
+[pglib_opf_case118_ieee__api] c=0.9 deployed epoch 8 (~135 Adam steps at lr 1e-4 => max |dtheta| bound ~0.0135)
+  warm(re-created) vs deployed: max |dtheta| 0.08051; rel norm diff per tensor {'0.weight': 0.0667, '0.bias': 0.0389, '2.weight': 0.075, '2.bias': 0.0411, '4.weight': 0.0646, '4.bias': 0.0788}
+  label-free val: warm (v_cur) 3.587858  deployed 3.588155  -> deployed WORSE by +0.000297
+  train(own targets)   n=355: units fixed warm 53.97/54, deployed 53.59/54 | (inst,unit) fixings changed 132 of 19170 (0.689%) on 107 instances; added 0, removed 132, flipped on<->off 0 | max |dM| 0.7815, mean |dM| 0.00320 | fixings contradicting own target: warm 0 deployed 0
+  validation           n= 24: units fixed warm 51.17/54, deployed 51.29/54 | (inst,unit) fixings changed 19 of 1296 (1.466%) on 12 instances; added 11, removed 8, flipped on<->off 0 | max |dM| 0.4646, mean |dM| 0.00670
+  fresh5               n= 48: units fixed warm 50.48/54, deployed 50.58/54 | (inst,unit) fixings changed 45 of 2592 (1.736%) on 29 instances; added 25, removed 20, flipped on<->off 0 | max |dM| 0.7188, mean |dM| 0.00847

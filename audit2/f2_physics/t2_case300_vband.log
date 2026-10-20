@@ -1,0 +1,10 @@
+case300 732 load 0.987: u_ref at 0.94-1.06 -> INFEASIBLE; all units on -> INFEASIBLE
+case300 733 load 0.599: u_ref at 0.94-1.06 -> feasible (repairs 18, cost +1.971% vs 0.90-1.10); all units on -> feasible
+case300 734 load 0.615: u_ref at 0.94-1.06 -> feasible (repairs 17, cost +1.875% vs 0.90-1.10); all units on -> feasible
+case300 736 load 0.913: u_ref at 0.94-1.06 -> feasible (repairs 22, cost +4.559% vs 0.90-1.10); all units on -> feasible
+case300 737 load 0.804: u_ref at 0.94-1.06 -> feasible (repairs 18, cost +1.432% vs 0.90-1.10); all units on -> feasible
+case300 738 load 0.819: u_ref at 0.94-1.06 -> feasible (repairs 21, cost +1.734% vs 0.90-1.10); all units on -> feasible
+case300 739 load 0.696: u_ref at 0.94-1.06 -> feasible (repairs 21, cost +1.801% vs 0.90-1.10); all units on -> feasible
+case300 741 load 0.646: u_ref at 0.94-1.06 -> feasible (repairs 23, cost +2.073% vs 0.90-1.10); all units on -> feasible
+case300 742 load 0.621: u_ref at 0.94-1.06 -> feasible (repairs 16, cost +1.741% vs 0.90-1.10); all units on -> feasible
+case300 743 load 0.670: u_ref at 0.94-1.06 -> feasible (repairs 28, cost +2.433% vs 0.90-1.10); all units on -> feasible

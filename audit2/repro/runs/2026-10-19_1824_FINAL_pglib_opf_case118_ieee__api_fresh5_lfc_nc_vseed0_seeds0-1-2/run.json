@@ -1,0 +1,6 @@
+{
+ "cmd": "55_final_eval.py pglib_opf_case118_ieee__api 0,1,2 fresh5 _lfc _nc vseed0",
+ "git_head": "e64170f",
+ "diff_sha1": "bb95d6b810e2",
+ "started": "2026-10-19 18:24:35"
+}

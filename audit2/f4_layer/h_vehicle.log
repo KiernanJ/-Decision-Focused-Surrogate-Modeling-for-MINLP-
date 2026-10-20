@@ -1,0 +1,2 @@
+[MILP vehicle 4] 30 training profiles: cos(VJP, trivial imitation on binding rows) median 0.9449, min 0.1444, frac >= 0.99 0.23; KKT modes {'lu': 28, 'lu+reg': 2}; binding cut rows/profile 24.9
+[MINLP vehicle] 30 training profiles: cos(VJP, trivial imitation on binding rows) median 1.0000, min 0.8136, frac >= 0.99 0.87; KKT modes {'lu': 30}; binding cut rows/profile 31.8

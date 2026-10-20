@@ -1,0 +1,138 @@
+=== case118 fresh5+fresh6: n scored = 79
+arm                                                  | gap mean | gap med | disc  | cont  | signed  | >2% | fb | fail | t med(s)* | work mean | 
+A0 ours as deployed (V_nc+fix+rows)                  |  0.2563% | 0.0558% |  3.52 |  6.62 | +0.2531% |   1 |  3 |    0 |      7.3 |      8.39 | 
+A1 flat V, no cuts, W                                |  7.2354% | 5.6242% | 29.63 | 48.37 | +7.2354% |  75 |  7 |    0 |      7.4 |     10.00 | 
+A2 V-net, no cuts, W                                 |  1.8664% | 0.2252% | 10.17 | 15.39 | +1.8640% |   7 | 21 |    0 |      6.9 |     10.00 | 
+A3a flat V + fixings (rows off)                      |  0.1462% | 0.0903% |  3.28 |  7.57 | +0.1430% |   0 |  0 |    0 |      6.1 |      7.35 | 
+A3b flat V + fixings + rows (re-anchored)            |  0.1440% | 0.0893% |  3.28 |  7.60 | +0.1408% |   0 |  0 |    0 |      5.9 |      7.53 | 
+A4 V-net + fixings, rows off                         |  0.5570% | 0.0445% |  4.36 |  6.29 | +0.5538% |   2 |  1 |    0 |      6.5 |      8.20 | 
+A5 V-net + IMITATION fixings (warm start)            |  0.5474% | 0.0275% |  4.36 |  6.01 | +0.5426% |   2 |  4 |    0 |      6.3 |      8.10 | 
+A6 V-net + SUPERVISED fixings (ref labels)           |  0.8337% | 0.0239% |  4.97 |  6.03 | +0.8291% |   3 |  1 |    0 |      5.3 |      6.67 | 
+A6b V-net + self-label fixings, proxy's 118 inst     |  0.6013% | 0.0558% |  4.99 |  7.16 | +0.5970% |   3 |  1 |    0 |      6.4 |      8.16 | 
+A7 V-net + PROXY probs as fixings                    |  0.6046% | 0.0814% |  4.81 |  8.08 | +0.6015% |   2 |  4 |    0 |      6.6 |      8.81 | 
+A8 proxy (round 0.5 + repair)                        |  0.9000% | 0.0230% |  5.67 |  5.95 | +0.8957% |   6 |  0 |    0 |      0.2 |      0.00 | 
+A9f flat V, no cuts, 4W                              |  5.8201% | 5.5693% | 28.22 | 41.25 | +5.8201% |  79 |  0 |    0 |     19.6 |     40.00 | 
+A9v V-net, no cuts, 4W                               |  1.1715% | 0.8559% |  8.13 | 23.71 | +1.1715% |   8 |  0 |    0 |     18.2 |     40.00 | 
+A10 proxy + improve()                                |  0.8838% | 0.0173% |  5.74 |  6.66 | +0.8796% |   6 |  0 |    0 |      7.4 |      0.00 | 
+A11 label generator as method                        |  0.1949% | 0.0814% |  3.94 |  9.63 | +0.1912% |   1 | 21 |    0 |     24.2 |     10.00 | 
+A12 OUR cut-net round 0.5 + repair (no MIQCQP)       |  0.4483% | 0.0303% |  4.48 |  7.59 | +0.4435% |   3 |  0 |    0 |      0.2 |      0.00 | 
+A12i imitation net round 0.5 + repair                |  0.3800% | 0.0250% |  4.15 |  6.74 | +0.3746% |   2 |  0 |    0 |      0.2 |      0.00 | 
+A0h = A0 with HARD fixings (rows soft)               |  0.2868% | 0.0814% |  3.66 |  7.68 | +0.2836% |   1 |  1 |    0 |      6.6 |      9.50 | 
+A3ah flat V + HARD fixings                           |  0.1280% | 0.0919% |  3.23 |  7.46 | +0.1248% |   0 |  0 |    0 |      7.0 |      9.36 | 
+A4h V-net + HARD fixings, rows off                   |  0.5543% | 0.0533% |  4.48 |  6.76 | +0.5506% |   2 |  1 |    0 |      6.6 |      9.71 | 
+A5h imitation fixings, HARD                          |  0.5636% | 0.0445% |  4.48 |  6.56 | +0.5604% |   2 |  2 |    0 |      6.6 |      9.73 | 
+A6h supervised fixings, HARD                         |  0.5332% | 0.0125% |  3.91 |  5.66 | +0.5286% |   2 |  1 |    0 |      6.6 |      9.52 | 
+A6bh self-label 118 inst, HARD                       |  0.5929% | 0.0395% |  4.90 |  6.90 | +0.5885% |   3 |  1 |    0 |      6.6 |      9.74 | 
+A7h proxy probs as HARD fixings                      |  0.1403% | 0.0723% |  2.88 |  8.10 | +0.1373% |   0 |  4 |    0 |      6.5 |     10.15 | 
+* wall-clock under machine contention (other audit jobs running): relative only
+
+paired vs A0 (arm - A0; negative = arm better), |gap| and signed gap, tie <= 1e-3 pp; Wilcoxon on thresholded diffs; sign test; bootstrap 95% CI
+  A1   |gap| : +6.9791 pp [+5.6602, +8.4459]  Wilcoxon p 1.71e-13  sign p 2.65e-22  arm better/tie/worse 1/0/78
+  A1   signed: +6.9823 pp [+5.6617, +8.4487]  Wilcoxon p 1.71e-13  sign p 2.65e-22  arm better/tie/worse 1/0/78
+  A2   |gap| : +1.6101 pp [+0.4784, +2.8957]  Wilcoxon p 4.72e-07  sign p 2.61e-06  arm better/tie/worse 15/10/54
+  A2   signed: +1.6109 pp [+0.4785, +2.8983]  Wilcoxon p 4.72e-07  sign p 9.1e-06  arm better/tie/worse 16/10/53
+  A3a  |gap| : -0.1101 pp [-0.4568, +0.0783]  Wilcoxon p 0.00572  sign p 0.00149  arm better/tie/worse 3/58/18
+  A3a  signed: -0.1101 pp [-0.4568, +0.0783]  Wilcoxon p 0.00572  sign p 0.00149  arm better/tie/worse 3/58/18
+  A3b  |gap| : -0.1123 pp [-0.4586, +0.0765]  Wilcoxon p 0.00869  sign p 0.00149  arm better/tie/worse 3/58/18
+  A3b  signed: -0.1123 pp [-0.4586, +0.0765]  Wilcoxon p 0.00869  sign p 0.00149  arm better/tie/worse 3/58/18
+  A4   |gap| : +0.3007 pp [-0.0059, +0.9014]  Wilcoxon p 0.463  sign p 1  arm better/tie/worse 3/73/3
+  A4   signed: +0.3007 pp [-0.0059, +0.9014]  Wilcoxon p 0.463  sign p 1  arm better/tie/worse 3/73/3
+  A5   |gap| : +0.2912 pp [-0.0193, +0.8945]  Wilcoxon p 0.338  sign p 0.286  arm better/tie/worse 14/57/8
+  A5   signed: +0.2896 pp [-0.0219, +0.8934]  Wilcoxon p 0.338  sign p 0.286  arm better/tie/worse 14/57/8
+  A6   |gap| : +0.5774 pp [-0.0250, +1.4707]  Wilcoxon p 0.757  sign p 1  arm better/tie/worse 26/28/25
+  A6   signed: +0.5760 pp [-0.0267, +1.4697]  Wilcoxon p 0.666  sign p 0.78  arm better/tie/worse 27/28/24
+  A6b  |gap| : +0.3451 pp [+0.0344, +0.8008]  Wilcoxon p 0.00639  sign p 0.0243  arm better/tie/worse 10/45/24
+  A6b  signed: +0.3439 pp [+0.0332, +0.7997]  Wilcoxon p 0.00868  sign p 0.0576  arm better/tie/worse 11/45/23
+  A7   |gap| : +0.3483 pp [+0.0262, +0.9613]  Wilcoxon p 0.00568  sign p 0.0488  arm better/tie/worse 15/35/29
+  A7   signed: +0.3484 pp [+0.0259, +0.9626]  Wilcoxon p 0.00588  sign p 0.0488  arm better/tie/worse 15/35/29
+  A8   |gap| : +0.6437 pp [+0.1275, +1.3059]  Wilcoxon p 0.621  sign p 0.497  arm better/tie/worse 30/25/24
+  A8   signed: +0.6426 pp [+0.1258, +1.3052]  Wilcoxon p 0.579  sign p 0.497  arm better/tie/worse 30/25/24
+  A9f  |gap| : +5.5639 pp [+5.0998, +5.9813]  Wilcoxon p 1.53e-13  sign p 2.65e-22  arm better/tie/worse 1/0/78
+  A9f  signed: +5.5670 pp [+5.1028, +5.9836]  Wilcoxon p 1.53e-13  sign p 2.65e-22  arm better/tie/worse 1/0/78
+  A9v  |gap| : +0.9152 pp [+0.3925, +1.4991]  Wilcoxon p 2.13e-13  sign p 2.65e-22  arm better/tie/worse 1/0/78
+  A9v  signed: +0.9184 pp [+0.3958, +1.5021]  Wilcoxon p 2.13e-13  sign p 2.65e-22  arm better/tie/worse 1/0/78
+  A10  |gap| : +0.6276 pp [+0.1176, +1.2838]  Wilcoxon p 0.467  sign p 0.497  arm better/tie/worse 30/25/24
+  A10  signed: +0.6265 pp [+0.1158, +1.2832]  Wilcoxon p 0.426  sign p 0.497  arm better/tie/worse 30/25/24
+  A11  |gap| : -0.0613 pp [-0.4381, +0.1697]  Wilcoxon p 0.0898  sign p 0.229  arm better/tie/worse 23/23/33
+  A11  signed: -0.0619 pp [-0.4390, +0.1694]  Wilcoxon p 0.105  sign p 0.35  arm better/tie/worse 24/23/32
+  A12  |gap| : +0.1921 pp [+0.0185, +0.4523]  Wilcoxon p 0.153  sign p 0.585  arm better/tie/worse 13/49/17
+  A12  signed: +0.1904 pp [+0.0170, +0.4506]  Wilcoxon p 0.165  sign p 0.585  arm better/tie/worse 13/49/17
+  A12i |gap| : +0.1237 pp [-0.0086, +0.3566]  Wilcoxon p 0.727  sign p 0.875  arm better/tie/worse 19/39/21
+  A12i signed: +0.1215 pp [-0.0114, +0.3543]  Wilcoxon p 0.757  sign p 0.875  arm better/tie/worse 19/39/21
+  A0h  |gap| : +0.0306 pp [-0.0048, +0.0799]  Wilcoxon p 0.345  sign p 0.267  arm better/tie/worse 4/66/9
+  A0h  signed: +0.0306 pp [-0.0048, +0.0799]  Wilcoxon p 0.345  sign p 0.267  arm better/tie/worse 4/66/9
+  A3ah |gap| : -0.1282 pp [-0.4698, +0.0548]  Wilcoxon p 0.0325  sign p 0.0266  arm better/tie/worse 5/58/16
+  A3ah signed: -0.1282 pp [-0.4698, +0.0548]  Wilcoxon p 0.0325  sign p 0.0266  arm better/tie/worse 5/58/16
+  A4h  |gap| : +0.2981 pp [-0.0053, +0.8955]  Wilcoxon p 0.594  sign p 1  arm better/tie/worse 5/68/6
+  A4h  signed: +0.2975 pp [-0.0061, +0.8948]  Wilcoxon p 0.722  sign p 1  arm better/tie/worse 5/68/6
+  A5h  |gap| : +0.3073 pp [-0.0080, +0.9147]  Wilcoxon p 0.82  sign p 0.851  arm better/tie/worse 15/51/13
+  A5h  signed: +0.3073 pp [-0.0080, +0.9147]  Wilcoxon p 0.82  sign p 0.851  arm better/tie/worse 15/51/13
+  A6h  |gap| : +0.2769 pp [-0.0434, +0.8878]  Wilcoxon p 0.191  sign p 0.322  arm better/tie/worse 29/29/21
+  A6h  signed: +0.2755 pp [-0.0446, +0.8866]  Wilcoxon p 0.157  sign p 0.203  arm better/tie/worse 30/29/20
+  A6bh |gap| : +0.3366 pp [+0.0253, +0.7932]  Wilcoxon p 0.0406  sign p 0.311  arm better/tie/worse 14/44/21
+  A6bh signed: +0.3354 pp [+0.0238, +0.7927]  Wilcoxon p 0.0475  sign p 0.5  arm better/tie/worse 15/44/20
+  A7h  |gap| : -0.1159 pp [-0.4712, +0.0813]  Wilcoxon p 0.0277  sign p 0.302  arm better/tie/worse 19/33/27
+  A7h  signed: -0.1158 pp [-0.4727, +0.0815]  Wilcoxon p 0.0255  sign p 0.184  arm better/tie/worse 18/33/28
+
+paired vs A8 proxy (arm - proxy)
+  A0   |gap|: -0.6437 pp [-1.3059, -0.1275]  Wilcoxon p 0.621  sign p 0.497  arm better/tie/worse 24/25/30
+  A1   |gap|: +6.3354 pp [+4.8271, +7.8967]  Wilcoxon p 1.22e-10  sign p 5.24e-18  arm better/tie/worse 4/0/75
+  A2   |gap|: +0.9664 pp [-0.0729, +2.1123]  Wilcoxon p 4.28e-06  sign p 4.47e-07  arm better/tie/worse 13/12/54
+  A3a  |gap|: -0.7538 pp [-1.4738, -0.1362]  Wilcoxon p 0.331  sign p 0.358  arm better/tie/worse 25/21/33
+  A3b  |gap|: -0.7560 pp [-1.4747, -0.1391]  Wilcoxon p 0.384  sign p 0.358  arm better/tie/worse 25/21/33
+  A4   |gap|: -0.3430 pp [-0.9813, +0.2196]  Wilcoxon p 0.383  sign p 0.583  arm better/tie/worse 24/26/29
+  A5   |gap|: -0.3525 pp [-0.9894, +0.2160]  Wilcoxon p 0.703  sign p 0.888  arm better/tie/worse 24/29/26
+  A6   |gap|: -0.0663 pp [-0.6601, +0.5047]  Wilcoxon p 0.777  sign p 0.871  arm better/tie/worse 18/41/20
+  A6b  |gap|: -0.2986 pp [-1.0661, +0.4284]  Wilcoxon p 0.0509  sign p 0.03  arm better/tie/worse 19/24/36
+  A7   |gap|: -0.2954 pp [-0.9365, +0.2828]  Wilcoxon p 0.0315  sign p 0.0363  arm better/tie/worse 21/20/38
+  A9f  |gap|: +4.9202 pp [+4.1350, +5.6290]  Wilcoxon p 9.73e-10  sign p 7.98e-17  arm better/tie/worse 5/0/74
+  A9v  |gap|: +0.2715 pp [-0.5830, +1.0643]  Wilcoxon p 2.83e-08  sign p 9.69e-14  arm better/tie/worse 8/0/71
+  A10  |gap|: -0.0161 pp [-0.0358, -0.0035]  Wilcoxon p 0.018  sign p 0.0156  arm better/tie/worse 7/72/0
+  A11  |gap|: -0.7050 pp [-1.4270, -0.0806]  Wilcoxon p 0.108  sign p 0.0479  arm better/tie/worse 21/21/37
+  A12  |gap|: -0.4516 pp [-1.1547, +0.1452]  Wilcoxon p 0.515  sign p 0.784  arm better/tie/worse 25/26/28
+  A12i |gap|: -0.5200 pp [-1.2188, +0.0685]  Wilcoxon p 0.989  sign p 0.875  arm better/tie/worse 19/39/21
+  A0h  |gap|: -0.6131 pp [-1.2793, -0.0888]  Wilcoxon p 0.402  sign p 0.281  arm better/tie/worse 23/24/32
+  A3ah |gap|: -0.7719 pp [-1.5025, -0.1477]  Wilcoxon p 0.346  sign p 0.366  arm better/tie/worse 26/19/34
+  A4h  |gap|: -0.3456 pp [-0.9816, +0.2196]  Wilcoxon p 0.418  sign p 0.488  arm better/tie/worse 23/27/29
+  A5h  |gap|: -0.3364 pp [-0.9729, +0.2315]  Wilcoxon p 0.339  sign p 0.678  arm better/tie/worse 24/27/28
+  A6h  |gap|: -0.3668 pp [-1.0062, +0.2117]  Wilcoxon p 0.727  sign p 0.749  arm better/tie/worse 21/40/18
+  A6bh |gap|: -0.3071 pp [-1.0758, +0.4194]  Wilcoxon p 0.122  sign p 0.0984  arm better/tie/worse 20/26/33
+  A7h  |gap|: -0.7596 pp [-1.4946, -0.1328]  Wilcoxon p 0.208  sign p 0.148  arm better/tie/worse 23/21/35
+
+fixing diagnostics on scored instances (units fixed ON / OFF by the arm's fixings; disagreement with u_ref)
+  A0  : fixed on 12.0, off 40.3, free 1.7 of 54; wrong fixings per inst: on->ref off 0.34, off->ref on 0.46; inst with >=1 wrong fixing 39%
+  A3a : fixed on 12.0, off 40.3, free 1.7 of 54; wrong fixings per inst: on->ref off 0.34, off->ref on 0.46; inst with >=1 wrong fixing 39%
+  A3b : fixed on 12.0, off 40.3, free 1.7 of 54; wrong fixings per inst: on->ref off 0.34, off->ref on 0.46; inst with >=1 wrong fixing 39%
+  A4  : fixed on 12.0, off 40.3, free 1.7 of 54; wrong fixings per inst: on->ref off 0.34, off->ref on 0.46; inst with >=1 wrong fixing 39%
+  A5  : fixed on 12.0, off 40.5, free 1.5 of 54; wrong fixings per inst: on->ref off 0.24, off->ref on 0.52; inst with >=1 wrong fixing 39%
+  A6  : fixed on 12.2, off 40.7, free 1.1 of 54; wrong fixings per inst: on->ref off 0.25, off->ref on 0.46; inst with >=1 wrong fixing 41%
+  A6b : fixed on 12.4, off 40.5, free 1.1 of 54; wrong fixings per inst: on->ref off 0.39, off->ref on 0.51; inst with >=1 wrong fixing 44%
+  A7  : fixed on 11.4, off 39.3, free 3.3 of 54; wrong fixings per inst: on->ref off 0.03, off->ref on 0.10; inst with >=1 wrong fixing 10%
+  A0h : fixed on 12.0, off 40.3, free 1.7 of 54; wrong fixings per inst: on->ref off 0.34, off->ref on 0.46; inst with >=1 wrong fixing 39%
+  A3ah: fixed on 12.0, off 40.3, free 1.7 of 54; wrong fixings per inst: on->ref off 0.34, off->ref on 0.46; inst with >=1 wrong fixing 39%
+  A4h : fixed on 12.0, off 40.3, free 1.7 of 54; wrong fixings per inst: on->ref off 0.34, off->ref on 0.46; inst with >=1 wrong fixing 39%
+  A5h : fixed on 12.0, off 40.5, free 1.5 of 54; wrong fixings per inst: on->ref off 0.24, off->ref on 0.52; inst with >=1 wrong fixing 39%
+  A6h : fixed on 12.2, off 40.7, free 1.1 of 54; wrong fixings per inst: on->ref off 0.25, off->ref on 0.46; inst with >=1 wrong fixing 41%
+  A6bh: fixed on 12.4, off 40.5, free 1.1 of 54; wrong fixings per inst: on->ref off 0.39, off->ref on 0.51; inst with >=1 wrong fixing 44%
+  A7h : fixed on 11.4, off 39.3, free 3.3 of 54; wrong fixings per inst: on->ref off 0.03, off->ref on 0.10; inst with >=1 wrong fixing 10%
+
+MIQCQP MIP gap at the end of the W budget (scored instances): median / share > 1e-3 / share > 0.05 / fallbacks
+  A0  : median 6.28e-04, >1e-3 32%, >0.05 1%, work mean 8.39
+  A1  : median 6.01e-02, >1e-3 91%, >0.05 54%, work mean 10.00
+  A2  : median 3.08e-02, >1e-3 73%, >0.05 14%, work mean 10.00
+  A3a : median 9.77e-05, >1e-3 15%, >0.05 1%, work mean 7.35
+  A3b : median 3.77e-04, >1e-3 24%, >0.05 3%, work mean 7.53
+  A4  : median 6.63e-04, >1e-3 28%, >0.05 3%, work mean 8.20
+  A5  : median 5.70e-04, >1e-3 24%, >0.05 3%, work mean 8.10
+  A6  : median 9.57e-05, >1e-3 22%, >0.05 5%, work mean 6.67
+  A6b : median 6.72e-04, >1e-3 32%, >0.05 6%, work mean 8.16
+  A7  : median 1.13e-03, >1e-3 49%, >0.05 5%, work mean 8.81
+  A9f : median 2.68e-02, >1e-3 100%, >0.05 1%, work mean 40.00
+  A9v : median 9.94e-03, >1e-3 100%, >0.05 1%, work mean 40.00
+  A0h : median 8.34e-04, >1e-3 39%, >0.05 4%, work mean 9.50
+  A3ah: median 5.72e-04, >1e-3 25%, >0.05 0%, work mean 9.36
+  A4h : median 7.47e-04, >1e-3 42%, >0.05 4%, work mean 9.71
+  A5h : median 7.23e-04, >1e-3 37%, >0.05 5%, work mean 9.73
+  A6h : median 7.29e-04, >1e-3 30%, >0.05 3%, work mean 9.52
+  A6bh: median 7.53e-04, >1e-3 34%, >0.05 5%, work mean 9.74
+  A7h : median 1.40e-03, >1e-3 57%, >0.05 4%, work mean 10.15

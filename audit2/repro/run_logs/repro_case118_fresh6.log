@@ -1,0 +1,39 @@
+[machine] 18:17  up 25 days, 10:15, 2 users, load averages: 4.35 4.41 4.36
+[case118] UNTOUCHED test: 48 drawn, 40 with a usable reference; excluded 8 at load scale [0.709, 0.744, 0.756, 0.85, 0.884, 1.008, 1.269, 1.29]; reference (sequential QCAC) median 117s  [3s]
+[case118] general rows: epoch 6
+[deployment] seed 0: V-net vnet_layer_case118_env_nc.pt (10000.0 [deployment rho overridden: 3e+05]), deployment rho 3e+05, DEPLOY_RHO env 3e5
+   seed 0: anchor solve failed (rows dropped) on 0 instances
+   seed 0: RETRY at rho 1e+04 (MIP gap > 0.05): retried 1/40 instances, kept the retried answer on 0
+--- seed 0 |gap|: ours - proxy -0.6726 pp, 95% CI [-1.6246, -0.0038] (n=40), Wilcoxon p 0.524 (n_nonzero 28), better/tie/worse 16/12/12 (tie <= 0.001 pp), sign test p 0.572 | failures ours 0, proxy 0
+--- seed 0 signed gap: ours - proxy -0.6740 pp, 95% CI [-1.6255, -0.0053] (n=40), Wilcoxon p 0.495 (n_nonzero 28), better/tie/worse 16/12/12 (tie <= 0.001 pp), sign test p 0.572 | failures ours 0, proxy 0
+    seed 0: our fallbacks 1, our strict repairs 0, proxy repairs 10
+[deployment] seed 1: V-net vnet_layer_case118_env_nc.pt (10000.0 [deployment rho overridden: 3e+05]), deployment rho 3e+05, DEPLOY_RHO env 3e5
+   seed 1: anchor solve failed (rows dropped) on 0 instances
+   seed 1: RETRY at rho 1e+04 (MIP gap > 0.05): retried 1/40 instances, kept the retried answer on 0
+--- seed 1 |gap|: ours - proxy -0.3122 pp, 95% CI [-0.9855, +0.0564] (n=40), Wilcoxon p 0.605 (n_nonzero 23), better/tie/worse 10/17/13 (tie <= 0.001 pp), sign test p 0.678 | failures ours 0, proxy 0
+--- seed 1 signed gap: ours - proxy -0.3122 pp, 95% CI [-0.9855, +0.0564] (n=40), Wilcoxon p 0.605 (n_nonzero 23), better/tie/worse 10/17/13 (tie <= 0.001 pp), sign test p 0.678 | failures ours 0, proxy 0
+    seed 1: our fallbacks 1, our strict repairs 0, proxy repairs 6
+[deployment] seed 2: V-net vnet_layer_case118_env_nc.pt (10000.0 [deployment rho overridden: 3e+05]), deployment rho 3e+05, DEPLOY_RHO env 3e5
+   seed 2: anchor solve failed (rows dropped) on 0 instances
+   seed 2: RETRY at rho 1e+04 (MIP gap > 0.05): retried 1/40 instances, kept the retried answer on 0
+--- seed 2 |gap|: ours - proxy -0.6090 pp, 95% CI [-1.5606, +0.0429] (n=40), Wilcoxon p 0.715 (n_nonzero 23), better/tie/worse 10/17/13 (tie <= 0.001 pp), sign test p 0.678 | failures ours 0, proxy 0
+--- seed 2 signed gap: ours - proxy -0.6090 pp, 95% CI [-1.5606, +0.0429] (n=40), Wilcoxon p 0.715 (n_nonzero 23), better/tie/worse 10/17/13 (tie <= 0.001 pp), sign test p 0.678 | failures ours 0, proxy 0
+    seed 2: our fallbacks 1, our strict repairs 0, proxy repairs 7
+[paired, seed-averaged, PRE-REGISTERED] |gap|: ours - proxy -0.5313 pp, 95% CI [-1.3709, +0.0202] (n=40), Wilcoxon p 0.785 (n_nonzero 28), better/tie/worse 16/12/12 (tie <= 0.001 pp), sign test p 0.572 | failures ours 0, proxy 0
+[paired, seed-averaged, PRE-REGISTERED] signed gap (= paired cost difference): ours - proxy -0.5317 pp, 95% CI [-1.3709, +0.0198] (n=40), Wilcoxon p 0.75 (n_nonzero 28), better/tie/worse 16/12/12 (tie <= 0.001 pp), sign test p 0.572 | failures ours 0, proxy 0
+   [descriptive, post hoc] proxy needed NO repair: n=29, ours - proxy +0.0284 pp
+   [descriptive, post hoc] proxy needed repair (any seed): n=11, ours - proxy -2.0068 pp
+[ABLATION, same run, seed-averaged, PRE-REGISTERED] single rho vs proxy |gap|: ours - proxy -0.5313 pp, 95% CI [-1.3709, +0.0202] (n=40), Wilcoxon p 0.785 (n_nonzero 28), better/tie/worse 16/12/12 (tie <= 0.001 pp), sign test p 0.572 | failures ours 0, proxy 0
+[ABLATION, same run, seed-averaged, PRE-REGISTERED] single rho vs proxy signed gap: ours - proxy -0.5317 pp, 95% CI [-1.3709, +0.0198] (n=40), Wilcoxon p 0.75 (n_nonzero 28), better/tie/worse 16/12/12 (tie <= 0.001 pp), sign test p 0.572 | failures ours 0, proxy 0
+   [descriptive] retry fired on 1/40 instances (seed 0; deterministic), kept the retried answer on 0: ids [857]
+   [descriptive] on the retried instances: |gap| with retry 0.1855% vs single rho 0.1855%; time per retried instance 25.9s vs 19.6s
+   signed gap OUR METHOD: mean +0.1048%, min -0.0269% (negative = cheaper than the reference)
+   signed gap supervised NN proxy: mean +0.6365%, min -0.0250% (negative = cheaper than the reference)
+   scored load range [0.559, 1.284] of drawn [0.559, 1.290]
+
+[FINAL case118] untouched test, 40 instances, seeds [0, 1, 2], W=10.0; reference median 117s
+   method               | gap mean | gap median | discrete err | continuous err | time median | failures
+   OUR METHOD           | 0.1074+-0.0000% | 0.0830+-0.0000% | 2.92+-0.00% | 5.68+-0.00% | 6.35+-0.02s | 0
+   supervised NN proxy  | 0.6387+-0.1924% | 0.0229+-0.0042% | 4.81+-0.84% | 5.74+-0.58% | 0.19+-0.00s | 0
+   OUR METHOD, single rho (ablation) | 0.1074+-0.0000% | 0.0830+-0.0000% | 2.92+-0.00% | 5.68+-0.00% | 6.35+-0.02s | 0
+[machine at end] 18:20  up 25 days, 10:18, 2 users, load averages: 7.92 6.03 5.03

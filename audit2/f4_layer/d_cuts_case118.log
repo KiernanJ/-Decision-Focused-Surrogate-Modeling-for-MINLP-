@@ -1,0 +1,25 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+[case118] inst 553 h 1e-02 mode lu+reg (resid 2.6e-08) interior dirs 8 | FD self-cons +0.999 | corr +0.9974 cos +0.9972 rel.err 0.080 | cos(VJP, trivial imitation) +0.7857
+[case118] inst 553 h 1e-03 mode lu+reg (resid 2.6e-08) interior dirs 8 | FD self-cons +1.000 | corr +0.9984 cos +0.9982 rel.err 0.068 | cos(VJP, trivial imitation) +0.7857
+[case118] inst 584 h 1e-02 mode lu (resid 1.4e-09) interior dirs 8 | FD self-cons +1.000 | corr +1.0000 cos +1.0000 rel.err 0.000 | cos(VJP, trivial imitation) +1.0000
+[case118] inst 584 h 1e-03 mode lu (resid 1.4e-09) interior dirs 8 | FD self-cons +1.000 | corr +1.0000 cos +1.0000 rel.err 0.000 | cos(VJP, trivial imitation) +1.0000
+[case118] inst 512 h 1e-02 mode lu (resid 1.4e-09) interior dirs 8 | FD self-cons +1.000 | corr +1.0000 cos +1.0000 rel.err 0.000 | cos(VJP, trivial imitation) +1.0000
+[case118] inst 512 h 1e-03 mode lu (resid 1.4e-09) interior dirs 8 | FD self-cons +1.000 | corr +1.0000 cos +1.0000 rel.err 0.000 | cos(VJP, trivial imitation) +1.0000
+[case118] inst 484 h 1e-02 mode lu+reg (resid 2.8e-08) interior dirs 8 | FD self-cons +1.000 | corr +0.9954 cos +0.9960 rel.err 0.158 | cos(VJP, trivial imitation) +0.5306
+[case118] inst 484 h 1e-03 mode lu+reg (resid 2.8e-08) interior dirs 8 | FD self-cons +0.991 | corr +0.7409 cos +0.8346 rel.err 0.586 | cos(VJP, trivial imitation) +0.5306
+[case118] inst 578 h 1e-02 mode lu (resid 1.4e-09) interior dirs 8 | FD self-cons +1.000 | corr +1.0000 cos +1.0000 rel.err 0.000 | cos(VJP, trivial imitation) +1.0000
+[case118] inst 578 h 1e-03 mode lu (resid 1.4e-09) interior dirs 8 | FD self-cons +1.000 | corr +1.0000 cos +1.0000 rel.err 0.000 | cos(VJP, trivial imitation) +1.0000
+<scratch>/repo_grad/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+[case118] inst 187 h 1e-02 mode lu (resid 7.0e-09) interior dirs 8 | FD self-cons +1.000 | corr +1.0000 cos +1.0000 rel.err 0.005 | cos(VJP, trivial imitation) +0.9766
+[case118] inst 187 h 1e-03 mode lu (resid 7.0e-09) interior dirs 8 | FD self-cons +0.993 | corr +0.8479 cos +0.7531 rel.err 0.674 | cos(VJP, trivial imitation) +0.9766
+[case118] track_soft over 30 training instances: KKT modes {'lu+reg': 18, 'lu': 12}; residual of regularised solves: ['2.6e-08', '2.8e-08', '2.8e-08', '2.6e-08', '2.0e-08', '1.5e-08', '3.4e-08', '3.5e-08', '1.8e-08', '2.9e-08', '1.8e-08', '4.1e-08']
+[case118] active cut coordinates per instance (l>0 or h<1): mean 53.2/54; cos(VJP gradient, trivial imitation gradient 2(u-u_own)/G on binding rows): median 0.9247, min -0.9311
+[case118] forward statuses: {'Solved': 28, 'AlmostSolved': 2}

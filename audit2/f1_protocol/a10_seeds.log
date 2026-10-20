@@ -1,0 +1,44 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+Set parameter Username
+Set parameter LicenseID to value 2756177
+Set parameter Username
+Set parameter LicenseID to value 2756177
+Academic license - for non-commercial use only - expires 2026-12-17
+Academic license - for non-commercial use only - expires 2026-12-17
+[gurobi Seed 1] full @ rho 3e+05: label-free 0.961781 | val gap mean 0.1300% median 0.0523% disc 4.76% worst 0.791% | fallbacks 1  [78s]
+[gurobi Seed 1] cuts @ rho 1e+04: label-free 0.972253 | val gap mean 1.3875% median 0.0470% disc 9.70% worst 14.204% | fallbacks 2  [93s]
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+Set parameter Username
+Set parameter Username
+Set parameter LicenseID to value 2756177
+Set parameter LicenseID to value 2756177
+Academic license - for non-commercial use only - expires 2026-12-17
+Academic license - for non-commercial use only - expires 2026-12-17
+[gurobi Seed 2] full @ rho 3e+05: label-free 0.961781 | val gap mean 0.1300% median 0.0523% disc 4.76% worst 0.791% | fallbacks 1  [79s]
+[gurobi Seed 2] cuts @ rho 1e+04: label-free 0.972253 | val gap mean 1.3875% median 0.0470% disc 9.70% worst 14.204% | fallbacks 2  [86s]

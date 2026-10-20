@@ -1,0 +1,1 @@
+VEH_LF=1 OMP_NUM_THREADS=1 ../../audit2/f5/env12/bin/python  test >  2>&1  36.38s user 1.31s system 155% cpu 24.179 total

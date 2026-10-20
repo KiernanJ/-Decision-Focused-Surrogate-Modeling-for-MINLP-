@@ -1,0 +1,6 @@
+[case300] c=0.9 deployed epoch 8 (~162 Adam steps at lr 1e-4 => max |dtheta| bound ~0.0162)
+  warm(re-created) vs deployed: max |dtheta| 0.09065; rel norm diff per tensor {'0.weight': 0.038, '0.bias': 0.0096, '2.weight': 0.0498, '2.bias': 0.0171, '4.weight': 0.078, '4.bias': 0.0579}
+  label-free val: warm (v_cur) 1.015094  deployed 1.015312  -> deployed WORSE by +0.000217
+  train(own targets)   n=422: units fixed warm 66.46/69, deployed 65.45/69 | (inst,unit) fixings changed 829 of 29118 (2.847%) on 301 instances; added 201, removed 628, flipped on<->off 0 | max |dM| 0.6682, mean |dM| 0.01187 | fixings contradicting own target: warm 15 deployed 7
+  validation           n= 24: units fixed warm 65.50/69, deployed 64.08/69 | (inst,unit) fixings changed 50 of 1656 (3.019%) on 18 instances; added 8, removed 42, flipped on<->off 0 | max |dM| 0.5719, mean |dM| 0.01358
+  fresh5               n= 48: units fixed warm 65.96/69, deployed 64.92/69 | (inst,unit) fixings changed 102 of 3312 (3.080%) on 36 instances; added 26, removed 76, flipped on<->off 0 | max |dM| 0.6539, mean |dM| 0.01339

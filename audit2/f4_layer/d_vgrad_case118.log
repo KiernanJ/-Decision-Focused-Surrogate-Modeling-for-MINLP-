@@ -1,0 +1,29 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+[case118] inst 183 flat V     rho 1e+04 h 1e-03 | FD self-cons +1.0000 | corr +1.0000 cos +1.0000 rel.err 0.0012 signs 8/8 | |grad| 8.635e+03
+[case118] inst 183 flat V     rho 1e+04 h 1e-04 | FD self-cons +0.9999 | corr +1.0000 cos +1.0000 rel.err 0.0043 signs 8/8 | |grad| 8.635e+03
+[case118] inst 183 flat V     rho 1e+04 h 1e-05 | FD self-cons +0.9991 | corr +0.9994 cos +0.9994 rel.err 0.0338 signs 8/8 | |grad| 8.635e+03
+<scratch>/repo_grad/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+[case118] inst 183 V-net(dep) rho 1e+04 h 1e-03 | FD self-cons +0.9880 | corr +0.9986 cos +0.9988 rel.err 0.0761 signs 8/8 | |grad| 3.856e+02
+[case118] inst 183 V-net(dep) rho 1e+04 h 1e-04 | FD self-cons +0.8628 | corr +0.9903 cos +0.9917 rel.err 0.1291 signs 8/8 | |grad| 3.856e+02
+[case118] inst 183 V-net(dep) rho 1e+04 h 1e-05 | FD self-cons -0.4776 | corr +0.7712 cos +0.8219 rel.err 0.6552 signs 5/8 | |grad| 3.856e+02
+[case118] inst 109 flat V     rho 1e+04 h 1e-03 | FD self-cons +1.0000 | corr +1.0000 cos +1.0000 rel.err 0.0047 signs 8/8 | |grad| 1.064e+04
+[case118] inst 109 flat V     rho 1e+04 h 1e-04 | FD self-cons +1.0000 | corr +1.0000 cos +1.0000 rel.err 0.0038 signs 8/8 | |grad| 1.064e+04
+[case118] inst 109 flat V     rho 1e+04 h 1e-05 | FD self-cons +0.9995 | corr +0.9995 cos +0.9995 rel.err 0.0406 signs 8/8 | |grad| 1.064e+04
+[case118] inst 109 V-net(dep) rho 1e+04 h 1e-03 | FD self-cons +0.9963 | corr +0.9948 cos +0.9934 rel.err 0.1225 signs 8/8 | |grad| 3.130e+02
+[case118] inst 109 V-net(dep) rho 1e+04 h 1e-04 | FD self-cons +0.9741 | corr +0.9928 cos +0.9929 rel.err 0.1293 signs 8/8 | |grad| 3.130e+02
+[case118] inst 109 V-net(dep) rho 1e+04 h 1e-05 | FD self-cons -0.2630 | corr +0.4390 cos +0.4587 rel.err 1.0387 signs 6/8 | |grad| 3.130e+02
+[case118] inst 139 flat V     rho 1e+04 h 1e-03 | FD self-cons +1.0000 | corr +1.0000 cos +1.0000 rel.err 0.0015 signs 8/8 | |grad| 1.062e+04
+[case118] inst 139 flat V     rho 1e+04 h 1e-04 | FD self-cons +1.0000 | corr +1.0000 cos +1.0000 rel.err 0.0022 signs 8/8 | |grad| 1.062e+04
+[case118] inst 139 flat V     rho 1e+04 h 1e-05 | FD self-cons +0.9989 | corr +0.9997 cos +0.9997 rel.err 0.0252 signs 8/8 | |grad| 1.062e+04
+[case118] inst 139 V-net(dep) rho 1e+04 h 1e-03 | FD self-cons +0.9857 | corr +0.9973 cos +0.9970 rel.err 0.0800 signs 8/8 | |grad| 3.406e+02
+[case118] inst 139 V-net(dep) rho 1e+04 h 1e-04 | FD self-cons +0.8427 | corr +0.9729 cos +0.9706 rel.err 0.2406 signs 8/8 | |grad| 3.406e+02
+[case118] inst 139 V-net(dep) rho 1e+04 h 1e-05 | FD self-cons +0.8351 | corr +0.9308 cos +0.9386 rel.err 0.4352 signs 6/8 | |grad| 3.406e+02
+[case118] layer forward statuses: {'Solved': 3, 'AlmostSolved': 3}

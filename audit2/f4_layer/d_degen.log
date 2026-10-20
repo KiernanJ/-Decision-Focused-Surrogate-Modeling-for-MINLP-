@@ -1,0 +1,15 @@
+
+(a) QP  zero+nonneg:  canonical n=8 m=21  zero=0 nonneg=21 soc_blocks=0
+  jvp  vs finite differences : rel err 6.66e-08
+  vjp  adjoint identity      : rel err 9.99e-16
+  vjp  vs finite differences : rel err 1.17e-08  (5 entries)
+
+(b) SOCP zero+nonneg+soc:  canonical n=13 m=18  zero=7 nonneg=7 soc_blocks=0
+  jvp  vs finite differences : rel err 6.87e-05
+  vjp  adjoint identity      : rel err 4.11e-15
+  vjp  vs finite differences : rel err 5.34e-04  (5 entries)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+{'n_vars': 1872, 'n_active': 2183, 'rank': 1804, 'deficiency': 379, 'sv_at_rank': 6.522362770123202e-07, 'sv_next': 4.112040786643896e-13, 'kkt_size': 7935, 'kkt_cond': 1.2639695326341541e+21}

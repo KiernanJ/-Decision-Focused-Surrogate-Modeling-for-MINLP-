@@ -1,0 +1,47 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+Set parameter Username
+Set parameter LicenseID to value 2756177
+Academic license - for non-commercial use only - expires 2026-12-17
+Set parameter Username
+Set parameter LicenseID to value 2756177
+Academic license - for non-commercial use only - expires 2026-12-17
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+Set parameter Username
+Set parameter LicenseID to value 2756177
+Academic license - for non-commercial use only - expires 2026-12-17
+<scratch>/repo_grad/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+<scratch>/repo_grad/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+<scratch>/repo_grad/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+[case118] 15 training draws, rho 1e+04, W 10.0: improve with LAYER ranking vs RANDOM ranking (same k=6, rounds=8, swaps=4):
+   strict cost layer - random: mean -0.0120%, layer better/tie/worse 1/14/0
+   pricings: layer 22.1, random 21.2; moves: layer 0.20, random 0.53; improvement over the W10 start: layer 0.309%, random 0.297%
+   best-of TARGET (with the two restorations): layer-ranked vs random-ranked label cost mean +0.0000%, differ on 0/15; 'W10+improve(layer)' is the cheapest candidate on 13/15

@@ -1,0 +1,5 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+[pglib_opf_case118_ieee__api] rho 1e+04 (train rho 1e+04) n=72: J(V-net)/J(flat) mean 0.9618 (min 0.9453, max 0.9741); lin. slack V-net 0.352 vs flat 1.029 (median); relaxation cost part V-net/flat 0.9972

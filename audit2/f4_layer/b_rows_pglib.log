@@ -1,0 +1,46 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+Set parameter Username
+Set parameter LicenseID to value 2756177
+Academic license - for non-commercial use only - expires 2026-12-17
+Set parameter Username
+Set parameter LicenseID to value 2756177
+Academic license - for non-commercial use only - expires 2026-12-17
+[pglib_opf_case118_ieee__api] row 0 coefficients: alpha(pg) |.|mean 1.039 max 1.907; a(u) mean 0.379 range [-0.931, 2.490]
+[pglib_opf_case118_ieee__api] rows anchored on 24/24 validation draws; depth at anchor (A w_anchor - b) mean [0.0509153  0.05523522] min 0.000 max 0.188
+[pglib_opf_case118_ieee__api] row value at the DEPLOY-LIKE relaxation (no rows; >0 = row would cut it off): per row mean [4.79924312 5.06837338], violated fraction [0.95833333 0.95833333]
+[pglib_opf_case118_ieee__api] L1 |u_anchor(gamma=1000) - u(gamma=0)| (same fractional rows, rho 1e6): mean 1.419 median 1.083 max 2.581
+[pglib_opf_case118_ieee__api] L1 |u_anchor - u_deploy-like relaxation (hard fixings, deploy rho, gamma 0)|: mean 2.945 median 2.826 max 5.779
+[pglib_opf_case118_ieee__api] # units whose u crosses 0.5 differently because of smoothing: mean 0.800 median 0.000 max 2.000
+[pglib_opf_case118_ieee__api] # fractional u in the smoothed anchor: mean 16.600 median 18.000 max 22.000
+[pglib_opf_case118_ieee__api] # fractional u unsmoothed: mean 12.200 median 13.000 max 17.000
+[pglib_opf_case118_ieee__api] deployed MIQCQP (W=10.0, rho 1e+04) on 22 draws: commitment changed by rows on 7/22 draws (units changed: [0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 3, 0, 0, 0, 2, 0, 2, 3, 0])
+[pglib_opf_case118_ieee__api]   row residual A x - b at the rows-ON MIQCQP solution: binding(|r|<=1e-6) 0.45, slack(r<-1e-6) 0.55, VIOLATED(r>1e-6, paid at 1e6) 0.00; mean slack [-0.58666585 -0.30703635]
+[pglib_opf_case118_ieee__api]   row residual at the rows-OFF MIQCQP solution: violated (row would cut it off) 0.95; per row mean [4.85791685 5.24941963]
+[pglib_opf_case118_ieee__api]   MIQCQP cost on vs off (relative, linearised QCAC cost): mean +1.0708% max |.| 3.2541%

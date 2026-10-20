@@ -1,0 +1,28 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+labels: train 118, val (early stopping) 21; scored val draws 21
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+
+[seed 0] early-stopped at step 125 (val BCE 0.1042); per-unit accuracy train 98.49% val 97.53%; exact val commitments 28.6%
+   round 0.5                             : gap mean 1.3303% median 0.0263% | signed mean +1.3244% | disc 8.47% | units on 14.5 vs ref 15.0 | FN(ref on, proxy off) 0.90/inst FP 0.43/inst | needed repair 5/21 (units added mean 3.43)
+   val-tuned thr 0.35                    : gap mean 0.7237% median 0.0533% | signed mean +0.7189% | disc 5.11% | units on 15.0 vs ref 15.0 | FN(ref on, proxy off) 0.62/inst FP 0.62/inst | needed repair 3/21 (units added mean 1.52)
+   round 0.5 + label-free downward pass  : gap mean 0.1838% median 0.0254% | signed mean +0.1770% | disc 3.53% | units on 15.0 vs ref 15.0
+
+[seed 1] early-stopped at step 1825 (val BCE 0.1179); per-unit accuracy train 100.00% val 97.18%; exact val commitments 38.1%
+   round 0.5                             : gap mean 0.7394% median 0.0331% | signed mean +0.7371% | disc 6.08% | units on 14.5 vs ref 15.0 | FN(ref on, proxy off) 1.00/inst FP 0.52/inst | needed repair 4/21 (units added mean 1.86)
+   val-tuned thr 0.35                    : gap mean 0.7409% median 0.0251% | signed mean +0.7368% | disc 6.08% | units on 14.7 vs ref 15.0 | FN(ref on, proxy off) 0.90/inst FP 0.62/inst | needed repair 4/21 (units added mean 1.86)
+   round 0.5 + label-free downward pass  : gap mean 0.1324% median 0.0251% | signed mean +0.1301% | disc 3.17% | units on 14.8 vs ref 15.0
+
+[seed 2] early-stopped at step 2975 (val BCE 0.1148); per-unit accuracy train 100.00% val 97.35%; exact val commitments 42.9%
+   round 0.5                             : gap mean 0.7697% median 0.0109% | signed mean +0.7674% | disc 6.26% | units on 14.3 vs ref 15.0 | FN(ref on, proxy off) 1.05/inst FP 0.38/inst | needed repair 6/21 (units added mean 2.24)
+   val-tuned thr 0.3                     : gap mean 0.7326% median 0.0214% | signed mean +0.7283% | disc 5.82% | units on 14.7 vs ref 15.0 | FN(ref on, proxy off) 0.86/inst FP 0.52/inst | needed repair 4/21 (units added mean 1.86)
+   round 0.5 + label-free downward pass  : gap mean 0.1185% median 0.0035% | signed mean +0.1162% | disc 3.17% | units on 14.8 vs ref 15.0

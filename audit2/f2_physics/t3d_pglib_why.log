@@ -1,0 +1,8 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+732 ref: strict iters 13, sum P residual +1.47e-04 pu (max |.| 1.9e-04); strict - OPF +0.0214%; tight-tolerance price - OPF +0.0001% (iters 45)
+732 ours: strict iters 12, sum P residual +4.27e-04 pu (max |.| 1.6e-04); strict - OPF +0.0500%; tight-tolerance price - OPF +0.0001% (iters 32)
+733 ref: strict iters 13, sum P residual +2.02e-03 pu (max |.| 5.8e-04); strict - OPF +0.1310%; tight-tolerance price - OPF -0.0000% (iters 400)
+733 ours: strict iters 13, sum P residual +4.81e-04 pu (max |.| 1.5e-04); strict - OPF +0.0342%; tight-tolerance price - OPF -0.0000% (iters 400)

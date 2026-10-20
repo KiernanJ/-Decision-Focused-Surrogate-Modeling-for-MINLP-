@@ -1,0 +1,36 @@
+===== case118: 888 instances in all_instances, max block index 887, union of blocks 864; contiguous False
+   nearest-neighbour distance (normalised features, dim 236): min 1.888, 1% 2.046, median 3.177; exact duplicates 0
+   val    : load scale [0.550, 1.285] mean 0.959; min/median dist to train+extra 2.207/3.543 (train+extra self-NN median 3.367)
+   test   : load scale [0.566, 1.302] mean 0.886; min/median dist to train+extra 2.131/3.110 (train+extra self-NN median 3.367)
+   fresh4 : load scale [0.565, 1.295] mean 0.888; min/median dist to train+extra 2.199/3.244 (train+extra self-NN median 3.367)
+   fresh5 : load scale [0.555, 1.279] mean 0.813; min/median dist to train+extra 2.096/2.833 (train+extra self-NN median 3.367)
+   fresh6 : load scale [0.559, 1.290] mean 0.951; min/median dist to train+extra 2.068/3.607 (train+extra self-NN median 3.367)
+   train  : load scale [0.546, 1.296] mean 0.904, n=144
+   extra  : load scale [0.547, 1.303] mean 0.914, n=300
+   band   : load scale [0.777, 0.882] mean 0.828, n=60
+   KS(load scale) extra vs fresh5+fresh6: p=0.109; train vs extra p=0.853
+===== case300: 888 instances in all_instances, max block index 887, union of blocks 864; contiguous False
+   nearest-neighbour distance (normalised features, dim 600): min 3.066, 1% 3.207, median 4.833; exact duplicates 0
+   val    : load scale [0.608, 1.153] mean 0.833; min/median dist to train+extra 3.491/4.724 (train+extra self-NN median 4.913)
+   test   : load scale [0.576, 1.203] mean 0.855; min/median dist to train+extra 3.305/4.655 (train+extra self-NN median 4.913)
+   fresh4 : load scale [0.557, 1.199] mean 0.925; min/median dist to train+extra 3.237/5.415 (train+extra self-NN median 4.913)
+   fresh5 : load scale [0.546, 1.203] mean 0.856; min/median dist to train+extra 3.156/4.830 (train+extra self-NN median 4.913)
+   fresh6 : load scale [0.571, 1.182] mean 0.893; min/median dist to train+extra 3.226/4.966 (train+extra self-NN median 4.913)
+   train  : load scale [0.552, 1.205] mean 0.873, n=144
+   extra  : load scale [0.557, 1.198] mean 0.878, n=300
+   band   : load scale [0.778, 0.882] mean 0.832, n=60
+   KS(load scale) extra vs fresh5+fresh6: p=0.985; train vs extra p=0.830
+   case300 train draws without own target: load scale [1.139, 1.155, 1.165, 1.186, 1.186, 1.19, 1.203, 1.205]
+===== pglib_opf_case118_ieee__api: 888 instances in all_instances, max block index 887, union of blocks 864; contiguous False
+   nearest-neighbour distance (normalised features, dim 236): min 8.238, 1% 8.678, median 9.819; exact duplicates 0
+   val    : load scale [0.849, 1.049] mean 0.960; min/median dist to train+extra 9.295/10.052 (train+extra self-NN median 10.012)
+   test   : load scale [0.851, 1.054] mean 0.940; min/median dist to train+extra 8.688/9.968 (train+extra self-NN median 10.012)
+   fresh4 : load scale [0.855, 1.047] mean 0.940; min/median dist to train+extra 9.120/9.917 (train+extra self-NN median 10.012)
+   fresh5 : load scale [0.846, 1.043] mean 0.920; min/median dist to train+extra 8.819/9.766 (train+extra self-NN median 10.012)
+   fresh6 : load scale [0.850, 1.050] mean 0.957; min/median dist to train+extra 9.039/10.086 (train+extra self-NN median 10.012)
+   train  : load scale [0.843, 1.050] mean 0.944, n=144
+   extra  : load scale [0.845, 1.053] mean 0.947, n=300
+   band   : load scale [0.777, 0.882] mean 0.828, n=60
+   KS(load scale) extra vs fresh5+fresh6: p=0.109; train vs extra p=0.882
+   PGLib train draws without own target / ref: load scale [0.998, 1.002, 1.004, 1.006, 1.007, 1.011, 1.012, 1.014, 1.015, 1.022, 1.024, 1.024, 1.024, 1.025, 1.025, 1.028, 1.034, 1.034, 1.038, 1.04, 1.042, 1.047, 1.047, 1.049, 1.05, 1.05]
+   PGLib train draws WITH target: load scale max 1.002

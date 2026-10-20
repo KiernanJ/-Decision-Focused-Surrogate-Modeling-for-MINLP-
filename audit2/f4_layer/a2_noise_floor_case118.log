@@ -1,0 +1,8 @@
+[case118] val+fresh draws n=120, c=0.9, deployed epoch 2
+  warmA          vs warmA_again   : max|dtheta| 0.00000 | fixings changed    0/6480 (0.00%) on 0/120 instances
+  warmA          vs warm_threads4 : max|dtheta| 0.00000 | fixings changed    0/6480 (0.00%) on 0/120 instances
+  warmA          vs warm_jit1e-6  : max|dtheta| 0.18846 | fixings changed   18/6480 (0.28%) on 16/120 instances
+  warm_threads4  vs warm_jit1e-6  : max|dtheta| 0.18846 | fixings changed   18/6480 (0.28%) on 16/120 instances
+  warmA          vs deployed      : max|dtheta| 0.17075 | fixings changed   96/6480 (1.48%) on 53/120 instances
+  deployed       vs last(ep14)    : max|dtheta| 0.01372 | fixings changed  175/6480 (2.70%) on 80/120 instances
+  warmA          vs last(ep14)    : max|dtheta| 0.17104 | fixings changed  156/6480 (2.41%) on 78/120 instances

@@ -1,0 +1,97 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+<scratch>/repo_abl/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+<scratch>/repo_abl/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+<scratch>/repo_abl/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+<scratch>/repo_abl/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+<scratch>/repo_abl/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+<scratch>/repo_abl/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+19:46:27 [case300 fresh5] 48 draws, 40 scored (converged ref, no repair); excluded [735, 740, 746, 748, 761, 775, 776, 778]
+19:46:30 [case300 fresh5] c=0.9, cut epoch 8, rows epoch 8, V-net 10000.0 [deployment rho overridden: 1e+04], RHO 10000, W 30.0; proxy labels 114/22
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+19:46:42    anchors A0: failed on 0
+Set parameter Username
+Set parameter Username
+Set parameter Username
+Set parameter Username
+Set parameter Username
+Set parameter Username
+Set parameter LicenseID to value 2756177
+Set parameter LicenseID to value 2756177
+Set parameter LicenseID to value 2756177
+Set parameter LicenseID to value 2756177
+Set parameter LicenseID to value 2756177
+Set parameter LicenseID to value 2756177
+Academic license - for non-commercial use only - expires 2026-12-17
+Academic license - for non-commercial use only - expires 2026-12-17
+Academic license - for non-commercial use only - expires 2026-12-17
+Academic license - for non-commercial use only - expires 2026-12-17
+Academic license - for non-commercial use only - expires 2026-12-17
+Academic license - for non-commercial use only - expires 2026-12-17
+19:49:32 done A0: failures 0, fallbacks 2 [171s]
+19:49:47 done A8 [15s]
+19:53:50 done A1: failures 0, fallbacks 14 [243s]
+19:58:40 done A2: failures 0, fallbacks 11 [290s]
+20:01:00 done A4: failures 0, fallbacks 0 [140s]
+20:03:33 done A4h: failures 0, fallbacks 0 [153s]
+20:06:06 done A3a: failures 0, fallbacks 1 [153s]
+20:08:40 done A6: failures 0, fallbacks 1 [154s]
+20:11:09 done A6h: failures 0, fallbacks 1 [149s]
+20:15:02 done A7: failures 0, fallbacks 3 [233s]
+20:19:12 done A7h: failures 0, fallbacks 2 [250s]
+20:19:12 ALL DONE

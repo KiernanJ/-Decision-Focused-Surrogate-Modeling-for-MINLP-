@@ -1,0 +1,69 @@
+[done] milp_v0 s0 100 scored
+[done] milp_v2 s0 89 scored
+[done] milp_v1 s0 84 scored
+[done] milp_v7 s0 100 scored
+[done] milp_v6 s0 83 scored
+[done] milp_v4 s0 100 scored
+[done] milp_v8 s0 100 scored
+[done] milp_v9 s0 78 scored
+[done] minlp s0 48 scored
+[done] milp_v0 s1 100 scored
+[done] milp_v1 s1 84 scored
+[done] milp_v2 s1 89 scored
+[done] milp_v6 s1 83 scored
+[done] milp_v4 s1 100 scored
+[done] milp_v7 s1 100 scored
+[done] milp_v8 s1 100 scored
+[done] milp_v9 s1 78 scored
+[done] minlp s1 48 scored
+[done] milp_v0 s2 100 scored
+[done] milp_v1 s2 84 scored
+[done] milp_v2 s2 89 scored
+[done] milp_v4 s2 100 scored
+[done] milp_v6 s2 83 scored
+[done] milp_v7 s2 100 scored
+[done] milp_v8 s2 100 scored
+[done] milp_v9 s2 78 scored
+[done] minlp s2 48 scored
+
+[FINAL VEHICLE MILP (8 vehicles pooled)] [LF method, pool_fresh2] FRESH untouched test, 734 instances (excluded: {'no reference': 0, 'reference MIPGap > 1e-4': 66}), seeds [0, 1, 2], W=0.01
+--- seed 0 |gap|: ours - proxy -0.8112 pp, 95% CI [-0.9671, -0.6608] (n=734), Wilcoxon p 8.18e-20 (n_nonzero 487), better/tie/worse 307/247/180 (tie <= 0.001 pp), sign test p 9.4e-09 | failures ours 0, proxy 0
+--- seed 0 signed gap: ours - proxy -0.8112 pp, 95% CI [-0.9671, -0.6608] (n=734), Wilcoxon p 8.18e-20 (n_nonzero 487), better/tie/worse 307/247/180 (tie <= 0.001 pp), sign test p 9.4e-09 | failures ours 0, proxy 0
+    seed 0: our fallbacks 0
+--- seed 1 |gap|: ours - proxy -0.8563 pp, 95% CI [-1.0139, -0.7052] (n=734), Wilcoxon p 7.11e-23 (n_nonzero 499), better/tie/worse 316/235/183 (tie <= 0.001 pp), sign test p 2.79e-09 | failures ours 0, proxy 0
+--- seed 1 signed gap: ours - proxy -0.8563 pp, 95% CI [-1.0139, -0.7052] (n=734), Wilcoxon p 7.11e-23 (n_nonzero 499), better/tie/worse 316/235/183 (tie <= 0.001 pp), sign test p 2.79e-09 | failures ours 0, proxy 0
+    seed 1: our fallbacks 0
+--- seed 2 |gap|: ours - proxy -0.7113 pp, 95% CI [-0.8656, -0.5627] (n=734), Wilcoxon p 4.4e-18 (n_nonzero 482), better/tie/worse 299/252/183 (tie <= 0.001 pp), sign test p 1.42e-07 | failures ours 0, proxy 0
+--- seed 2 signed gap: ours - proxy -0.7113 pp, 95% CI [-0.8656, -0.5627] (n=734), Wilcoxon p 4.4e-18 (n_nonzero 482), better/tie/worse 299/252/183 (tie <= 0.001 pp), sign test p 1.42e-07 | failures ours 0, proxy 0
+    seed 2: our fallbacks 0
+[paired, seed-averaged, PRE-REGISTERED] |gap|: ours - proxy -0.7929 pp, 95% CI [-0.9233, -0.6641] (n=734), Wilcoxon p 1.55e-28 (n_nonzero 528), better/tie/worse 336/206/192 (tie <= 0.001 pp), sign test p 3.82e-10 | failures ours 0, proxy 0
+[paired, seed-averaged, PRE-REGISTERED] signed gap (= paired cost difference): ours - proxy -0.7929 pp, 95% CI [-0.9233, -0.6641] (n=734), Wilcoxon p 1.55e-28 (n_nonzero 528), better/tie/worse 336/206/192 (tie <= 0.001 pp), sign test p 3.82e-10 | failures ours 0, proxy 0
+   method               | gap mean | gap median | discrete err | continuous err | time median | failures | signed gap mean
+   OUR METHOD           | 0.0834+-0.0064% | 0.0010+-0.0017% | 9.17+-0.38% | 9.13+-0.38% | 8.0+-0.4 ms | 0 | 0.0834+-0.0064%
+   supervised NN proxy  | 0.8763+-0.0803% | 0.0071+-0.0024% | 9.91+-0.09% | 9.51+-0.08% | 2.6+-0.1 ms | 0 | 0.8763+-0.0803%
+   per vehicle (seed-averaged, strict failures): vehicle | n | ours gap mean/median, disc, cont | proxy gap mean/median, disc, cont | paired |gap|
+   milp_v0  | 100 | 0.005/0.000%, 1.35%, 1.34% | 0.239/0.000%, 5.21%, 4.81% | |gap|: ours - proxy -0.2342 pp, 95% CI [-0.3843, -0.1089] (n=100), Wilcoxon p 1.32e-05 (n_nonzero 35), better/tie/worse 28/65/7 (tie <= 0.001 pp), sign test p 0.000508 | failures ours 0, proxy 0
+   milp_v1  | 84 | 0.093/0.016%, 8.90%, 8.99% | 0.839/0.031%, 9.91%, 9.64% | |gap|: ours - proxy -0.7455 pp, 95% CI [-1.1224, -0.4197] (n=84), Wilcoxon p 0.00109 (n_nonzero 66), better/tie/worse 39/18/27 (tie <= 0.001 pp), sign test p 0.175 | failures ours 0, proxy 0
+   milp_v2  | 89 | 0.128/0.067%, 11.47%, 11.40% | 2.420/2.125%, 16.77%, 15.82% | |gap|: ours - proxy -2.2919 pp, 95% CI [-2.7781, -1.8457] (n=89), Wilcoxon p 6.85e-14 (n_nonzero 85), better/tie/worse 74/4/11 (tie <= 0.001 pp), sign test p 1.29e-12 | failures ours 0, proxy 0
+   milp_v4  | 100 | 0.101/0.044%, 10.11%, 10.05% | 0.269/0.000%, 5.85%, 5.74% | |gap|: ours - proxy -0.1680 pp, 95% CI [-0.3028, -0.0494] (n=100), Wilcoxon p 0.382 (n_nonzero 79), better/tie/worse 38/21/41 (tie <= 0.001 pp), sign test p 0.822 | failures ours 0, proxy 0
+   milp_v6  | 83 | 0.067/0.034%, 10.52%, 10.39% | 1.071/0.089%, 12.74%, 12.12% | |gap|: ours - proxy -1.0039 pp, 95% CI [-1.4771, -0.6051] (n=83), Wilcoxon p 1.03e-06 (n_nonzero 65), better/tie/worse 45/18/20 (tie <= 0.001 pp), sign test p 0.00263 | failures ours 0, proxy 0
+   milp_v7  | 100 | 0.021/0.000%, 4.45%, 4.43% | 0.156/0.000%, 6.23%, 6.12% | |gap|: ours - proxy -0.1350 pp, 95% CI [-0.2566, -0.0406] (n=100), Wilcoxon p 0.0865 (n_nonzero 47), better/tie/worse 26/53/21 (tie <= 0.001 pp), sign test p 0.56 | failures ours 0, proxy 0
+   milp_v8  | 100 | 0.145/0.121%, 14.95%, 14.82% | 0.413/0.004%, 9.92%, 9.46% | |gap|: ours - proxy -0.2684 pp, 95% CI [-0.4508, -0.1050] (n=100), Wilcoxon p 0.558 (n_nonzero 81), better/tie/worse 35/19/46 (tie <= 0.001 pp), sign test p 0.266 | failures ours 0, proxy 0
+   milp_v9  | 78 | 0.119/0.048%, 12.88%, 12.92% | 2.062/0.792%, 14.97%, 14.63% | |gap|: ours - proxy -1.9426 pp, 95% CI [-2.6090, -1.3350] (n=78), Wilcoxon p 2.4e-08 (n_nonzero 70), better/tie/worse 51/8/19 (tie <= 0.001 pp), sign test p 0.000166 | failures ours 0, proxy 0
+[vehicle-clustered, PRE-REGISTERED] per-vehicle mean |gap| difference (ours - proxy, pp): [-0.2342, -0.7455, -2.2919, -0.168, -1.0039, -0.135, -0.2684, -1.9426]; vehicles better/tie/worse 8/0/0, sign test p 0.00781 (min attainable 0.00781), Wilcoxon over vehicles p 0.00781
+
+[FINAL VEHICLE MINLP] [LF method, pool_fresh2] FRESH untouched test, 48 instances (excluded: {'no reference': 0, 'reference MIPGap > 1e-4': 0}), seeds [0, 1, 2], W=0.01
+--- seed 0 |gap|: ours - proxy -0.6356 pp, 95% CI [-0.9981, -0.3427] (n=48), Wilcoxon p 3.76e-06 (n_nonzero 48), better/tie/worse 40/0/8 (tie <= 0.001 pp), sign test p 3.31e-06 | failures ours 0, proxy 0
+--- seed 0 signed gap: ours - proxy -0.6356 pp, 95% CI [-0.9981, -0.3428] (n=48), Wilcoxon p 3.76e-06 (n_nonzero 48), better/tie/worse 40/0/8 (tie <= 0.001 pp), sign test p 3.31e-06 | failures ours 0, proxy 0
+    seed 0: our fallbacks 0
+--- seed 1 |gap|: ours - proxy -0.2185 pp, 95% CI [-0.3873, -0.0434] (n=48), Wilcoxon p 0.0127 (n_nonzero 48), better/tie/worse 31/0/17 (tie <= 0.001 pp), sign test p 0.0595 | failures ours 0, proxy 0
+--- seed 1 signed gap: ours - proxy -0.2185 pp, 95% CI [-0.3873, -0.0434] (n=48), Wilcoxon p 0.0127 (n_nonzero 48), better/tie/worse 31/0/17 (tie <= 0.001 pp), sign test p 0.0595 | failures ours 0, proxy 0
+    seed 1: our fallbacks 1
+--- seed 2 |gap|: ours - proxy -0.3977 pp, 95% CI [-0.5995, -0.2186] (n=48), Wilcoxon p 6.02e-05 (n_nonzero 48), better/tie/worse 37/0/11 (tie <= 0.001 pp), sign test p 0.000222 | failures ours 0, proxy 0
+--- seed 2 signed gap: ours - proxy -0.3977 pp, 95% CI [-0.5995, -0.2186] (n=48), Wilcoxon p 6.02e-05 (n_nonzero 48), better/tie/worse 37/0/11 (tie <= 0.001 pp), sign test p 0.000222 | failures ours 0, proxy 0
+    seed 2: our fallbacks 0
+[paired, seed-averaged, PRE-REGISTERED] |gap|: ours - proxy -0.4173 pp, 95% CI [-0.6239, -0.2429] (n=48), Wilcoxon p 8.8e-06 (n_nonzero 48), better/tie/worse 38/0/10 (tie <= 0.001 pp), sign test p 6.17e-05 | failures ours 0, proxy 0
+[paired, seed-averaged, PRE-REGISTERED] signed gap (= paired cost difference): ours - proxy -0.4173 pp, 95% CI [-0.6239, -0.2429] (n=48), Wilcoxon p 8.8e-06 (n_nonzero 48), better/tie/worse 38/0/10 (tie <= 0.001 pp), sign test p 6.17e-05 | failures ours 0, proxy 0
+   method               | gap mean | gap median | discrete err | continuous err | time median | failures | signed gap mean
+   OUR METHOD           | 0.3417+-0.0509% | 0.1877+-0.0254% | 4.38+-0.07% | 4.12+-0.09% | 15.1+-0.2 ms | 0 | 0.3417+-0.0509%
+   supervised NN proxy  | 0.7590+-0.1700% | 0.4728+-0.0281% | 6.96+-0.77% | 6.45+-0.53% | 6.5+-0.1 ms | 0 | 0.7590+-0.1700%

@@ -1,0 +1,8 @@
+<scratch>/env/lib/python3.12/site-packages/numpy/_core/fromnumeric.py:3862: RuntimeWarning: Mean of empty slice
+  return _methods._mean(a, axis=axis, dtype=dtype,
+<scratch>/env/lib/python3.12/site-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+[pglib_opf_case118_ieee__api] V-net sel=10000.0 rho=1e+04; strict refs available: 38 (tr 0, va 0, te 38)
+  V-net output over all 888 draws: |V-1| max 0.5164, mean over buses&draws 0.0949; |V| range [0.6462, 1.4281]; angle range [-0.3518, 0.4713] rad
+  input dependence: mean over buses of std across draws: V-net |V| 0.02293, angle 0.02459
+  test(orig)  n= 38: complex |V-Vref| mean/maxbus: V-net 0.1013/0.3950  flat 0.1224/0.5377  mean-ref const nan/nan | |V| err V-net 0.0403 flat 0.0332 | angle err V-net 0.0835 flat 0.1135 rad | per-bus angle corr (pred vs ref across inst) median -0.188

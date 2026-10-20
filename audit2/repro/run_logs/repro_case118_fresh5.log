@@ -1,0 +1,31 @@
+[machine] 18:20  up 25 days, 10:18, 2 users, load averages: 7.92 6.03 5.03
+[case118] UNTOUCHED test: 48 drawn, 39 with a usable reference; excluded 9 at load scale [0.563, 0.774, 0.824, 0.833, 0.91, 0.951, 1.063, 1.106, 1.122]; reference (sequential QCAC) median 94s  [3s]
+[case118] general rows: epoch 6
+[deployment] seed 0: V-net vnet_layer_case118_env_nc.pt (10000.0 [deployment rho overridden: 3e+05]), deployment rho 3e+05, DEPLOY_RHO env 3e5
+   seed 0: anchor solve failed (rows dropped) on 0 instances
+--- seed 0 |gap|: ours - proxy -0.6140 pp, 95% CI [-1.5924, +0.0551] (n=39), Wilcoxon p 0.107 (n_nonzero 26), better/tie/worse 8/13/18 (tie <= 0.001 pp), sign test p 0.0755 | failures ours 0, proxy 0
+--- seed 0 signed gap: ours - proxy -0.6105 pp, 95% CI [-1.5889, +0.0588] (n=39), Wilcoxon p 0.0775 (n_nonzero 26), better/tie/worse 8/13/18 (tie <= 0.001 pp), sign test p 0.0755 | failures ours 0, proxy 0
+    seed 0: our fallbacks 2, our strict repairs 0, proxy repairs 5
+[deployment] seed 1: V-net vnet_layer_case118_env_nc.pt (10000.0 [deployment rho overridden: 3e+05]), deployment rho 3e+05, DEPLOY_RHO env 3e5
+   seed 1: anchor solve failed (rows dropped) on 0 instances
+--- seed 1 |gap|: ours - proxy -0.6137 pp, 95% CI [-1.5921, +0.0476] (n=39), Wilcoxon p 0.202 (n_nonzero 28), better/tie/worse 10/11/18 (tie <= 0.001 pp), sign test p 0.185 | failures ours 0, proxy 0
+--- seed 1 signed gap: ours - proxy -0.6125 pp, 95% CI [-1.5908, +0.0492] (n=39), Wilcoxon p 0.179 (n_nonzero 28), better/tie/worse 10/11/18 (tie <= 0.001 pp), sign test p 0.185 | failures ours 0, proxy 0
+    seed 1: our fallbacks 2, our strict repairs 0, proxy repairs 4
+[deployment] seed 2: V-net vnet_layer_case118_env_nc.pt (10000.0 [deployment rho overridden: 3e+05]), deployment rho 3e+05, DEPLOY_RHO env 3e5
+   seed 2: anchor solve failed (rows dropped) on 0 instances
+--- seed 2 |gap|: ours - proxy -0.6110 pp, 95% CI [-1.5898, +0.0502] (n=39), Wilcoxon p 0.139 (n_nonzero 28), better/tie/worse 10/11/18 (tie <= 0.001 pp), sign test p 0.185 | failures ours 0, proxy 0
+--- seed 2 signed gap: ours - proxy -0.6093 pp, 95% CI [-1.5881, +0.0523] (n=39), Wilcoxon p 0.127 (n_nonzero 28), better/tie/worse 10/11/18 (tie <= 0.001 pp), sign test p 0.185 | failures ours 0, proxy 0
+    seed 2: our fallbacks 2, our strict repairs 0, proxy repairs 5
+[paired, seed-averaged, PRE-REGISTERED] |gap|: ours - proxy -0.6129 pp, 95% CI [-1.5915, +0.0489] (n=39), Wilcoxon p 0.15 (n_nonzero 29), better/tie/worse 10/10/19 (tie <= 0.001 pp), sign test p 0.136 | failures ours 0, proxy 0
+[paired, seed-averaged, PRE-REGISTERED] signed gap (= paired cost difference): ours - proxy -0.6108 pp, 95% CI [-1.5895, +0.0513] (n=39), Wilcoxon p 0.133 (n_nonzero 29), better/tie/worse 10/10/19 (tie <= 0.001 pp), sign test p 0.136 | failures ours 0, proxy 0
+   [descriptive, post hoc] proxy needed NO repair: n=33, ours - proxy +0.0410 pp
+   [descriptive, post hoc] proxy needed repair (any seed): n=6, ours - proxy -4.2093 pp
+   signed gap OUR METHOD: mean +0.4051%, min -0.0445% (negative = cheaper than the reference)
+   signed gap supervised NN proxy: mean +1.0159%, min -0.0445% (negative = cheaper than the reference)
+   scored load range [0.555, 1.279] of drawn [0.555, 1.279]
+
+[FINAL case118] untouched test, 39 instances, seeds [0, 1, 2], W=10.0; reference median 94s
+   method               | gap mean | gap median | discrete err | continuous err | time median | failures
+   OUR METHOD           | 0.4089+-0.0000% | 0.0533+-0.0000% | 4.13+-0.00% | 7.59+-0.00% | 6.45+-0.06s | 0
+   supervised NN proxy  | 1.0218+-0.0017% | 0.0024+-0.0042% | 5.95+-0.05% | 5.32+-0.16% | 0.19+-0.01s | 0
+[machine at end] 18:24  up 25 days, 10:23, 2 users, load averages: 10.36 8.99 6.64

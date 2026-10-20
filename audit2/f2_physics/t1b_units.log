@@ -1,0 +1,7 @@
+case118: G=54, pmax=0 units 0, zero-cost units 0, nl<1e-3 units 0; nl quantiles [615.0, 615.0, 615.0, 1408.88, 4368.0]; pmax quantiles [1.0, 1.0, 1.0, 1.46, 8.05]
+   c1 quantiles [2000.0, 2000.0, 4000.0, 4000.0, 4000.0]  c2 quantiles [100.0, 100.0, 100.0, 255.59, 25000.0]
+case300: G=69, pmax=0 units 0, zero-cost units 0, nl<1e-3 units 0; nl quantiles [615.0, 1156.57, 1785.0, 2658.33, 23026.93]; pmax quantiles [1.0, 1.84, 3.4, 5.5, 23.99]
+   c1 quantiles [2000.0, 2000.0, 2000.0, 2000.0, 4000.0]  c2 quantiles [50.68, 100.0, 266.67, 487.8, 12500.0]
+pglib_opf_case118_ieee__api: G=54, pmax=0 units 35, zero-cost units 35, nl<1e-3 units 35; nl quantiles [0.0, 0.0, 0.0, 979.3, 14164.92]; pmax quantiles [0.0, 0.0, 0.0, 2.53, 15.33]
+   c1 quantiles [0.0, 0.0, 0.0, 2450.1, 12458.2]  c2 quantiles [0.0, 0.0, 0.0, 0.0, 0.0]
+   pmax=0 units: qmin/qmax [[-0.7, 0.7], [-3.0, 3.0], [-1.14, 1.14], [-3.0, 3.0], [-0.67, 0.67], [-0.49, 0.5], [-0.7, 0.7], [-3.0, 3.0], [-3.0, 3.0], [-0.14, 0.42], [-1.91, 1.91], [-0.76, 0.76]] ...

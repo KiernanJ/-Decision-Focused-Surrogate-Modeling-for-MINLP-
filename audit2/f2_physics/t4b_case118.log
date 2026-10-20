@@ -1,0 +1,10 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+Set parameter Username
+Set parameter LicenseID to value 2756177
+Academic license - for non-commercial use only - expires 2026-12-17
+case118 876: stored ref strict 163736.54 (repairs 0) | tight re-solve: 2 units differ, strict 163695.63 -> -0.0250%; tight MIP gaps [0.0001, 0.0001, 9e-05] [149s]
+case118 880: stored ref strict 122114.84 (repairs 0) | tight re-solve: 2 units differ, strict 122082.00 -> -0.0269%; tight MIP gaps [0.0001, 7e-05, 9e-05] [138s]
+case118 841: tight re-solve not converged (no_incumbent) [1909s]

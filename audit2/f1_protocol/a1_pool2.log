@@ -1,0 +1,30 @@
+== case118: G=54, pmax[0]=8.052 pu (max pmax 8.052), qmin/qmax[0]=-3.000/3.000, nl[0]=4298.9 median nl 615.0, always_on any False
+   pool2 refs: 216 solved entries (None: 0), converged 182
+   test: 48 draws, 48 with pool2 entry, 43 converged
+   val: 24 draws, 24 with pool2 entry, 21 converged
+   train: 144 draws, 144 with pool2 entry, 118 converged
+   proxy labels (55: ltr/lva): train 118, val 21
+   ext_grid unit (gen 0) committed in 117/182 converged refs; mean units on 13.5
+   pool2 entry keys: ['converged', 'cost', 'iters', 'mip_gaps', 'secs', 'slack', 'status', 'u']
+   statuses: Counter({'converged': 182, 'no_incumbent': 34})
+   pool2 indices outside te/va/tr: 0 []
+== case300: G=69, pmax[0]=23.990 pu (max pmax 23.990), qmin/qmax[0]=0.000/0.100, nl[0]=23026.9 median nl 1785.0, always_on any False
+   pool2 refs: 216 solved entries (None: 7), converged 173
+   test: 48 draws, 48 with pool2 entry, 37 converged
+   val: 24 draws, 24 with pool2 entry, 22 converged
+   train: 144 draws, 144 with pool2 entry, 114 converged
+   proxy labels (55: ltr/lva): train 114, val 22
+   ext_grid unit (gen 0) committed in 2/173 converged refs; mean units on 42.0
+   pool2 entry keys: ['converged', 'cost', 'iters', 'mip_gaps', 'secs', 'slack', 'status', 'u']
+   statuses: Counter({'converged': 173, 'max_iter': 22, 'no_incumbent': 14})
+   pool2 indices outside te/va/tr: 0 []
+== pglib_opf_case118_ieee__api: G=54, pmax[0]=0.570 pu (max pmax 15.330), qmin/qmax[0]=-3.000/3.000, nl[0]=220.2 median nl 0.0, always_on any False
+   pool2 refs: 144 solved entries (None: 0), converged 118
+   test: 48 draws, 0 with pool2 entry, 0 converged
+   val: 24 draws, 0 with pool2 entry, 0 converged
+   train: 144 draws, 144 with pool2 entry, 118 converged
+   proxy labels (55: ltr/lva): train 118, val 0  -> no val labels: 20% hold-out of train
+   ext_grid unit (gen 0) committed in 116/118 converged refs; mean units on 51.7
+   pool2 entry keys: ['converged', 'cost', 'hist', 'iters', 'mip_gaps', 'secs', 'slack', 'status', 'u']
+   statuses: Counter({'converged': 118, 'max_iter': 26})
+   pool2 indices outside te/va/tr: 0 []

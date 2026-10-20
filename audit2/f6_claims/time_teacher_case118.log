@@ -1,0 +1,20 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+[config] case118 rho 1e+04 sel 10000.0 W 10.0
+Set parameter Username
+Set parameter LicenseID to value 2756177
+Academic license - for non-commercial use only - expires 2026-12-17
+<scratch>/repo_proto/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+inst 183: deploy+improve 13.4s, restorations 0.5s, strict pricing of cands 0.6s, total 14.5s, winner W+improve, matches committed target True
+inst 109: deploy+improve 28.5s, restorations 14.3s, strict pricing of cands 0.8s, total 43.6s, winner W+improve, matches committed target True
+inst 139: deploy+improve 29.9s, restorations 18.0s, strict pricing of cands 0.8s, total 48.7s, winner W+improve, matches committed target True
+inst 35: deploy+improve 12.5s, restorations 23.0s, strict pricing of cands 0.9s, total 36.5s, winner restore conf0.5, matches committed target True
+inst 148: deploy+improve 15.8s, restorations 0.6s, strict pricing of cands 0.6s, total 16.9s, winner W+improve, matches committed target True
+[summary] case118: per-instance teacher time mean 32.0s median 36.5s (n=5); committed-target reproduced on 5/5

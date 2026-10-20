@@ -1,0 +1,6 @@
+ref: real units on 16.60/19, condensers on 34.48/35, no-load cost share 44523
+ours: real units on 15.95/19, condensers on 33.24/35, no-load cost share 42848
+proxy: real units on 16.55/19, condensers on 35.00/35, no-load cost share 44529
+ours vs ref: differing real units per instance mean 1.64 (max 3), differing condensers mean 2.14 (max 7)
+discrete-error share from condensers (ours vs ref): 0.57; proxy vs ref condenser share: 0.55
+PYPOWER decomposition (20 inst) ours - ref as % of ref total: no-load -0.701%, dispatch +0.583%

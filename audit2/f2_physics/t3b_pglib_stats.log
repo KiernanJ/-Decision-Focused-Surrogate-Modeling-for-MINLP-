@@ -1,0 +1,7 @@
+REF QCAC cost minus strict price of own u: mean +3.623% [min +0.504, max +6.241]; minus PYPOWER-OPF of own u: mean +3.764% [+0.554, +6.502]
+   polish changed u on 23/42; QCAC-minus-strict on changed +3.533% vs unchanged +3.731%
+[strict] ours vs ref signed mean -0.2905% (cheaper than ref on 32/42, worse on 9); proxy vs ref +0.0212% (cheaper 21, worse 10)
+     ours-proxy SIGNED -0.3117 pp, Wilcoxon p 1.9e-06, better/worse 36/6; |gap| ours 0.3808% vs proxy 0.1042% -> diff +0.2766 pp, Wilcoxon p 2.7e-05, better/worse 6/36
+[PYPOWER-OPF] ours vs ref signed mean -0.2116% (cheaper than ref on 31/42, worse on 10); proxy vs ref +0.0124% (cheaper 19, worse 8)
+     ours-proxy SIGNED -0.2240 pp, Wilcoxon p 5.3e-05, better/worse 35/7; |gap| ours 0.3253% vs proxy 0.0882% -> diff +0.2371 pp, Wilcoxon p 7.5e-06, better/worse 6/36
+PYPOWER-OPF solutions (ours, 12 inst) checked in the project's model: {'p_res': '5.73e-07', 'q_viol': '1.39e-08', 'v_viol': '0.00e+00', 'max_load': '1.00e+00', 'pg_viol': '0.00e+00', 'cost_recompute_rel': '1.39e-16'}

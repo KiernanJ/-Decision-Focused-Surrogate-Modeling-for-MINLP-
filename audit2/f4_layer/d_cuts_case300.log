@@ -1,0 +1,20 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+[case300] inst 637 h 1e-02 mode lu+reg (resid 1.6e-08) interior dirs 8 | FD self-cons +0.999 | corr +0.9454 cos +0.9190 rel.err 0.395 | cos(VJP, trivial imitation) +0.5183
+[case300] inst 637 h 1e-03 mode lu+reg (resid 1.6e-08) interior dirs 8 | FD self-cons +1.000 | corr +0.9944 cos +0.9937 rel.err 0.128 | cos(VJP, trivial imitation) +0.5183
+[case300] inst 96 h 1e-02 mode lu+reg (resid 2.2e-08) interior dirs 8 | FD self-cons +0.999 | corr +0.9992 cos +0.9994 rel.err 0.038 | cos(VJP, trivial imitation) +0.9886
+[case300] inst 96 h 1e-03 mode lu+reg (resid 2.2e-08) interior dirs 8 | FD self-cons +0.924 | corr +0.8625 cos +0.8318 rel.err 0.559 | cos(VJP, trivial imitation) +0.9886
+[case300] inst 21 h 1e-02 mode lu+reg (resid 1.9e-08) interior dirs 8 | FD self-cons +0.999 | corr +0.9995 cos +0.9995 rel.err 0.045 | cos(VJP, trivial imitation) +0.8264
+[case300] inst 21 h 1e-03 mode lu+reg (resid 1.9e-08) interior dirs 8 | FD self-cons +0.976 | corr +0.9942 cos +0.9970 rel.err 0.078 | cos(VJP, trivial imitation) +0.8264
+[case300] inst 654 h 1e-02 mode lu+reg (resid 2.2e-08) interior dirs 8 | FD self-cons +1.000 | corr +0.9995 cos +0.9995 rel.err 0.051 | cos(VJP, trivial imitation) +0.7067
+[case300] inst 654 h 1e-03 mode lu+reg (resid 2.2e-08) interior dirs 8 | FD self-cons +1.000 | corr +0.9993 cos +0.9993 rel.err 0.055 | cos(VJP, trivial imitation) +0.7067
+[case300] track_soft over 20 training instances: KKT modes {'lu+reg': 17, 'lu': 3}; residual of regularised solves: ['1.6e-08', '2.2e-08', '1.9e-08', '2.2e-08', '2.3e-08', '1.9e-08', '9.3e-09', '1.7e-08', '1.9e-08', '1.6e-08', '1.8e-08', '1.8e-08']
+[case300] active cut coordinates per instance (l>0 or h<1): mean 65.7/69; cos(VJP gradient, trivial imitation gradient 2(u-u_own)/G on binding rows): median 0.8795, min 0.5183
+[case300] forward statuses: {'Solved': 18, 'AlmostSolved': 2}
+[case300] cos(VJP, trivial) all: [0.518, 0.989, 0.826, 0.707, 0.925, 0.875, 0.606, 0.814, 0.855, 0.88, 1.0, 0.634, 0.867, 0.922, 0.946, 1.0, 1.0, 0.998, 0.879, 0.999]; fraction >= 0.9: 0.45; per mode: {'lu': np.float64(1.0), 'lu+reg': np.float64(0.875)}

@@ -1,0 +1,6 @@
+case118: train w/o own target 0, train w/o converged ref 26, both 0, own-target-but-no-ref 26, ref-but-no-own-target 0
+   own target vs reference commitment on 118 train draws: unit disagreement 2.87%, identical commitments 44.1%
+case300: train w/o own target 8, train w/o converged ref 30, both 8, own-target-but-no-ref 22, ref-but-no-own-target 0
+   own target vs reference commitment on 114 train draws: unit disagreement 3.23%, identical commitments 26.3%
+pglib_opf_case118_ieee__api: train w/o own target 26, train w/o converged ref 26, both 26, own-target-but-no-ref 0, ref-but-no-own-target 0
+   own target vs reference commitment on 118 train draws: unit disagreement 7.63%, identical commitments 0.0%

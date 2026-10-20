@@ -1,0 +1,40 @@
+pandapower 3.3.3
+
+=== case118: G=54 | ext_grid 1, gen 53, sgen 0 (controllable sgen 0), ppc gen rows 54
+  ppc gen rows 0..ne-1 at ext_grid buses: True | rows ne.. at gen buses (same order): True
+  ext_grid row in Grid: bus 68 pmin 0.0000 pmax 8.0520 qmin -3.0000 qmax 3.0000 c2 193.6480 c1 2000.0000 c0 0.00 nl 4298.87
+  net.ext_grid limits (MW/Mvar): {'max_p_mw': 805.2, 'min_p_mw': 0.0, 'max_q_mvar': 300.0, 'min_q_mvar': -300.0}
+  poly_cost ext_grid: [[0.0193648, 20.0, 0.0]]
+  ranks: pmax rank 1/54; c1 rank 1; median nl 615.00
+  units whose Grid limits differ from net tables: [] 
+  source pmin<0 units: [] | qmin>0 units: [] | qmax<0 units: []
+  phase-shift branches: 0; finite ratings 186/186, min rate 99.000 pu, median 99.000
+  load 42.420 pu, cap 99.662 pu, need at s=1.30: 60.66, at 1.20: 55.99, at 1.05 49.00
+  vmin/vmax used: 0.940-0.940 / 1.060-1.060
+
+=== case300: G=69 | ext_grid 1, gen 68, sgen 8 (controllable sgen 0), ppc gen rows 69
+  ppc gen rows 0..ne-1 at ext_grid buses: True | rows ne.. at gen buses (same order): True
+  ext_grid row in Grid: bus 256 pmin 0.0000 pmax 23.9901 qmin 0.0000 qmax 0.1000 c2 100.0000 c1 4000.0000 c0 0.00 nl 23026.93
+  net.ext_grid limits (MW/Mvar): {'max_p_mw': 2399.01, 'min_p_mw': 0.0, 'max_q_mvar': 10.0, 'min_q_mvar': 0.0}
+  poly_cost ext_grid: [[0.01, 40.0, 0.0]]
+  ranks: pmax rank 1/69; c1 rank 57; median nl 1785.00
+  units whose Grid limits differ from net tables: [] 
+  source pmin<0 units: [] | qmin>0 units: [5, 44, 45] | qmax<0 units: []
+  phase-shift branches: 0; finite ratings 411/411, min rate 99.000 pu, median 99.000
+  load 235.258 pu, cap 326.784 pu, need at s=1.30: 336.42, at 1.20: 310.54, at 1.05 271.72
+  vmin/vmax used: 0.900-0.900 / 1.100-1.100
+
+=== pglib_opf_case118_ieee__api: G=54 | ext_grid 1, gen 53, sgen 0 (controllable sgen 0), ppc gen rows 54
+  ppc gen rows 0..ne-1 at ext_grid buses: True | rows ne.. at gen buses (same order): True
+  ext_grid row in Grid: bus 68 pmin 0.0000 pmax 0.5700 qmin -3.0000 qmax 3.0000 c2 0.0000 c1 2575.8442 c0 0.00 nl 220.23
+  net.ext_grid limits (MW/Mvar): {'max_p_mw': 57.0, 'min_p_mw': 0.0, 'max_q_mvar': 300.0, 'min_q_mvar': -300.0}
+  poly_cost ext_grid: [[0.0, 25.758442, 0.0]]
+  ranks: pmax rank 17/54; c1 rank 45; median nl 0.00
+  units whose Grid limits differ from net tables: [] 
+  source pmin<0 units: [] | qmin>0 units: [] | qmax<0 units: []
+  .m ref bus 69 gens at ref bus rows: [29]
+  .m gen rows at ref bus (Pmax Pmin Qmax Qmin): [[57.0, 0.0, 300.0, -300.0]]
+  .m gencost for those rows: [[2.0, 0.0, 0.0, 3.0, 0.0, 25.758442, 0.0]]
+  phase-shift branches: 0; finite ratings 186/186, min rate 0.720 pu, median 1.530
+  load 68.748 pu, cap 87.620 pu, need at s=1.30: 98.31, at 1.20: 90.75, at 1.05 79.40
+  vmin/vmax used: 0.940-0.940 / 1.060-1.060

@@ -1,0 +1,72 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+<scratch>/repo_abl/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+<scratch>/repo_abl/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+<scratch>/repo_abl/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+18:47:42 [case118 fresh6] 48 draws, 40 scored (converged ref, no repair); excluded [840, 842, 846, 850, 860, 881, 883, 884]
+18:47:48 [case118 fresh6] c=0.9, cut epoch 2, rows epoch 6, V-net 10000.0 [deployment rho overridden: 3e+05], RHO 300000, W 10.0; proxy labels 118/21
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+18:47:52    anchors A0: failed on 0
+18:47:53    anchors A3b: failed on 0
+Set parameter Username
+Set parameter Username
+Set parameter Username
+Set parameter LicenseID to value 2756177
+Set parameter Username
+Set parameter LicenseID to value 2756177
+Set parameter LicenseID to value 2756177
+Set parameter LicenseID to value 2756177
+Academic license - for non-commercial use only - expires 2026-12-17
+Academic license - for non-commercial use only - expires 2026-12-17
+Academic license - for non-commercial use only - expires 2026-12-17
+Academic license - for non-commercial use only - expires 2026-12-17
+18:49:03 done A0: failures 0, fallbacks 1 [70s]
+<scratch>/repo_abl/src/socp.py:157: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  self.prob.solve(solver=cp.CLARABEL, warm_start=False)
+18:49:06 done A8 [4s]
+18:50:14 done A1: failures 0, fallbacks 4 [68s]
+18:52:27 done A2: failures 0, fallbacks 18 [132s]
+18:53:28 done A4: failures 0, fallbacks 1 [62s]
+18:54:20 done A3a: failures 0, fallbacks 0 [51s]
+18:55:08 done A3b: failures 0, fallbacks 0 [49s]
+18:56:31 done A5: failures 0, fallbacks 3 [83s]
+18:57:25 done A6: failures 0, fallbacks 1 [54s]
+18:58:27 done A6b: failures 0, fallbacks 1 [62s]
+18:59:33 done A7: failures 0, fallbacks 2 [66s]
+18:59:33 ALL DONE

@@ -1,0 +1,14 @@
+buses: 118 118 | pd match (sorted order): True | pd match in order: True
+gs/bs in order: True True | vmax/vmin: True True
+branch count 186 186 | status all 1: True
+branch f/t same order: False
+r, x, b, tap, rate match: False False False False False
+   worst rate diffs [[72.18  1.51]
+ [ 7.93 72.18]
+ [10.99  1.54]
+ [10.95  1.75]
+ [ 1.76 10.95]]
+gen count 54 54 | order equal: True
+gen check done; ref bus 68 (.m ref row 68 )
+keyed branch comparison: max abs diffs {'r': '2.08e-17', 'x': '5.55e-17', 'b': '2.78e-17', 'tap': '1.11e-16', 'rate': '8.88e-16'} | reversed orientation: 0 | matched 186
+ratings: min/median/max pu 0.72 1.53 72.18 | .m RATE_A==0 count 0

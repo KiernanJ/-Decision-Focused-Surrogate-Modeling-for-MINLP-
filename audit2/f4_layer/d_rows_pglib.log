@@ -1,0 +1,19 @@
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+numba cannot be imported and numba functions are disabled.
+Probably the execution is slow.
+Please install numba to gain a massive speedup.
+(or if you prefer slow execution, set the flag numba=False to avoid this warning!)
+[pglib_opf_case118_ieee__api] inst 210 h 1e-02 mode lu+reg (resid 2.3e-08) | FD self-cons -0.394 | corr +0.8960 cos +0.8596 rel.err 1.630 | |FD| 9.85e-04 | loss 3.0564e-04
+[pglib_opf_case118_ieee__api] inst 210 h 3e-03 mode lu+reg (resid 2.3e-08) | FD self-cons +0.181 | corr +0.9188 cos +0.9110 rel.err 0.926 | |FD| 1.39e-03 | loss 3.0564e-04
+[pglib_opf_case118_ieee__api] inst 210 h 1e-03 mode lu+reg (resid 2.3e-08) | FD self-cons +0.897 | corr +0.9816 cos +0.9830 rel.err 0.266 | |FD| 1.90e-03 | loss 3.0564e-04
+[pglib_opf_case118_ieee__api] inst 510 h 1e-02 mode lu (resid 1.4e-09) | FD self-cons +0.357 | corr +0.7464 cos +0.4690 rel.err 1.559 | |FD| 7.00e-09 | loss 2.7924e-03
+[pglib_opf_case118_ieee__api] inst 510 h 3e-03 mode lu (resid 1.4e-09) | FD self-cons +0.294 | corr -0.3980 cos -0.5202 rel.err 10.983 | |FD| 2.00e-09 | loss 2.7924e-03
+[pglib_opf_case118_ieee__api] inst 510 h 1e-03 mode lu (resid 1.4e-09) | FD self-cons -0.556 | corr -0.1184 cos +0.2258 rel.err 3.366 | |FD| 6.57e-09 | loss 2.7924e-03
+[pglib_opf_case118_ieee__api] inst 455 h 1e-02 mode lu+reg (resid 8.6e-09) | FD self-cons +0.846 | corr +0.8565 cos +0.8491 rel.err 0.579 | |FD| 3.81e-04 | loss 9.9610e-03
+[pglib_opf_case118_ieee__api] inst 455 h 3e-03 mode lu+reg (resid 8.6e-09) | FD self-cons +0.901 | corr +0.9381 cos +0.9374 rel.err 0.366 | |FD| 4.80e-04 | loss 9.9610e-03
+[pglib_opf_case118_ieee__api] inst 455 h 1e-03 mode lu+reg (resid 8.6e-09) | FD self-cons +1.000 | corr +1.0000 cos +1.0000 rel.err 0.176 | |FD| 5.18e-04 | loss 9.9610e-03
+[pglib_opf_case118_ieee__api] track_gen over 16 training instances: KKT modes {'lu+reg': 6, 'lu': 10}
+[pglib_opf_case118_ieee__api] forward statuses: {'Solved': 16}

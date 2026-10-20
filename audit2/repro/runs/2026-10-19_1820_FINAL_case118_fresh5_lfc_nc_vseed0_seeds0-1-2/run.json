@@ -1,0 +1,6 @@
+{
+ "cmd": "55_final_eval.py case118 0,1,2 fresh5 _lfc _nc vseed0",
+ "git_head": "e64170f",
+ "diff_sha1": "db2130f64d29",
+ "started": "2026-10-19 18:20:12"
+}

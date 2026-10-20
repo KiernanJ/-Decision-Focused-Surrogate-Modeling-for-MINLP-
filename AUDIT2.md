@@ -32,7 +32,7 @@ On case118 and case300 the method ties the supervised proxy, at about 35× the p
 - ✓ means I re-ran or re-tabulated the item myself. Everything else was verified by running, in an isolated clone, by one of the reviews, unless marked *(from reading)*.
 - All re-runs used Gurobi 13.0.3, cvxpy 1.9.3, Clarabel 0.11.1, torch 2.14.1, pandapower 3.3.3 and Python 3.12. The original environment isn't recorded, and that matters (see M2).
 - Ablation numbers on fresh5 and fresh6 are **post-hoc diagnostics on test draws that were already spent**, not new tests.
-- The audit scripts and per-instance outputs aren't in this branch. I can add them.
+- The scripts, their logs and the per-instance outputs are in `audit2/`. `audit2/README.md` maps each item below to its script, and the "*Evidence:*" lines give the main files. `python audit2/f3_ablations/verify_ablations.py` and `python audit2/f5_vehicle/veh_analyse.py` re-derive the section 1 tables in seconds, without a solver.
 
 ## 1. What carries the result ✓
 
@@ -102,6 +102,7 @@ All committed artifact and code hashes match the sha1s pre-registered in `RESULT
 - **Ours on case118 fresh5 moves because of a single instance, #733.** In the published run, Gurobi's incumbent had all 54 units on (MIP gap ≈ 1, gap 23.6%). Under Gurobi 13.0.3 no incumbent is found within W, the label-free fallback runs, and it scores 0.18%.
 - **case300 gains one extra fallback per seed.**
 - **The proxy differences on case118 are untraced.** On case300 the proxy reproduces exactly.
+- *Evidence:* `audit2/repro/` (`run_repro.sh`, `run_logs/`, `runs/*/final.pkl`).
 
 ## 3. Status of the first audit's items
 
@@ -164,6 +165,8 @@ All committed artifact and code hashes match the sha1s pre-registered in `RESULT
 
 **Consequence.** "Cuts learned through an exact differentiable layer" isn't supported for the cuts or the rows. The one layer-trained component that does work is the V-net: it helps typical instances a little given fixings, and helps a lot without them on case300.
 
+*Evidence:* `audit2/f1_protocol/a2_artifacts.py` (stored scores); `audit2/f4_layer/d_cuts.py`, `a_warm_vs_deployed.py`, `a2_noise_floor.py`, `b_rows_activity.py` (+ logs); `audit2/f3_ablations/` (arms A0, A4, A5); `audit2/f5_vehicle/analyse.txt`.
+
 ### C2. The gain over the proxy comes from deployment, not from label-free learning
 
 **AC case118:**
@@ -188,6 +191,8 @@ All committed artifact and code hashes match the sha1s pre-registered in `RESULT
 - ✓ **Plain Gurobi at W = 0.05 (about 55 ms) beats ours on 8/8.** It scores 0.035% on the MILP and 0.028% on the MINLP.
 - **The README omits a disclosed point.** `RESULTS.md` already says that a no-cut W = 0.01 solve reaches 0.163% against the proxy's 0.876%; the README doesn't.
 
+*Evidence:* `audit2/f1_protocol/a5_proxy.py` (+ `.log`); `audit2/f3_ablations/` (arms A0, A7h, A8, A12); `audit2/f5_vehicle/analyse.txt`.
+
 ### C3. Label-free reaches supervised only with about 4× more instances, and saves little offline
 
 **Data size:**
@@ -210,6 +215,8 @@ All committed artifact and code hashes match the sha1s pre-registered in `RESULT
 
 **Consequence.** The defensible claim is "no reference solver needed", not "cheaper than" or "as good as" supervised.
 
+*Evidence:* `audit2/f3_ablations/` (arms A5, A6, A6b, A6h); `audit2/f5_vehicle/analyse.txt` (imitation on 100 profiles, supervised cut-net); `audit2/f6_claims/time_teacher.py` (+ log); reference times from pool2 `secs` (`audit2/f2_physics/t4_refs.py`).
+
 ## 5. Major
 
 ### M1. The test sets exclude the hardest instances, and ours is never scored on them
@@ -220,6 +227,7 @@ All committed artifact and code hashes match the sha1s pre-registered in `RESULT
   - case300: 20% lack one, rising to 48% at load 1.10–1.20; 6 of the 8 fresh5 exclusions are feasible.
 - **Why it matters.** These are the instances where Gurobi struggles on this MIQCQP family, which is also what the W = 10 deployment relies on.
 - **What's needed.** Score both arms on them, against the best known cost or signed against each other, before claiming reliability.
+- *Evidence:* `audit2/f2_physics/t5_excluded.py`, `t4_refs.py` (+ logs).
 
 ### M2. Results depend on a few knife-edge instances, and the environment isn't recorded
 
@@ -232,6 +240,7 @@ All committed artifact and code hashes match the sha1s pre-registered in `RESULT
   - `acuc/runs/` (holding `final.pkl`) and the logs aren't committed, so README numbers can only be checked by re-running;
   - the vehicle test outputs and `pool_fresh/` aren't committed;
   - the chain scripts hard-code `~/.venvs/dfsm` (`acuc/clean_redo_2026-10-12.sh:8`).
+- *Evidence:* `audit2/f3_ablations/probe768.py`, `probe_res.py`; `audit2/repro/`; `audit2/f5_vehicle/analyse_g12.txt` and `test_rerun*.log`.
 
 ### M3. Selection decisions sit below the noise floor, and case118's were made at a different ρ than deployment
 
@@ -249,11 +258,13 @@ All committed artifact and code hashes match the sha1s pre-registered in `RESULT
 - **The selection ρ wasn't the deployment ρ.** `clean_redo_2026-10-12.sh:20,22` runs 46 and 52 without `DEPLOY_RHO`. So case118's c, cut epoch and rows epoch were chosen at the V-file ρ = 1e4, while deployment uses 3e5. `RESULTS.md` discloses only the V-net ρ mismatch.
 - **c = 0.9 is the edge of the grid** (`46_unit_cuts_layer.py:25`) in all three cases. At c = 0.9 the cut-net fixes 52.1/54 (case118), 64.9/69 (case300) and 51.0/54 (PGLib) units, so the MIQCQP decides only 2–4 commitments.
 - **The ρ rule is degenerate for case300 and PGLib.** All five grid values fall within 1e-3, so the rule simply returns the smallest.
+- *Evidence:* `audit2/f1_protocol/a7_valscores.py`, `a10_seeds.py`, `a11_perturb.py`, `a8_provenance.py` (+ logs and pickles).
 
 ### M4. case300's voltage band was widened without disclosure ✓
 
 - **What changed.** `src/pipeline.py:22-25` sets 0.90/1.10, with a comment saying that pandapower ships 0/2 placeholders and that 0.90/1.10 is case300's "own MATPOWER range". In fact, pandapower's case300 has 0.94/1.06 on every bus, as does MATPOWER's.
-- **Why it matters.** Under 0.94/1.06, 9 of 10 sampled reference commitments become infeasible: repair adds 16–28 units, at +1.4 to +4.6% cost. All-units-on is still feasible on 9/10, so the case isn't infeasible at its real limits, contrary to the comment. The widening materially changes the case300 UC problem.
+- **Why it matters.** Under 0.94/1.06, none of 10 sampled reference commitments is feasible as is. On 9, repair restores feasibility by adding 16–28 units, at +1.4 to +4.6% cost; the tenth is infeasible even with all units on. All-units-on is feasible on 9/10, so the case isn't infeasible at its real limits, contrary to the comment. The widening materially changes the case300 UC problem.
+- *Evidence:* `audit2/f2_physics/t2_case300_vband.py` (+ `.log`).
 
 ### M5. PGLib "cheaper than the reference" is real in direction but overstated, and the reference is weak
 
@@ -269,6 +280,7 @@ All committed artifact and code hashes match the sha1s pre-registered in `RESULT
 - **The reference is a weak heuristic.** Its QCAC cost is 3.62% (0.50–6.24%) above the converged price of its own commitment. It stops at slack ≤ 1e-3 with no physics check. Its last-iteration MIP gap has median 0.47% and maximum 19.5%. So |gap| to it isn't an accuracy measure.
 - **The discrete error is mostly free decisions.** 35 of the 54 PGLib units are synchronous condensers (pmax = 0, no-load cost ≈ 1e-7), and 55–57% of discrete mismatches are condensers.
 - **The band is narrower than stated.** The 0.85–1.05 band is effectively 0.85–0.99, because 93% of draws above 1.00 are infeasible.
+- *Evidence:* `audit2/f2_physics/evalac.py`, `t3b_pglib_stats.py`, `t3c_pglib_decomp.py`, `t3d_pglib_why.py`, `t4c_refmech.py` (+ logs).
 
 ### M6. case300 can't discriminate between methods
 
@@ -277,6 +289,7 @@ All committed artifact and code hashes match the sha1s pre-registered in `RESULT
   - Pre-polish MIP gaps reach 0.77%, and the polish improved none of the 40 commitments.
   - Reference noise of about 0.1–0.3% on at least a quarter of instances is comparable to the means being compared (0.08% vs 0.09%).
 - **case118 references are good, by contrast.** Their QCAC cost equals the strict price to within 0.06%, and methods beat them on only 2–4 of about 40 instances, by at most 0.044%.
+- *Evidence:* `audit2/f2_physics/t4_refs.py`, `t4b_noise.py` (+ logs).
 
 ### M7. Statistics and claims
 
@@ -321,6 +334,7 @@ All committed artifact and code hashes match the sha1s pre-registered in `RESULT
   - Cuts fall back on 60% / 85% / 10% of solves, yet still reach cosine 0.92–0.9995 against FD at h = 1e-2.
   - `_solve` (`src/conelayer.py:335`) returns the regularised solution with no accuracy check.
 - **Some claims have no committed output.** The cut/row FD gates, "13/13 corr ≥ 0.9999" and "57–60% inexact" have none.
+- *Evidence:* `audit2/f4_layer/d_vgrad.py`, `i_tol.py`, `d_cuts.py`, `d_rows.py`, `d_degen.sh` (+ logs).
 
 ### M9. Model and problem scope (mostly unchanged from the first audit)
 
@@ -527,4 +541,5 @@ case300, fresh5 (n = 40):
 - **Vehicle.** The deployed bundles were re-run with `VEH_LF=1 python dixit_vehicle/16_vehicle_final.py test`. The imitation warm starts were rebuilt with each bundle's own c and seed, and match the stored validation scores on 22/24 MILP and 3/3 MINLP bundles. Baselines were run on the same fresh2 pool and compared both vehicle-clustered and instance-paired.
 - **Physics.** I used standalone PYPOWER (MATPOWER formulation) at fixed commitment with the same data, costs and limits. I also checked power-flow residuals with an independently built Ybus.
 - **Timing.** Wall-clock times were measured while other jobs ran, so they are relative only. Gurobi runs use Threads=1 with WorkLimit and are deterministic.
-- **Repository.** It was read-only throughout; this file is the only addition.
+- **Evidence folder.** Everything above is in `audit2/`: scripts, logs, per-instance outputs, `requirements-audit.txt` and `repro/run_repro.sh`. See `audit2/README.md`.
+- **Repository.** It was read-only throughout; this file and `audit2/` are the only additions.
